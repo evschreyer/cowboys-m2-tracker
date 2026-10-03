@@ -1,0 +1,9 @@
+_site/
+__pycache__/
+*.pyc
+.DS_Store
+# current-season feed is re-downloaded on every refresh (10 MB); 2025-26 feed is kept for backtests
+data/feeds/season73.json
+.claude/
+# ACHA manuals / referee documents: kept locally, not redistributed
+/*.pdf

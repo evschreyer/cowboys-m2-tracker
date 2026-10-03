@@ -1,0 +1,755 @@
+<title>Cowboys M2 Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: scoreboard header + tab rail; each tab is one working surface, summary first, detail tables below. */
+:root {
+  --bg: #f1f2f1;
+  --surface: #ffffff;
+  --surface-2: #f6f6f4;
+  --line: #dcdedb;
+  --fg: #17181a;
+  --muted: #5f6460;
+  --accent: #ff6b00;          /* OSU orange: fills, marks */
+  --accent-ink: #b84a00;      /* orange that reads as text on light */
+  --accent-soft: #ffe7d6;
+  --ink-strong: #0d0d0e;      /* scoreboard black */
+  --on-ink: #f4f4f2;
+  --good: #1f7a4d; --good-soft: #dcf1e5;
+  --warn: #9a6400; --warn-soft: #fbefd2;
+  --bad: #b3261e; --bad-soft: #f9dedb;
+  --font-display: "Saira Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --radius: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111213; --surface: #1a1b1d; --surface-2: #212225; --line: #2f3135;
+  --fg: #ececea; --muted: #a2a6a2; --accent: #ff7a1a; --accent-ink: #ff9a4d; --accent-soft: #3a2414;
+  --ink-strong: #000000; --on-ink: #f4f4f2;
+  --good: #5cc98f; --good-soft: #15301f; --warn: #e6b450; --warn-soft: #33290f; --bad: #ff8a80; --bad-soft: #3a1714;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #111213; --surface: #1a1b1d; --surface-2: #212225; --line: #2f3135;
+  --fg: #ececea; --muted: #a2a6a2; --accent: #ff7a1a; --accent-ink: #ff9a4d; --accent-soft: #3a2414;
+  --ink-strong: #000000; --on-ink: #f4f4f2;
+  --good: #5cc98f; --good-soft: #15301f; --warn: #e6b450; --warn-soft: #33290f; --bad: #ff8a80; --bad-soft: #3a1714;
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font: 400 15px/1.5 var(--font-body); margin: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 16px; padding-block: 0 48px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: .01em; text-wrap: balance; margin: 0; line-height: 1.1; }
+h2 { font-size: 1.55rem; text-transform: uppercase; }
+h3 { font-size: 1.15rem; text-transform: uppercase; letter-spacing: .03em; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.num, td.n, th.n { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+.label { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; font-weight: 600; color: var(--muted); }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Scoreboard header */
+.board { background: var(--ink-strong); color: var(--on-ink); }
+.board .wrap { padding-block: 18px 0; display: grid; gap: 14px; }
+.board-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+.brand { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.brand h1 { font-size: 2rem; text-transform: uppercase; }
+.brand h1 span { color: var(--accent); }
+.board .stamp { font-family: var(--font-data); font-size: .8rem; color: #b9bbb7; }
+.tabs { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+.tabs button { font: 600 .95rem var(--font-display); text-transform: uppercase; letter-spacing: .06em; color: #c9cbc7; background: transparent;
+  border: 0; border-bottom: 3px solid transparent; padding: 10px 14px 9px; cursor: pointer; white-space: nowrap; }
+.tabs button:hover { color: #fff; }
+.tabs button[aria-selected="true"] { color: #fff; border-bottom-color: var(--accent); }
+
+main .wrap { padding-top: 22px; }
+section.tab { display: grid; gap: 18px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 12px; }
+.grid-2 { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 18px; }
+@media (max-width: 860px) { .grid-2 { grid-template-columns: 1fr; } }
+.grid-wi { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 18px; align-items: start; }
+@media (max-width: 1060px) { .grid-wi { grid-template-columns: 1fr; } }
+
+/* Hero (OSU) */
+.hero { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px; align-items: stretch; }
+@media (max-width: 700px) { .hero { grid-template-columns: 1fr; } }
+.rankbox { background: var(--ink-strong); color: var(--on-ink); border-radius: var(--radius); padding: 16px 22px; display: grid; align-content: space-between; gap: 6px; justify-items: start; min-width: 190px; }
+.rankbox .big { font: 700 5.2rem/0.9 var(--font-display); color: var(--accent); }
+.rankbox .big small { font-size: 2.2rem; color: var(--on-ink); margin-right: 2px; }
+.rankbox .sub { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .08em; font-size: .95rem; }
+.rankbox .rec { font-family: var(--font-data); font-size: .85rem; color: #b9bbb7; }
+.cuts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 560px) { .cuts { grid-template-columns: 1fr; } }
+.cut { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; background: var(--surface); display: grid; gap: 2px; }
+.cut .v { font: 600 1.5rem/1.1 var(--font-data); }
+.cut.in { border-left: 4px solid var(--good); }
+.cut.out { border-left: 4px solid var(--bad); }
+.hero-right { display: grid; gap: 10px; align-content: start; min-width: 0; }
+
+.pill { display: inline-flex; align-items: center; gap: 6px; font: 600 .78rem var(--font-body); padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.pill.good { background: var(--good-soft); color: var(--good); }
+.pill.warn { background: var(--warn-soft); color: var(--warn); }
+.pill.bad { background: var(--bad-soft); color: var(--bad); }
+.pill.neutral { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+.pill.accent { background: var(--accent-soft); color: var(--accent-ink); }
+
+.alert { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; padding: 10px 12px; border-radius: var(--radius); background: var(--surface-2); border: 1px solid var(--line); }
+.alert.bad { background: var(--bad-soft); border-color: transparent; }
+.alert.warn { background: var(--warn-soft); border-color: transparent; }
+.alert b { font-weight: 700; }
+
+/* Rating equation */
+.equation { display: flex; flex-wrap: wrap; align-items: stretch; gap: 6px; }
+.term { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 12px; display: grid; gap: 0; min-width: 92px; }
+.term .v { font: 600 1.35rem/1.2 var(--font-data); }
+.term.total { background: var(--accent-soft); border-color: transparent; }
+.term.total .v { color: var(--accent-ink); }
+.op { align-self: center; font: 600 1.3rem var(--font-data); color: var(--muted); }
+
+/* Meters */
+.meter { display: grid; gap: 6px; }
+.meter-bar { position: relative; height: 14px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; display: flex; }
+.meter-bar .played { background: var(--accent); }
+.meter-bar .sched { background: repeating-linear-gradient(-45deg, var(--accent-soft), var(--accent-soft) 4px, transparent 4px, transparent 8px); }
+.meter-bar .need { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--fg); }
+.meter-row { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: .9rem; }
+
+/* Tables */
+.tablewrap { overflow-x: auto; margin-inline: -4px; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th { font: 600 .74rem var(--font-display); text-transform: uppercase; letter-spacing: .07em; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td.team { white-space: normal; min-width: 150px; }
+th.n, td.n { text-align: right; }
+tr.focus td { background: var(--accent-soft); font-weight: 600; }
+tr.dim td { color: var(--muted); }
+tr.cutline td { padding: 0; border-bottom: 0; }
+tr.cutline div { display: flex; align-items: center; gap: 8px; padding: 3px 8px; font: 600 .72rem var(--font-display); text-transform: uppercase; letter-spacing: .08em; color: var(--accent-ink); border-top: 2px solid var(--accent); }
+.mv-up { color: var(--good); } .mv-down { color: var(--bad); }
+.bar { display: inline-block; height: 8px; border-radius: 2px; vertical-align: middle; }
+.bar.pos { background: var(--good); } .bar.neg { background: var(--bad); }
+
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; flex-wrap: wrap; }
+.seg button { font: 600 .82rem var(--font-display); text-transform: uppercase; letter-spacing: .06em; padding: 6px 12px; border: 0; background: var(--surface); color: var(--muted); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink-strong); color: var(--on-ink); }
+.btn { font: 600 .9rem var(--font-body); padding: 7px 14px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #1a0d00; }
+.btn:disabled { opacity: .5; cursor: default; }
+select, input[type="number"] { font: 500 .9rem var(--font-body); background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 4px; padding: 5px 7px; }
+input[type="number"] { width: 3.4em; font-family: var(--font-data); text-align: center; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+/* What-if game rows */
+.games { display: grid; gap: 6px; }
+.gamerow { display: grid; grid-template-columns: 70px minmax(0,1fr) auto minmax(0,1fr) auto; gap: 8px; align-items: center; padding: 6px 8px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.gamerow.set { border-color: var(--accent); background: var(--accent-soft); }
+.gamerow .d { font: .8rem var(--font-data); color: var(--muted); }
+.gamerow .h { text-align: right; }
+.gamerow .score { display: flex; gap: 4px; align-items: center; }
+.gamerow .x { font-size: .8rem; }
+@media (max-width: 560px) { .gamerow { grid-template-columns: 1fr auto; } .gamerow .d { grid-column: 1 / -1; } .gamerow .h { text-align: left; } }
+.quick { display: flex; gap: 4px; }
+.quick button { font: 600 .72rem var(--font-data); padding: 3px 6px; border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); border-radius: 3px; cursor: pointer; }
+
+/* Histogram */
+.hist { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(18px, 1fr); align-items: end; gap: 3px; height: 130px; padding-top: 8px; border-bottom: 1px solid var(--line); }
+.hist div { background: var(--accent); border-radius: 2px 2px 0 0; min-height: 1px; position: relative; }
+.hist div.out { background: var(--line); }
+.hist-axis { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(18px, 1fr); gap: 3px; font: .7rem var(--font-data); color: var(--muted); text-align: center; }
+.prob { display: inline-block; width: 60px; height: 8px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 2px; vertical-align: middle; margin-right: 6px; position: relative; overflow: hidden; }
+.prob i { position: absolute; inset: 0 auto 0 0; background: var(--accent); }
+
+.prose { max-width: 70ch; display: grid; gap: 10px; }
+.prose ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
+pre.formula { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; overflow-x: auto; font: .85rem/1.6 var(--font-data); margin: 0; }
+.loading { padding: 40px 0; text-align: center; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .prob i, .meter-bar > * { transition: width .3s ease; } }
+</style>
+
+<header class="board">
+  <div class="wrap">
+    <div class="board-top">
+      <div class="brand"><h1>Cowboys <span>M2</span> Tracker</h1><span class="label" style="color:#b9bbb7">Oklahoma State · ACHA Men's D2 · West</span></div>
+      <div class="stamp" id="stamp">Loading data…</div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Dashboard sections">
+      <button role="tab" id="t-osu" aria-controls="osu" aria-selected="true">OSU Breakdown</button>
+      <button role="tab" id="t-rank" aria-controls="rank" aria-selected="false">Regional Rankings</button>
+      <button role="tab" id="t-whatif" aria-controls="whatif" aria-selected="false">What-If</button>
+      <button role="tab" id="t-proj" aria-controls="proj" aria-selected="false">Projections</button>
+      <button role="tab" id="t-method" aria-controls="method" aria-selected="false">Method</button>
+    </nav>
+  </div>
+</header>
+
+<main><div class="wrap">
+  <div id="boot" class="loading">Loading rankings snapshot…</div>
+
+  <!-- OSU -->
+  <section class="tab" id="osu" role="tabpanel" aria-labelledby="t-osu" hidden>
+    <div class="hero">
+      <div class="rankbox">
+        <span class="label" style="color:#b9bbb7">West region rank</span>
+        <div class="big" id="osu-rank"></div>
+        <div class="sub" id="osu-final"></div>
+        <div class="rec" id="osu-rec"></div>
+      </div>
+      <div class="hero-right">
+        <div class="cuts" id="osu-cuts"></div>
+        <div id="osu-alerts" style="display:grid;gap:8px"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head"><h3>How the rating is built</h3><span class="muted" style="font-size:.85rem">Goal units. A 1.00 gap means a predicted 1-goal edge on neutral ice.</span></div>
+      <div class="equation" id="osu-eq"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head"><h3>Game-by-game impact</h3><span class="muted" style="font-size:.85rem">Only M2 vs M2 games count</span></div>
+      <div class="tablewrap"><table id="osu-games"></table></div>
+      <p class="muted" style="font-size:.82rem;margin-top:8px">Game score = capped goal differential + opponent's current rating. The rating is the average game score, so <b>Impact</b> is how far each game pulls the rating above or below that average.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head"><h3>Upcoming M2 games</h3><span class="muted" style="font-size:.85rem">Predictions from current ratings</span></div>
+        <div class="tablewrap"><table id="osu-next"></table></div>
+      </div>
+      <div style="display:grid;gap:18px;align-content:start">
+        <div class="panel">
+          <div class="panel-head"><h3>Postseason eligibility</h3><span id="elig-pill"></span></div>
+          <div id="elig" style="display:grid;gap:14px"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Ranking calendar</h3></div>
+          <div class="tablewrap"><table id="osu-cal"></table></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rankings -->
+  <section class="tab" id="rank" role="tabpanel" aria-labelledby="t-rank" hidden>
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Regional rankings</h2>
+        <div class="seg" id="reg-seg" role="group" aria-label="Region"></div>
+      </div>
+      <p class="muted" style="font-size:.88rem;margin-bottom:10px" id="rank-note"></p>
+      <div class="tablewrap"><table id="rank-table"></table></div>
+    </div>
+  </section>
+
+  <!-- What-if -->
+  <section class="tab" id="whatif" role="tabpanel" aria-labelledby="t-whatif" hidden>
+    <div class="grid-wi">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Set results</h2>
+          <div class="controls">
+            <label for="wi-team" class="label">Team</label>
+            <select id="wi-team"></select>
+          </div>
+        </div>
+        <p class="muted" style="font-size:.88rem;margin-bottom:10px">Enter a score for any remaining M2 game. A tie score is treated as an OT/shootout game won by one goal by the team you pick. Results stay set when you switch teams.</p>
+        <div class="controls" style="margin-bottom:10px">
+          <span id="wi-count" class="pill neutral">0 results set</span>
+          <button class="btn" id="wi-clear">Clear all</button>
+        </div>
+        <div class="games" id="wi-games"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <h2 id="wi-title">West after these results</h2>
+          <div class="seg" id="wi-seg" role="group" aria-label="Region"></div>
+        </div>
+        <div id="wi-summary" style="margin-bottom:10px"></div>
+        <div class="tablewrap"><table id="wi-table"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projections -->
+  <section class="tab" id="proj" role="tabpanel" aria-labelledby="t-proj" hidden>
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Projected final ranking (games through Feb 14)</h2>
+        <div class="controls">
+          <label for="pj-n" class="label">Seasons</label>
+          <select id="pj-n"><option selected>250</option><option>500</option><option>1000</option><option>2000</option></select>
+          <button class="btn primary" id="pj-run">Run simulation</button>
+        </div>
+      </div>
+      <p class="muted" style="font-size:.88rem" id="pj-note"></p>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head"><h3>Odds by team</h3><div class="seg" id="pj-seg" role="group" aria-label="Region"></div></div>
+        <div class="tablewrap"><table id="pj-table"></table></div>
+      </div>
+      <div style="display:grid;gap:18px;align-content:start">
+        <div class="panel">
+          <div class="panel-head"><h3>OSU final West rank</h3><span id="pj-osu-pill"></span></div>
+          <div class="hist" id="pj-hist"></div>
+          <div class="hist-axis" id="pj-axis"></div>
+          <p class="muted" style="font-size:.82rem;margin-top:8px">Share of simulated seasons ending at each rank. Orange bars are inside the Regionals field (top 16).</p>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>OSU game odds</h3></div>
+          <div class="tablewrap"><table id="pj-games"></table></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method -->
+  <section class="tab" id="method" role="tabpanel" aria-labelledby="t-method" hidden>
+    <div class="grid-2">
+      <div class="panel prose">
+        <h2>How ACHA ranks M2</h2>
+        <p>Rebuilt from ACHA's own published ranking spreadsheets and raw-data sheets (2024-25 and 2025-26), then checked against all nine 2025-26 releases.</p>
+<pre class="formula">Game GD    = goals for − goals against, capped at ±7
+GmPerf     = average Game GD (M2 vs M2 games only)
+Sched      = average rating of opponents
+Rating     = GmPerf + Sched   (recursive; league average fixed at 7.00)
+OT adj     = 0.5 × OT losses ÷ games played
+AWP        = 0.8 × W ÷ (W + L)
+Final      = Rating + OT adj + AWP − penalty
+Ranked by Final within each region</pre>
+        <h3>Rules from the 2026-27 ACHA Manual</h3>
+        <ul>
+          <li>Ranked by computer by region, using strength of schedule, win-loss percentage and goal differential (Part Five, Art. IV §1).</li>
+          <li>Only games against other M2 teams count. Games against M1 or M3 teams do not.</li>
+          <li>M2 vs M2 games that stay tied after 3-on-3 OT go to a shootout, so there are no ties. The shootout winner is credited one goal.</li>
+          <li>A league playoff game that goes to OT counts as a tie (§3C).</li>
+          <li>Forfeited games are left out of the math. The penalty is 0.25 per ineligible player per game, or per forfeit (§5).</li>
+          <li>Teams must be in good standing to be ranked. ACHA publishes the top 20 per region.</li>
+          <li>Postseason needs at least 16 M2 games and 18 ACHA games by the final ranking (§2A).</li>
+          <li>Top 2 per region go straight to Nationals. Seeds 3-16 play Regionals, and league auto-bids replace the lowest seeds.</li>
+        </ul>
+        <h3>What this can't see</h3>
+        <ul>
+          <li>Scores that teams have not entered yet. ACHA's own data has the same gap until the Monday reporting deadline.</li>
+          <li>Penalties for ineligible players and good-standing decisions, until ACHA announces them.</li>
+          <li>Ranking Committee decisions, which are final.</li>
+        </ul>
+      </div>
+      <div style="display:grid;gap:18px;align-content:start">
+        <div class="panel">
+          <div class="panel-head"><h3>Backtest vs official 2025-26</h3></div>
+          <div class="tablewrap"><table id="bt-table"></table></div>
+          <p class="muted" style="font-size:.82rem;margin-top:8px">Rating error = average gap between our rating and ACHA's. Most of it comes from scores that differ between the public feed and ACHA's file, not from the formula. "Top 2" counts how many of the eight automatic Nationals bids we placed correctly.</p>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Data in this snapshot</h3></div>
+          <div class="tablewrap"><table id="data-table"></table></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div></main>
+
+<script src="engine.js"></script>
+<script>
+"use strict";
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const REGIONS = ["West", "Central", "Northeast", "Southeast"];
+let MODEL = null; // projection model from the snapshot (calibrated 2024-25 -> 2025-26)
+const BACKTEST = [ // scripts/backtest.py, 2025-26
+  ["R1", "Nov 9", 0.237, "8/8", "62/64"], ["R2", "Nov 16", 0.189, "6/8", "47/48"], ["R3", "Nov 24", 0.169, "8/8", "63/64"],
+  ["R4", "Dec 7", 0.181, "8/8", "62/64"], ["R5", "Dec 14", 0.178, "8/8", "62/64"], ["R6", "Jan 18", 0.161, "8/8", "62/64"],
+  ["R7", "Jan 25", 0.155, "8/8", "62/64"], ["R8", "Feb 1", 0.115, "8/8", "63/64"], ["Final", "Feb 8", 0.101, "8/8", "63/64"]];
+
+let S, FOCUS, REG = {}, CUR = {}, PEN = {}, NGS = [], BYREG = {};
+const state = { tab: "osu", region: "West", wiRegion: "West", pjRegion: "West", wiTeam: null, wi: {}, proj: null };
+try { const s = JSON.parse(localStorage.getItem("m2tracker") || "{}"); Object.assign(state, { region: s.region || "West", wiTeam: s.wiTeam || null }); } catch (e) {}
+const save = () => { try { localStorage.setItem("m2tracker", JSON.stringify({ region: state.region, wiTeam: state.wiTeam })); } catch (e) {} };
+
+const short = (n) => n.replace(/^MD[123] /, "").replace(/^University of /, "").replace(/ University$/, "").replace(/^The /, "")
+  .replace(/ College$/, "").replace("State University-", "State-").replace("California-", "Cal-").replace(" Community College", " CC");
+const fmt = (x, d = 2) => (x == null || isNaN(x)) ? "–" : x.toFixed(d);
+const sgn = (x, d = 2) => (x == null || isNaN(x)) ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "±") + Math.abs(x).toFixed(d);
+const dstr = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" });
+const today = () => new Date().toISOString().slice(0, 10);
+function phi(z) { const t = 1 / (1 + 0.2316419 * Math.abs(z)); const d = 0.3989423 * Math.exp(-z * z / 2);
+  const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274)))); return z > 0 ? 1 - p : p; }
+
+// ---------- data ----------
+fetch("latest.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(init).catch((e) => {
+  $("#boot").textContent = "Couldn't load the rankings snapshot (latest.json). Reload the page; if it keeps failing, the snapshot needs to be republished.";
+});
+
+function init(snap) {
+  S = snap; FOCUS = S.config.focus_team; MODEL = S.model;
+  for (const t of S.teams) REG[t.team] = t.region;
+  // penalties/standing as applied in the snapshot
+  for (const t of S.teams) { if (t.penalty) PEN[t.team] = t.penalty; if (t.status === "not_good_standing") NGS.push(t.team); }
+  CUR = compute(S.games);
+  STR = strengths(S.games);
+  BYREG = CUR.byRegion;
+  const g = new Date(S.generated_at);
+  $("#stamp").textContent = `Scores through ${S.last_game_date ? dstr(S.last_game_date) : "–"} · updated ${g.toLocaleDateString("en-US", { month: "short", day: "numeric" })} ${g.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}`;
+  $("#boot").hidden = true;
+  state.wiTeam = state.wiTeam && REG[state.wiTeam] ? state.wiTeam : FOCUS;
+  buildSeg("#reg-seg", "region", renderRankings);
+  buildSeg("#wi-seg", "wiRegion", renderWhatIfTable);
+  buildSeg("#pj-seg", "pjRegion", renderProjTable);
+  renderOSU(); renderRankings(); setupWhatIf(); setupProj(); renderMethod();
+  document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => showTab(b.getAttribute("aria-controls"))));
+  const h = location.hash.replace("#", "");
+  showTab(["osu", "rank", "whatif", "proj", "method"].includes(h) ? h : "osu");
+}
+
+function compute(games, opts) {
+  const teams = M2Engine.solve(games, opts);
+  const byRegion = M2Engine.rank(teams, REG, PEN, NGS);
+  return { teams, byRegion };
+}
+
+function showTab(id) {
+  state.tab = id;
+  document.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", b.getAttribute("aria-controls") === id));
+  document.querySelectorAll("section.tab").forEach((s) => (s.hidden = s.id !== id));
+  try { history.replaceState(null, "", "#" + id); } catch (e) {}
+  if (id === "proj" && !state.proj) runProjection();
+}
+
+function buildSeg(sel, key, onChange) {
+  const el = $(sel);
+  el.innerHTML = REGIONS.map((r) => `<button type="button" aria-pressed="${state[key] === r}" data-r="${r}">${r}</button>`).join("");
+  el.addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    state[key] = b.dataset.r; el.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b)); save(); onChange();
+  });
+}
+
+// ---------- OSU tab ----------
+function regionRows(byRegion, reg) { return (byRegion[reg] || []); }
+function ranked(byRegion, reg) { return regionRows(byRegion, reg).filter((r) => r.status === "ranked"); }
+
+function renderOSU() {
+  const me = CUR.teams[FOCUS];
+  const snapRow = S.teams.find((t) => t.team === FOCUS) || {};
+  const west = ranked(BYREG, REG[FOCUS]);
+  if (!me) {
+    $("#osu-rank").innerHTML = "–"; $("#osu-final").textContent = "No M2 games yet"; return;
+  }
+  $("#osu-rank").innerHTML = me.rank ? `<small>#</small>${me.rank}` : "NR";
+  $("#osu-final").textContent = `Final rating ${fmt(me.final)}`;
+  const mv = snapRow.prev_rank && me.rank ? snapRow.prev_rank - me.rank : null;
+  const ov = S.focus_games.filter((g) => g.state === "final" && g.acha);
+  const ow = ov.filter((g) => g.gf > g.ga).length, ol = ov.filter((g) => g.gf < g.ga).length, ot = ov.length - ow - ol;
+  $("#osu-rec").innerHTML = `<b style="color:var(--on-ink)">${me.w}-${me.l} M2</b> (counts for ranking) · ${ow}-${ol}${ot ? "-" + ot : ""} overall<br>${me.otw} OTW, ${me.otl} OTL · ${west.length} ranked in West` + (mv ? ` · ${mv > 0 ? "▲" : "▼"}${Math.abs(mv)} since last update` : "");
+
+  // cut lines
+  $("#osu-cuts").innerHTML = S.config.cut_lines.map((c) => {
+    const k = c.rank; let inside = me.rank && me.rank <= k, gap, txt;
+    if (inside) { const next = west[k]; gap = next ? me.final - next.final : null; txt = next ? `ahead of #${k + 1} ${esc(short(next.team))}` : "no team below the line"; }
+    else { const line = west[k - 1]; gap = line ? line.final - me.final : null; txt = line ? `behind #${k} ${esc(short(line.team))}` : ""; }
+    return `<div class="cut ${inside ? "in" : "out"}"><span class="label">Top ${k} · ${esc(c.label)}</span>
+      <span class="v">${gap == null ? "–" : (inside ? "+" : "−") + gap.toFixed(2)}</span><span class="muted" style="font-size:.82rem">${inside ? "Inside" : "Outside"}, ${txt}</span></div>`;
+  }).join("");
+
+  // alerts
+  const alerts = [];
+  const linked = S.teams.filter((t) => t.region === REG[FOCUS] && t.linked_to_focus).length;
+  const westAll = S.teams.filter((t) => t.region === REG[FOCUS] && t.gp > 0).length;
+  if (S.counts.groups > 1) alerts.push(["warn", `<b>Early-season ratings.</b> The M2 schedule is still split into ${S.counts.groups} separate groups of teams that haven't played each other, even through opponents. Only ${linked} of ${westAll} West teams with games are linked to OSU, so ratings between unlinked teams can't be compared yet. This settles as more games are played.`]);
+  const u = S.upcoming.filter((g) => g.state === "unreported").length;
+  if (u) alerts.push(["", `<b>${u} past M2 games have no score in the feed yet.</b> Teams have until Monday at midnight to report. ACHA ranks with the same data.`]);
+  $("#osu-alerts").innerHTML = alerts.map(([c, t]) => `<div class="alert ${c}"><span>${c === "warn" ? "⚠" : "ℹ"}</span><div>${t}</div></div>`).join("");
+
+  // equation
+  const terms = [["GmPerf", me.gmperf, "Avg capped goal diff"], ["Sched", me.sched, "Avg opponent rating"], ["OT adj", me.otadj, "0.5 × OTL ÷ GP"], ["AWP", me.awp, "0.8 × win %"]];
+  let eq = terms.map(([l, v, d], i) => `${i ? '<span class="op">+</span>' : ""}<div class="term"><span class="label">${l}</span><span class="v">${fmt(v)}</span><span class="muted" style="font-size:.75rem">${d}</span></div>`).join("");
+  if (me.penalty) eq += `<span class="op">−</span><div class="term"><span class="label">Penalty</span><span class="v">${fmt(me.penalty)}</span><span class="muted" style="font-size:.75rem">Forfeits / eligibility</span></div>`;
+  eq += `<span class="op">=</span><div class="term total"><span class="label">Final</span><span class="v">${fmt(me.final)}</span><span class="muted" style="font-size:.75rem">Ranked on this</span></div>`;
+  $("#osu-eq").innerHTML = eq;
+
+  // game log
+  const counted = new Map(S.games.filter((g) => g.home === FOCUS || g.away === FOCUS).map((g) => [g.id, g]));
+  const rows = [];
+  let maxImp = 0;
+  const past = S.focus_games.filter((g) => g.state === "final" || g.state === "forfeit");
+  for (const g of past) {
+    const opp = g.opponent, oppName = opp.replace(/^MD[123] /, ""), div = opp.slice(2, 3);
+    const cg = counted.get(g.id);
+    let gd = null, oppR = null, score = null, imp = null;
+    if (cg) {
+      const home = cg.home === FOCUS;
+      gd = M2Engine.gdHome(cg, M2Engine.CAP) * (home ? 1 : -1);
+      oppR = CUR.teams[oppName] ? CUR.teams[oppName].total : null;
+      score = gd + oppR; imp = (score - me.total) / me.gp; maxImp = Math.max(maxImp, Math.abs(imp));
+    }
+    rows.push({ g, oppName, div, cg, gd, oppR, score, imp });
+  }
+  const res = (g) => g.state === "forfeit" ? "FF" : g.gf > g.ga ? "W" : g.gf < g.ga ? "L" : "T";
+  $("#osu-games").innerHTML = `<thead><tr><th>Date</th><th>Opponent</th><th>Score</th><th class="n">GD</th><th class="n">Opp rtg</th><th class="n">Game score</th><th class="n">Impact</th></tr></thead><tbody>` +
+    rows.map((r) => {
+      const g = r.g, sc = `${res(g)} ${g.gf}-${g.ga}${g.status.includes("SO") ? " SO" : g.status.includes("OT") ? " OT" : ""}`;
+      if (!r.cg) return `<tr class="dim"><td class="num">${dstr(g.date)}</td><td class="team">${g.home ? "" : "at "}${esc(short(r.oppName))} <span class="pill neutral">M${r.div}</span></td><td class="num">${sc}</td><td colspan="4" class="muted" style="font-size:.82rem">Not counted (${r.div === "2" ? "forfeit" : "M" + r.div + " opponent"})</td></tr>`;
+      const w = maxImp ? Math.round(40 * Math.abs(r.imp) / maxImp) : 0;
+      return `<tr><td class="num">${dstr(g.date)}</td><td class="team">${g.home ? "" : "at "}${esc(short(r.oppName))}</td><td class="num">${sc}</td><td class="n">${sgn(r.gd, 0)}</td><td class="n">${fmt(r.oppR)}</td><td class="n">${fmt(r.score)}</td>
+        <td class="n">${sgn(r.imp)} <span class="bar ${r.imp >= 0 ? "pos" : "neg"}" style="width:${w}px"></span></td></tr>`;
+    }).join("") + `</tbody>`;
+
+  // eligibility
+  const e = S.eligibility;
+  const meterHtml = (label, played, sched, need, unrep) => {
+    const total = Math.max(need, played + sched) + 2, slack = played + sched - need;
+    const pill = slack < 0 ? ["bad", `${-slack} short`] : slack === 0 ? ["bad", "Zero margin"] : slack <= 2 ? ["warn", `${slack} to spare`] : ["good", `${slack} to spare`];
+    return `<div class="meter"><div class="meter-row"><span><b>${label}</b></span><span class="pill ${pill[0]}">${pill[1]}</span></div>
+      <div class="meter-bar"><span class="played" style="width:${100 * played / total}%"></span><span class="sched" style="width:${100 * sched / total}%"></span><span class="need" style="left:${100 * need / total}%"></span></div>
+      <div class="meter-row muted"><span>${played} played · ${sched} scheduled${unrep ? ` · ${unrep} unreported` : ""}</span><span>need ${need} by ${dstr(e.by)}</span></div></div>`;
+  };
+  const m2s = e.m2_scheduled + (e.m2_unreported || 0);
+  $("#elig").innerHTML = meterHtml("M2 vs M2 games", e.m2_played, m2s, e.min_m2_games, e.m2_unreported) +
+    meterHtml("All ACHA games", e.acha_played, e.acha_scheduled, e.min_acha_games, 0) +
+    (e.m2_played + m2s - e.min_m2_games <= 0 ? `<p style="font-size:.88rem">Every remaining M2 game has to be played. If one is postponed, it needs a makeup date before Feb 14, or OSU misses the postseason minimum (Manual Part Five, Art. IV §2A).</p>` : "");
+  const worst = Math.min(e.m2_played + m2s - e.min_m2_games, e.acha_played + e.acha_scheduled - e.min_acha_games);
+  $("#elig-pill").innerHTML = worst < 0 ? '<span class="pill bad">At risk</span>' : worst === 0 ? '<span class="pill bad">On the minimum</span>' : '<span class="pill good">On track</span>';
+
+  // upcoming
+  const up = S.upcoming.filter((g) => g.home === FOCUS || g.away === FOCUS).slice(0, 16);
+  $("#osu-next").innerHTML = `<thead><tr><th>Date</th><th>Opponent</th><th class="n">Opp rtg</th><th class="n">Pred.</th><th class="n">Win %</th></tr></thead><tbody>` +
+    (up.length ? up.map((g) => {
+      const home = g.home === FOCUS, opp = home ? g.away : g.home, p = predict(home ? FOCUS : opp, home ? opp : FOCUS);
+      const m = home ? p.margin : -p.margin, wp = home ? p.pHome : 1 - p.pHome;
+      const oppT = CUR.teams[opp];
+      return `<tr><td class="num">${dstr(g.date)}</td><td class="team">${home ? "vs" : "at"} ${esc(short(opp))}${g.state === "unreported" ? ' <span class="pill warn">no score yet</span>' : ""}</td>
+        <td class="n">${oppT ? fmt(oppT.total) : "–"}</td><td class="n">${sgn(m, 1)}</td><td class="n">${Math.round(100 * wp)}%</td></tr>`;
+    }).join("") : `<tr><td colspan="5" class="muted">No M2 games left before the final ranking.</td></tr>`) + `</tbody>`;
+
+  // calendar
+  const t = today();
+  $("#osu-cal").innerHTML = `<tbody>` + S.config.ranking_periods.map((p) => {
+    const days = Math.round((new Date(p.through + "T12:00:00") - new Date(t + "T12:00:00")) / 864e5);
+    return `<tr><td>${esc(p.label)}</td><td class="num">games through ${dstr(p.through)}</td><td class="n">${days > 0 ? `<span class="pill accent">${days} days</span>` : '<span class="pill neutral">done</span>'}</td></tr>`;
+  }).join("") + S.config.events.map((e) => `<tr><td>${esc(e.label)}</td><td class="num" colspan="2">${esc(e.dates.split(" to ").map(dstr).join(" – "))}</td></tr>`).join("") + `</tbody>`;
+}
+
+// Prediction model (goal units), separate from the ACHA formula. Each team's strength is its average
+// game score (GD minus home edge, plus opponent strength) with last season's final rating counted as
+// MODEL.ridge_k extra games (MODEL.new_team_k for teams new to M2). Anchoring every team to a prior keeps
+// early-season groups that haven't played each other comparable. Calibrated on 2024-25 -> 2025-26.
+function priorOf(name) { const p = S.priors[name]; return p == null ? MODEL.new_team_prior : p; }
+function kOf(name) { return S.priors[name] == null ? MODEL.new_team_k : MODEL.ridge_k; }
+function strengths(games) {
+  const opp = {}, names = new Set(Object.keys(REG));
+  for (const g of games) { names.add(g.home); names.add(g.away); }
+  for (const t of names) opp[t] = [];
+  for (const g of games) {
+    const d = M2Engine.gdHome(g, M2Engine.CAP);
+    opp[g.home].push([d - MODEL.home_edge, g.away]); opp[g.away].push([-d + MODEL.home_edge, g.home]);
+  }
+  let s = {}; for (const t of names) s[t] = priorOf(t);
+  for (let it = 0; it < 5000; it++) {
+    let delta = 0; const n = {};
+    for (const t of names) {
+      let sum = kOf(t) * priorOf(t);
+      for (const [d, o] of opp[t]) sum += d + s[o];
+      n[t] = sum / (opp[t].length + kOf(t)); delta = Math.max(delta, Math.abs(n[t] - s[t]));
+    }
+    s = n; if (delta < 1e-7) break;
+  }
+  const sd = {}; for (const t of names) sd[t] = MODEL.game_sd / Math.sqrt(opp[t].length + kOf(t));
+  return { s, sd };
+}
+let STR = null;
+function predict(home, away) {
+  const margin = STR.s[home] - STR.s[away] + MODEL.home_edge;
+  const sd = Math.sqrt(MODEL.game_sd ** 2 + STR.sd[home] ** 2 + STR.sd[away] ** 2);
+  const pReg = 1 - phi((0.5 - margin) / sd), pOT = phi((0.5 - margin) / sd) - phi((-0.5 - margin) / sd);
+  return { margin, pHome: pReg + pOT / 2 };
+}
+
+// ---------- Rankings tab ----------
+function rankTable(rows, opts) {
+  const o = Object.assign({ prev: null, deltaFrom: null }, opts || {});
+  const cut = new Map(S.config.cut_lines.map((c) => [c.rank, c.label]));
+  let h = `<thead><tr><th class="n">#</th>${o.prev || o.deltaFrom ? '<th class="n">Chg</th>' : ""}<th>Team</th><th class="n">W-L</th><th class="n">OTL</th><th class="n">GmPerf</th><th class="n">Sched</th><th class="n">OT adj</th><th class="n">AWP</th><th class="n">Pen</th><th class="n">Final</th>${o.deltaFrom ? '<th class="n">Δ Final</th>' : ""}</tr></thead><tbody>`;
+  const cols = 11 + (o.prev || o.deltaFrom ? 1 : 0) + (o.deltaFrom ? 1 : 0);
+  const rankedRows = rows.filter((r) => r.status === "ranked"), other = rows.filter((r) => r.status !== "ranked");
+  rankedRows.forEach((r) => {
+    const linked = !(S.counts.groups > 1) || (S.teams.find((t) => t.team === r.team) || {}).linked_to_focus;
+    let chg = "";
+    if (o.prev || o.deltaFrom) {
+      const p = o.deltaFrom ? (o.deltaFrom[r.team] || {}).rank : o.prev[r.team];
+      chg = p == null ? '<span class="muted">new</span>' : p === r.rank ? '<span class="muted">–</span>' : p > r.rank ? `<span class="mv-up">▲${p - r.rank}</span>` : `<span class="mv-down">▼${r.rank - p}</span>`;
+      chg = `<td class="n">${chg}</td>`;
+    }
+    const df = o.deltaFrom && o.deltaFrom[r.team] ? `<td class="n">${sgn(r.final - o.deltaFrom[r.team].final)}</td>` : o.deltaFrom ? '<td class="n">–</td>' : "";
+    h += `<tr class="${r.team === FOCUS ? "focus" : linked ? "" : "dim"}"><td class="n">${r.rank}</td>${chg}<td class="team">${esc(short(r.team))}${linked ? "" : ' <span class="pill neutral" title="Not yet linked to OSU through common opponents">unlinked</span>'}</td>
+      <td class="n">${r.w}-${r.l}</td><td class="n">${r.otl}</td><td class="n">${fmt(r.gmperf)}</td><td class="n">${fmt(r.sched)}</td><td class="n">${fmt(r.otadj)}</td><td class="n">${fmt(r.awp, 3)}</td><td class="n">${r.penalty ? fmt(r.penalty) : ""}</td><td class="n"><b>${fmt(r.final, 3)}</b></td>${df}</tr>`;
+    if (cut.has(r.rank) && r.rank < rankedRows.length) h += `<tr class="cutline"><td colspan="${cols}"><div>▲ ${esc(cut.get(r.rank))} (top ${r.rank})</div></td></tr>`;
+  });
+  if (other.length) {
+    h += `<tr class="cutline"><td colspan="${cols}"><div style="color:var(--muted);border-top-color:var(--line)">Not ranked</div></td></tr>`;
+    other.forEach((r) => h += `<tr class="dim"><td class="n">–</td>${o.prev || o.deltaFrom ? "<td></td>" : ""}<td class="team">${esc(short(r.team))} <span class="pill neutral">${r.status === "min_games" ? `${r.gp} GP, needs ${M2Engine.MIN_GP_RANKED}` : "not in good standing"}</span></td><td class="n">${r.w}-${r.l}</td><td class="n">${r.otl}</td><td class="n">${fmt(r.gmperf)}</td><td class="n">${fmt(r.sched)}</td><td class="n">${fmt(r.otadj)}</td><td class="n">${fmt(r.awp, 3)}</td><td class="n">${r.penalty ? fmt(r.penalty) : ""}</td><td class="n">${fmt(r.final, 3)}</td>${o.deltaFrom ? "<td></td>" : ""}</tr>`);
+  }
+  return h + `</tbody>`;
+}
+
+function renderRankings() {
+  const reg = state.region;
+  const rows = regionRows(BYREG, reg);
+  const prev = {}; for (const t of S.teams) if (t.prev_rank != null) prev[t.team] = t.prev_rank;
+  const noGames = S.teams.filter((t) => t.region === reg && t.status === "no_games").length;
+  $("#rank-note").textContent = `${rows.filter((r) => r.status === "ranked").length} ranked teams in the ${reg}` + (noGames ? `, ${noGames} more with no M2 games yet` : "") +
+    `. ACHA publishes the top 20. Lines mark the Nationals auto-bid (top 2), the Regionals first-day bye (top 4) and the Regionals field (top 16).` +
+    (S.counts.groups > 1 ? " Grey rows aren't linked to OSU's schedule yet, so their ratings can't be compared with OSU's." : "");
+  $("#rank-table").innerHTML = rankTable(rows, { prev: Object.keys(prev).length ? prev : null });
+}
+
+// ---------- What-if tab ----------
+function setupWhatIf() {
+  const teams = Object.keys(REG).filter((t) => S.upcoming.some((g) => g.home === t || g.away === t)).sort((a, b) => short(a).localeCompare(short(b)));
+  const sel = $("#wi-team");
+  sel.innerHTML = teams.map((t) => `<option value="${esc(t)}"${t === state.wiTeam ? " selected" : ""}>${esc(short(t))}${t === FOCUS ? " (OSU)" : ""} · ${REG[t]}</option>`).join("");
+  sel.addEventListener("change", () => { state.wiTeam = sel.value; save(); renderWhatIfGames(); });
+  $("#wi-clear").addEventListener("click", () => { state.wi = {}; renderWhatIfGames(); renderWhatIfTable(); });
+  $("#wi-games").addEventListener("input", onWiInput);
+  $("#wi-games").addEventListener("click", onWiClick);
+  renderWhatIfGames(); renderWhatIfTable();
+}
+function renderWhatIfGames() {
+  const t = state.wiTeam;
+  const games = S.upcoming.filter((g) => g.home === t || g.away === t);
+  $("#wi-games").innerHTML = games.length ? games.map((g) => {
+    const s = state.wi[g.id] || {};
+    const tieSel = s.hg != null && s.hg === s.ag;
+    return `<div class="gamerow ${s.hg != null && s.ag != null ? "set" : ""}" data-id="${g.id}">
+      <span class="d">${dstr(g.date)}</span>
+      <span class="h">${esc(short(g.away))}</span>
+      <span class="score"><input type="number" min="0" max="30" id="wa-${g.id}" aria-label="${esc(short(g.away))} goals" value="${s.ag ?? ""}"><span class="x">at</span><input type="number" min="0" max="30" id="wh-${g.id}" aria-label="${esc(short(g.home))} goals" value="${s.hg ?? ""}"></span>
+      <span>${esc(short(g.home))}</span>
+      <span class="quick">${tieSel ? `<button data-ot="away">${esc(short(g.away)).slice(0, 8)} OT</button><button data-ot="home">${esc(short(g.home)).slice(0, 8)} OT</button>` : `<button data-q="away" title="Away wins 4-2">A</button><button data-q="home" title="Home wins 4-2">H</button><button data-q="clear" title="Clear">×</button>`}</span>
+    </div>`;
+  }).join("") : `<p class="muted">No M2 games left for ${esc(short(t))} before Feb 14.</p>`;
+  const n = Object.values(state.wi).filter((s) => s.hg != null && s.ag != null).length;
+  $("#wi-count").textContent = `${n} result${n === 1 ? "" : "s"} set`;
+}
+function onWiInput(e) {
+  const row = e.target.closest(".gamerow"); if (!row) return;
+  const id = row.dataset.id, a = $("#wa-" + id).value, h = $("#wh-" + id).value;
+  const s = state.wi[id] || {};
+  s.ag = a === "" ? null : +a; s.hg = h === "" ? null : +h;
+  if (s.hg == null && s.ag == null) delete state.wi[id]; else state.wi[id] = s;
+  clearTimeout(onWiInput.t); onWiInput.t = setTimeout(() => { renderWhatIfGames(); renderWhatIfTable(); const el = $("#" + e.target.id); if (el) { el.focus(); } }, 350);
+}
+function onWiClick(e) {
+  const b = e.target.closest("button"); if (!b) return;
+  const id = b.closest(".gamerow").dataset.id;
+  if (b.dataset.q === "clear") delete state.wi[id];
+  else if (b.dataset.q) state.wi[id] = b.dataset.q === "home" ? { hg: 4, ag: 2 } : { hg: 2, ag: 4 };
+  else if (b.dataset.ot) { const s = state.wi[id]; s.otWinner = b.dataset.ot; }
+  renderWhatIfGames(); renderWhatIfTable();
+}
+function hypotheticalGames() {
+  const extra = [];
+  for (const g of S.upcoming) {
+    const s = state.wi[g.id]; if (!s || s.hg == null || s.ag == null) continue;
+    let hg = s.hg, ag = s.ag, ot = false;
+    if (hg === ag) { ot = true; if (s.otWinner === "away") ag++; else hg++; }  // shootout winner credited one goal
+    extra.push({ id: g.id, home: g.home, away: g.away, hg, ag, ot, so: false, tie: false });
+  }
+  return extra;
+}
+function renderWhatIfTable() {
+  const extra = hypotheticalGames(), reg = state.wiRegion;
+  $("#wi-title").textContent = `${reg} after these results`;
+  if (!extra.length) {
+    $("#wi-summary").innerHTML = `<span class="muted">Set a result to see how the rankings move. The table shows the current ${reg} ranking.</span>`;
+    $("#wi-table").innerHTML = rankTable(regionRows(BYREG, reg)); return;
+  }
+  const sim = compute(S.games.concat(extra));
+  const before = {}; for (const r of Object.values(CUR.teams)) before[r.team] = { rank: r.rank, final: r.final };
+  const me = sim.teams[FOCUS], was = CUR.teams[FOCUS];
+  $("#wi-summary").innerHTML = me && was ? `<div class="alert"><span>▶</span><div><b>OSU: #${was.rank ?? "–"} → #${me.rank ?? "–"}</b> in the ${REG[FOCUS]}, final rating ${fmt(was.final)} → ${fmt(me.final)} (${sgn(me.final - was.final)}). ${extra.length} hypothetical result${extra.length === 1 ? "" : "s"} applied.</div></div>` : "";
+  $("#wi-table").innerHTML = rankTable(regionRows(sim.byRegion, reg), { deltaFrom: before });
+}
+
+// ---------- Projections tab ----------
+function setupProj() {
+  $("#pj-run").addEventListener("click", runProjection);
+  $("#pj-note").textContent = `Each simulated season plays every remaining M2 game through ${dstr(S.config.ranking_periods.at(-1).through)}, including ${S.upcoming.filter((g) => g.state === "unreported").length} past games with no score yet. Team strength comes from this season's results, anchored to last season's final ACHA rating, which counts as ${MODEL.ridge_k} extra games. Each simulated season also draws how good every team really is, so early-season odds stay wide. Each game adds a ${MODEL.home_edge}-goal home edge and ${MODEL.game_sd} goals of game-to-game spread, and tied margins go to OT or a shootout. Then the full ACHA formula is rerun. Penalties stay as they are today.`;
+}
+function randn() { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+function runProjection() {
+  const N = +$("#pj-n").value, btn = $("#pj-run");
+  btn.disabled = true;
+  const base = S.games, up = S.upcoming;
+  const init = {}; for (const r of Object.values(CUR.teams)) init[r.team] = r.total;
+  const str = STR.s, sd = STR.sd, names = Object.keys(str);
+  const acc = {}; // team -> {ranks: [], finals sum}
+  let done = 0;
+  const step = () => {
+    const t0 = performance.now();
+    while (done < N && performance.now() - t0 < 40) {
+      const games = base.slice(), s = {};
+      for (const t of names) s[t] = str[t] + sd[t] * randn();  // this season's "true" strength draw
+      for (const g of up) {
+        const m = (s[g.home] ?? 7) - (s[g.away] ?? 7) + MODEL.home_edge + MODEL.game_sd * randn();
+        let d = Math.round(m), ot = false;
+        if (d === 0) { ot = true; d = Math.random() < 0.5 ? 1 : -1; }
+        games.push({ home: g.home, away: g.away, hg: d > 0 ? d : 0, ag: d < 0 ? -d : 0, ot, so: false, tie: false });
+      }
+      const res = compute(games, { tol: 1e-6, init });
+      for (const reg in res.byRegion) for (const r of res.byRegion[reg]) {
+        const a = acc[r.team] || (acc[r.team] = { ranks: new Array(80).fill(0), final: 0, n: 0 });
+        if (r.rank) a.ranks[r.rank]++; a.final += r.final; a.n++;
+      }
+      done++;
+    }
+    btn.textContent = `Running… ${Math.round(100 * done / N)}%`;
+    if (done < N) setTimeout(step, 0);
+    else { state.proj = { N, acc }; btn.disabled = false; btn.textContent = "Run simulation"; renderProjTable(); renderProjOSU(); }
+  };
+  setTimeout(step, 0);
+}
+function pTop(a, k, N) { let s = 0; for (let i = 1; i <= k; i++) s += a.ranks[i]; return s / N; }
+const probCell = (p) => `<td class="n"><span class="prob"><i style="width:${Math.round(100 * p)}%"></i></span>${p < 0.005 ? "<1" : p > 0.995 ? ">99" : Math.round(100 * p)}%</td>`;
+function renderProjTable() {
+  if (!state.proj) { $("#pj-table").innerHTML = `<tbody><tr><td class="muted">Simulation not run yet.</td></tr></tbody>`; return; }
+  const { N, acc } = state.proj, reg = state.pjRegion;
+  const rows = Object.keys(acc).filter((t) => REG[t] === reg).map((t) => ({ t, a: acc[t], cur: CUR.teams[t] }))
+    .sort((x, y) => (pTop(y.a, 16, N) - pTop(x.a, 16, N)) || (y.a.final / y.a.n - x.a.final / x.a.n)).slice(0, 30);
+  $("#pj-table").innerHTML = `<thead><tr><th>Team</th><th class="n">Now</th><th class="n">Proj. final</th><th class="n">Top 2</th><th class="n">Top 4</th><th class="n">Top 16</th></tr></thead><tbody>` +
+    rows.map((r) => `<tr class="${r.t === FOCUS ? "focus" : ""}"><td class="team">${esc(short(r.t))}</td><td class="n">${r.cur && r.cur.rank ? "#" + r.cur.rank : "–"}</td><td class="n">${fmt(r.a.final / r.a.n)}</td>${probCell(pTop(r.a, 2, N))}${probCell(pTop(r.a, 4, N))}${probCell(pTop(r.a, 16, N))}</tr>`).join("") + `</tbody>`;
+}
+function renderProjOSU() {
+  const { N, acc } = state.proj, a = acc[FOCUS];
+  if (!a) return;
+  const K = 20, ranks = a.ranks.slice(1, K + 1), mx = Math.max(...ranks, 1);
+  $("#pj-hist").innerHTML = ranks.map((c, i) => `<div class="${i + 1 > 16 ? "out" : ""}" style="height:${100 * c / mx}%" title="#${i + 1}: ${(100 * c / N).toFixed(1)}%"></div>`).join("");
+  $("#pj-axis").innerHTML = ranks.map((_, i) => `<span>${(i + 1) % 2 === 1 || K <= 12 ? i + 1 : ""}</span>`).join("");
+  const p2 = pTop(a, 2, N);
+  $("#pj-osu-pill").innerHTML = `<span class="pill ${p2 >= 0.6 ? "good" : p2 >= 0.3 ? "warn" : "bad"}">${Math.round(100 * p2)}% top 2 · ${Math.round(100 * pTop(a, 16, N))}% top 16</span>`;
+  const up = S.upcoming.filter((g) => g.home === FOCUS || g.away === FOCUS);
+  $("#pj-games").innerHTML = `<thead><tr><th>Date</th><th>Opponent</th><th class="n">Pred.</th><th class="n">Win %</th></tr></thead><tbody>` + up.map((g) => {
+    const home = g.home === FOCUS, opp = home ? g.away : g.home, p = predict(g.home, g.away);
+    const m = home ? p.margin : -p.margin, wp = home ? p.pHome : 1 - p.pHome;
+    return `<tr><td class="num">${dstr(g.date)}</td><td class="team">${home ? "vs" : "at"} ${esc(short(opp))}</td><td class="n">${sgn(m, 1)}</td>${probCell(wp)}</tr>`;
+  }).join("") + `</tbody>`;
+}
+
+// ---------- Method tab ----------
+function renderMethod() {
+  $("#bt-table").innerHTML = `<thead><tr><th>Ranking</th><th>Games thru</th><th class="n">Rating error</th><th class="n">Top 2</th><th class="n">Top 16</th></tr></thead><tbody>` +
+    BACKTEST.map((b) => `<tr><td>${b[0]}</td><td class="num">${b[1]}</td><td class="n">${b[2].toFixed(3)}</td><td class="n">${b[3]}</td><td class="n">${b[4]}</td></tr>`).join("") + `</tbody>`;
+  const c = S.counts, u = S.upcoming.filter((g) => g.state === "unreported").length;
+  const rows = [["Snapshot built", new Date(S.generated_at).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })],
+    ["Latest score", S.last_game_date ? dstr(S.last_game_date) : "–"], ["M2 vs M2 games counted", c.m2_games_counted],
+    ["Remaining M2 games through Feb 14", c.m2_games_upcoming - u], ["Past games with no score yet", u],
+    ["Forfeits (excluded)", S.forfeits.length], ["Schedule groups (1 = fully linked)", c.groups], ["Teams", c.teams],
+    ["Source", "ACHA LeagueStat feed (HockeyTech)"]];
+  if (S.overrides_notes.length) rows.push(["Manual corrections", S.overrides_notes.join("; ")]);
+  $("#data-table").innerHTML = `<tbody>` + rows.map(([k, v]) => `<tr><td>${esc(k)}</td><td class="n" style="white-space:normal">${esc(v)}</td></tr>`).join("") + `</tbody>`;
+}
+</script>

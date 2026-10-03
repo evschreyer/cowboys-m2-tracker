@@ -1,0 +1,30 @@
+{
+  "season": "2026-27",
+  "hockeytech": {
+    "season_id": 73,
+    "client_code": "acha",
+    "key": "e6867b36742a0c9d",
+    "url": "https://lscluster.hockeytech.com/feed/index.php?feed=modulekit&view=schedule&season_id={season_id}&key={key}&client_code={client_code}&fmt=json&lang=en"
+  },
+  "focus_team": "Oklahoma State University",
+  "ranking_periods": [
+    {"label": "First ranking period", "through": "2026-11-08"},
+    {"label": "Final ranking before break", "through": "2026-12-13"},
+    {"label": "First ranking of spring", "through": "2027-01-17"},
+    {"label": "Final ranking", "through": "2027-02-14"}
+  ],
+  "eligibility": {"min_m2_games": 16, "min_acha_games": 18, "by": "2027-02-14"},
+  "cut_lines": [
+    {"rank": 2, "label": "Nationals auto-bid"},
+    {"rank": 4, "label": "Regionals Day-1 bye"},
+    {"rank": 16, "label": "Regionals field"}
+  ],
+  "events": [
+    {"label": "West Regionals", "dates": "2027-02-18 to 2027-02-20"},
+    {"label": "Nationals (St. Louis, MO)", "dates": "2027-03-11 to 2027-03-16"}
+  ],
+  "sources": {
+    "manual": "ACHA_Manual_2026_27_Season-FINAL-8-10-2026-1.pdf, Part Five",
+    "dates": "https://www.achahockey.org/mens-division-2-important-dates"
+  }
+}

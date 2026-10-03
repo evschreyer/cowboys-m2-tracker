@@ -1,0 +1,15 @@
+<!doctype html><meta charset="utf-8"><title>Engine parity</title>
+<pre id="out">running…</pre>
+<script src="../engine/engine.js"></script>
+<script>
+fetch('parity_2025-26.json').then(r=>r.json()).then(d=>{
+  const t0=performance.now(); const js=M2Engine.solve(d.games); const ms=performance.now()-t0;
+  let maxd=0, worst='', rec=0;
+  for (const k in d.python){ const p=d.python[k], j=js[k];
+    for (const f of ['total','sched','gmperf','raw','awp']){ const x=Math.abs(p[f]-j[f]); if(x>maxd){maxd=x;worst=k+' '+f;} }
+    if(p.w!==j.w||p.l!==j.l||p.otl!==j.otl) rec++; }
+  const t1=performance.now(); let it=0;
+  for(let i=0;i<20;i++){ const g=d.games.slice(); const s=M2Engine.solve(g,{tol:1e-6,init:Object.fromEntries(Object.entries(js).map(([k,v])=>[k,v.total]))}); it+=s._iterations; }
+  document.getElementById('out').textContent=JSON.stringify({teams:Object.keys(js).length,iterations:js._iterations,ms:Math.round(ms),max_abs_diff:maxd,worst,record_mismatch:rec,warm_ms_per_solve:Math.round((performance.now()-t1)/20),warm_iters:it/20},null,1);
+});
+</script>

@@ -1,0 +1,20 @@
+{
+  "_help": {
+    "aliases": "feed team name -> canonical name, if HockeyTech renames a team mid-season",
+    "exclude_game_ids": "HockeyTech game ids to drop (e.g. ACHA did not count it)",
+    "score_fixes": "{game_id: {hg, ag}} corrected home/away goals (also forces a game to count if not marked Final)",
+    "tie_game_ids": "league-playoff games that went to OT: counted as ties (Manual Part Five Art. IV Sec. 3C)",
+    "add_games": "[{id, date, home, away, hg, ag, ot, so}] games missing from the feed",
+    "penalties": "{team: deduction} confirmed ranking penalties; replaces the auto-suggested forfeit penalty for that team",
+    "not_good_standing": "[team] listed separately, not ranked (still counted in opponents' schedules)",
+    "notes": "free-text log of why each override exists"
+  },
+  "aliases": {},
+  "exclude_game_ids": [],
+  "score_fixes": {},
+  "tie_game_ids": [],
+  "add_games": [],
+  "penalties": {},
+  "not_good_standing": [],
+  "notes": []
+}

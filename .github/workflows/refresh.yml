@@ -1,0 +1,88 @@
+name: Refresh rankings
+
+on:
+  schedule:
+    # GitHub cron is UTC. Central time is UTC-5 (CDT) until Nov 1, then UTC-6 (CST).
+    - cron: "30 8 * * *"         # nightly, about 3:30 AM CDT / 2:30 AM CST
+    - cron: "45 5 * * 2"         # Monday night ACHA reporting deadline (12:45 AM CDT / 11:45 PM CST)
+    - cron: "*/30 0-7 * * 6,0"   # game nights: Fri and Sat about 7 PM to 2 AM Central, every 30 min
+  push:
+    branches: [main]
+    paths: ["dashboard/**", "engine/**", "scripts/**", "data/*.json"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+env:
+  TZ: America/Chicago
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.check.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Remember current data hash
+        id: before
+        run: echo "hash=$(python3 -c "import json;print(json.load(open('data/snapshots/latest.json')).get('data_hash',''))" 2>/dev/null)" >> "$GITHUB_OUTPUT"
+      - name: Fetch scores and rebuild snapshot
+        run: |
+          for i in 1 2; do python3 scripts/build_snapshot.py && break; echo "retrying in 60s"; sleep 60; done
+          test -s data/snapshots/latest.json
+      - name: Sanity check
+        run: |
+          python3 - <<'PY'
+          import json, glob, os, sys
+          new = json.load(open("data/snapshots/latest.json"))
+          olds = sorted(p for p in glob.glob("data/snapshots/20*.json") if os.path.basename(p) < os.path.basename(sorted(glob.glob("data/snapshots/20*.json"))[-1]))
+          if not new["teams"]:
+              sys.exit("no teams in snapshot")
+          if olds:
+              prev = json.load(open(olds[-1]))["counts"]["m2_games_counted"]
+              cur = new["counts"]["m2_games_counted"]
+              if cur < 0.9 * prev:
+                  sys.exit(f"M2 games counted dropped from {prev} to {cur}; feed looks broken, not publishing")
+          print("ok", new["counts"])
+          PY
+      - name: Detect change
+        id: check
+        run: |
+          NEW=$(python3 -c "import json;print(json.load(open('data/snapshots/latest.json'))['data_hash'])")
+          if [ "$NEW" != "${{ steps.before.outputs.hash }}" ] || [ "${{ github.event_name }}" != "schedule" ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; else echo "changed=false" >> "$GITHUB_OUTPUT"; fi
+      - name: Commit snapshot
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "m2-tracker-bot"
+          git config user.email "m2-tracker-bot@users.noreply.github.com"
+          git add data/snapshots
+          git diff --cached --quiet || git commit -m "Refresh rankings snapshot $(date +'%Y-%m-%d %H:%M %Z')"
+          git push
+      - name: Build site
+        if: steps.check.outputs.changed == 'true'
+        run: python3 scripts/build_site.py
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.check.outputs.changed == 'true'
+        with:
+          path: _site
+
+  deploy:
+    needs: refresh
+    if: needs.refresh.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -87,6 +87,11 @@ def main():
         with open(olds[-1]) as f:
             prev = json.load(f)
     prev_rank = {t["team"]: t["rank"] for t in prev["teams"]} if prev else {}
+    prev_nat = {}
+    if prev:  # unofficial national rank: all ranked teams ordered by Final, as on the dashboard
+        nat = sorted((t for t in prev["teams"] if t.get("status") == "ranked"),
+                     key=lambda t: (-t["final"], -t["raw"], -t["sched"]))
+        prev_nat = {t["team"]: i + 1 for i, t in enumerate(nat)}
 
     alias = ov.get("aliases", {})
     # Exactly the games the engine counted (overrides applied), so the browser engine reproduces it.
@@ -133,6 +138,7 @@ def main():
         for r in lst:
             d = to_dict(r)
             d["prev_rank"] = prev_rank.get(r.team)
+            d["prev_national_rank"] = prev_nat.get(r.team)
             d["group"] = comp[r.team]
             d["linked_to_focus"] = comp[r.team] == comp.get(focus)
             team_rows.append(d)

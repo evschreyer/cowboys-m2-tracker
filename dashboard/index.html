@@ -179,6 +179,7 @@ pre.formula { background: var(--surface-2); border: 1px solid var(--line); borde
     <nav class="tabs" role="tablist" aria-label="Dashboard sections">
       <button role="tab" id="t-osu" aria-controls="osu" aria-selected="true">OSU Breakdown</button>
       <button role="tab" id="t-rank" aria-controls="rank" aria-selected="false">Regional Rankings</button>
+      <button role="tab" id="t-nat" aria-controls="nat" aria-selected="false">National</button>
       <button role="tab" id="t-whatif" aria-controls="whatif" aria-selected="false">What-If</button>
       <button role="tab" id="t-proj" aria-controls="proj" aria-selected="false">Projections</button>
       <button role="tab" id="t-method" aria-controls="method" aria-selected="false">Method</button>
@@ -242,6 +243,33 @@ pre.formula { background: var(--surface-2); border: 1px solid var(--line); borde
       </div>
       <p class="muted" style="font-size:.88rem;margin-bottom:10px" id="rank-note"></p>
       <div class="tablewrap"><table id="rank-table"></table></div>
+    </div>
+  </section>
+
+  <!-- National (unofficial) -->
+  <section class="tab" id="nat" role="tabpanel" aria-labelledby="t-nat" hidden>
+    <div class="panel">
+      <div class="panel-head">
+        <h2>National ranking <span class="pill accent" style="vertical-align:middle">Unofficial</span></h2>
+        <div class="seg" id="nat-seg" role="group" aria-label="How many teams">
+          <button type="button" data-n="25" aria-pressed="true">Top 25</button><button type="button" data-n="50" aria-pressed="false">Top 50</button><button type="button" data-n="0" aria-pressed="false">All</button>
+        </div>
+      </div>
+      <p class="muted" style="font-size:.88rem">ACHA only ranks M2 within each region, so this list doesn't count for anything. It uses the same formula and ratings as the regional rankings, with every M2 team in one list ordered by Final rating.</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head"><h3>Where OSU stands nationally</h3></div>
+        <div id="nat-osu" style="display:grid;gap:10px"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Top 25 by region</h3></div>
+        <div id="nat-regions" style="display:grid;gap:8px"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <p class="muted" style="font-size:.85rem;margin-bottom:10px" id="nat-note"></p>
+      <div class="tablewrap"><table id="nat-table"></table></div>
     </div>
   </section>
 
@@ -400,10 +428,10 @@ function init(snap) {
   buildSeg("#reg-seg", "region", renderRankings);
   buildSeg("#wi-seg", "wiRegion", renderWhatIfTable);
   buildSeg("#pj-seg", "pjRegion", renderProjTable);
-  renderOSU(); renderRankings(); setupWhatIf(); setupProj(); renderMethod();
+  renderOSU(); renderRankings(); setupNational(); setupWhatIf(); setupProj(); renderMethod();
   document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => showTab(b.getAttribute("aria-controls"))));
   const h = location.hash.replace("#", "");
-  showTab(["osu", "rank", "whatif", "proj", "method"].includes(h) ? h : "osu");
+  showTab(["osu", "rank", "nat", "whatif", "proj", "method"].includes(h) ? h : "osu");
 }
 
 function compute(games, opts) {
@@ -445,7 +473,8 @@ function renderOSU() {
   const mv = snapRow.prev_rank && me.rank ? snapRow.prev_rank - me.rank : null;
   const ov = S.focus_games.filter((g) => g.state === "final" && g.acha);
   const ow = ov.filter((g) => g.gf > g.ga).length, ol = ov.filter((g) => g.gf < g.ga).length, ot = ov.length - ow - ol;
-  $("#osu-rec").innerHTML = `<b style="color:var(--on-ink)">${me.w}-${me.l} M2</b> (counts for ranking) · ${ow}-${ol}${ot ? "-" + ot : ""} overall<br>${me.otw} OTW, ${me.otl} OTL · ${west.length} ranked in West` + (mv ? ` · ${mv > 0 ? "▲" : "▼"}${Math.abs(mv)} since last update` : "");
+  const natRank = national(BYREG).findIndex((r) => r.team === FOCUS) + 1;
+  $("#osu-rec").innerHTML = `<b style="color:var(--on-ink)">${me.w}-${me.l} M2</b> (counts for ranking) · ${ow}-${ol}${ot ? "-" + ot : ""} overall<br>${me.otw} OTW, ${me.otl} OTL · ${west.length} ranked in West` + (natRank ? ` · #${natRank} nationally (unofficial)` : "") + (mv ? ` · ${mv > 0 ? "▲" : "▼"}${Math.abs(mv)} since last update` : "");
 
   // cut lines
   $("#osu-cuts").innerHTML = S.config.cut_lines.map((c) => {
@@ -605,6 +634,58 @@ function renderRankings() {
     `. ACHA publishes the top 20. Lines mark the Nationals auto-bid (top 2), the Regionals first-day bye (top 4) and the Regionals field (top 16).` +
     (S.counts.groups > 1 ? " Grey rows aren't linked to OSU's schedule yet, so their ratings can't be compared with OSU's." : "");
   $("#rank-table").innerHTML = rankTable(rows, { prev: Object.keys(prev).length ? prev : null });
+}
+
+// ---------- National tab (unofficial) ----------
+function national(byRegion) {
+  const all = [];
+  for (const reg of REGIONS) for (const r of byRegion[reg] || []) if (r.status === "ranked") all.push(r);
+  return all.sort((a, b) => (b.final - a.final) || (b.raw - a.raw) || (b.sched - a.sched));
+}
+const natState = { n: 25 };
+function setupNational() {
+  $("#nat-seg").addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    natState.n = +b.dataset.n;
+    $("#nat-seg").querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+    renderNational();
+  });
+  renderNational();
+}
+function renderNational() {
+  const list = national(BYREG), snapBy = Object.fromEntries(S.teams.map((t) => [t.team, t]));
+  const idx = list.findIndex((r) => r.team === FOCUS), me = list[idx];
+  // OSU summary
+  if (me) {
+    const above = list[idx - 1], below = list[idx + 1], prevNat = (snapBy[FOCUS] || {}).prev_national_rank;
+    $("#nat-osu").innerHTML = `<div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+        <span style="font:700 3.4rem/1 var(--font-display);color:var(--accent-ink)">#${idx + 1}</span>
+        <span>of ${list.length} ranked M2 teams${prevNat ? ` · ${prevNat > idx + 1 ? '<span class="mv-up">▲' + (prevNat - idx - 1) + "</span>" : prevNat < idx + 1 ? '<span class="mv-down">▼' + (idx + 1 - prevNat) + "</span>" : "no change"} since last update` : ""}<br><span class="muted">Ahead of ${list.length - idx - 1} team${list.length - idx - 1 === 1 ? "" : "s"}${idx ? `, behind ${idx}` : ""}</span></span></div>
+      <div class="tablewrap"><table><tbody>
+        ${above ? `<tr><td>Next team up</td><td class="team">#${idx} ${esc(short(above.team))} <span class="muted">(${above.region})</span></td><td class="n">${sgn(me.final - above.final)}</td></tr>` : `<tr><td colspan="3">OSU is the top-rated M2 team in the country.</td></tr>`}
+        ${below ? `<tr><td>Next team down</td><td class="team">#${idx + 2} ${esc(short(below.team))} <span class="muted">(${below.region})</span></td><td class="n">${sgn(me.final - below.final)}</td></tr>` : ""}
+        <tr><td>Best team outside the West</td><td class="team">${(() => { const o = list.find((r) => r.region !== REG[FOCUS]); return o ? `#${list.indexOf(o) + 1} ${esc(short(o.team))} <span class="muted">(${o.region})</span>` : "–"; })()}</td><td class="n"></td></tr>
+      </tbody></table></div>`;
+  } else $("#nat-osu").innerHTML = '<p class="muted">OSU needs at least 3 M2 games to be ranked.</p>';
+  // regional mix of the top 25
+  const top = list.slice(0, 25), counts = REGIONS.map((r) => [r, top.filter((x) => x.region === r).length]);
+  const mx = Math.max(1, ...counts.map((c) => c[1]));
+  $("#nat-regions").innerHTML = counts.map(([r, c]) => `<div style="display:grid;grid-template-columns:90px minmax(0,1fr) 28px;gap:8px;align-items:center">
+      <span class="label">${r}</span><span style="height:14px;background:var(--surface-2);border:1px solid var(--line);border-radius:3px;overflow:hidden"><span style="display:block;height:100%;width:${100 * c / mx}%;background:${r === REG[FOCUS] ? "var(--accent)" : "var(--muted)"}"></span></span><span class="num" style="text-align:right">${c}</span></div>`).join("") +
+    `<p class="muted" style="font-size:.82rem">How many of the national top 25 come from each region.</p>`;
+  // table
+  const shown = natState.n ? list.slice(0, natState.n) : list;
+  const anyPrev = S.teams.some((t) => t.prev_national_rank != null);
+  $("#nat-note").textContent = (S.counts.groups > 1 ? `Comparing teams across regions depends on games between regions. Early in the season many teams aren't linked yet (grey rows), so the national order is rougher than the regional one. ` : "") +
+    `Showing ${shown.length} of ${list.length} ranked teams.`;
+  $("#nat-table").innerHTML = `<thead><tr><th class="n">#</th>${anyPrev ? '<th class="n">Chg</th>' : ""}<th>Team</th><th>Region</th><th class="n">W-L</th><th class="n">GmPerf</th><th class="n">Sched</th><th class="n">Final</th></tr></thead><tbody>` +
+    shown.map((r, i) => {
+      const t = snapBy[r.team] || {}, linked = !(S.counts.groups > 1) || t.linked_to_focus;
+      let chg = "";
+      if (anyPrev) { const p = t.prev_national_rank; chg = `<td class="n">${p == null ? '<span class="muted">new</span>' : p === i + 1 ? '<span class="muted">–</span>' : p > i + 1 ? `<span class="mv-up">▲${p - i - 1}</span>` : `<span class="mv-down">▼${i + 1 - p}</span>`}</td>`; }
+      return `<tr class="${r.team === FOCUS ? "focus" : linked ? "" : "dim"}"><td class="n">${i + 1}</td>${chg}<td class="team">${esc(short(r.team))}${linked ? "" : ' <span class="pill neutral">unlinked</span>'}</td>
+        <td>${r.region} <span class="muted num">#${r.rank}</span></td><td class="n">${r.w}-${r.l}</td><td class="n">${fmt(r.gmperf)}</td><td class="n">${fmt(r.sched)}</td><td class="n"><b>${fmt(r.final, 3)}</b></td></tr>`;
+    }).join("") + `</tbody>`;
 }
 
 // ---------- What-if tab ----------

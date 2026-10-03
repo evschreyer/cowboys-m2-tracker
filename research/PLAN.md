@@ -43,7 +43,7 @@ Core tabs (user request 2026-10-03): one tab for each of the 4 features: **OSU B
 - [x] Phase 1: engine (`engine/engine.py`, `engine/engine.js`), backtest (`scripts/backtest.py`), parity test.
 - [x] Phase 2 (core): feed loader and snapshot (`scripts/build_snapshot.py`), regions (`data/regions_2026-27.json`), overrides (`data/overrides_2026-27.json`), season config.
 - [x] Phase 3/4: dashboard v1 published (https://claude.ai/artifact/PADoAjHhr6HqMsPgmgMDRz) with tabs OSU Breakdown, Regional Rankings, What-If, Projections, Method.
-- [x] Phase 5: automated refresh. Scheduled tasks `m2-tracker-nightly-refresh` (daily about 3:13 AM) and `m2-tracker-monday-deadline-refresh` (Mon 11:45 PM). Both run while the Claude app is open; a missed run fires on the next launch.
+- [x] Phase 5: automated refresh. Moved to GitHub on 2026-10-03: repo evschreyer/cowboys-m2-tracker (public), site https://evschreyer.github.io/cowboys-m2-tracker/, refreshed by Actions (nightly, Monday deadline, every 30 min on Fri/Sat nights). The Mac scheduled tasks are disabled.
 - [ ] Validate projection calibration on 2025-26.
 - [ ] Phase 6: compare against official R1 (period ends 11/8/26).
 - Not possible: live fetch from the page. Artifact CSP blocks requests to other hosts, so the snapshot plus republish design is required.

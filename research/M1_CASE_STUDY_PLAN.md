@@ -52,5 +52,16 @@ Nov 6, 2026: **Oklahoma State (M2) 3, Ohio (M1) 2**, in regulation at Ohio. Ohio
 - Calibration notebook/script, with results written into FINDINGS.
 - Snapshot gains a `m1` block. Add the "vs M1" tab.
 
-## Open questions for the user
-See chat.
+## Decisions (2026-11-07)
+- **Audience: both.** An internal report first, with full methods and caveats, as a "Case Study" page on the dashboard site. Then a public version taken from it, with headline numbers and the method in an appendix.
+- **Headline: show both numbers.** The historical M2 rate vs M1's top 5 (~12%) next to OSU's team-specific pre-game odds (~32%). The gap between them is the story.
+- **Dashboard scope:** OSU-centered "vs M1" tab plus an unofficial combined M1+M2 top 25. No full M1 rankings tab for now.
+- **History:** 2021-22 to present (HockeyTech era, six seasons).
+
+## Build order
+1. **Data layer.** All-division loader (both name prefixes). Game-summary loader with cache (shots, PP, goalies) for M1-M2 games and OSU games. 2025-26 M1 official computer files.
+2. **M1 replication.** Validate against 2025-26 M1 releases plus 2026-27 R5. Explain or fix the gap (home-game penalty, data differences).
+3. **Win-probability model.** All-division rating as of each game date. Calibrate on 2021-22 to 2025-26 M1-M2 games (Brier score, calibration). Fit home edge and SD.
+4. **Case study (internal).** Base rates by tier at game time, pre-game odds, surprise, performance vs result, historical leaderboard, weekend series. Published as a report page on the site.
+5. **"vs M1" tab.** Projected M1 rank (both methods, with intervals), OSU vs M1 game log, stat comparison, division gap tracker, combined M1+M2 top 25.
+6. **Public version** of the case study.

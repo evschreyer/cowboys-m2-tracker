@@ -1,0 +1,329 @@
+<title>OSU at Ohio Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: scoreboard header, then a single reading column of numbered findings; charts and tables sit inside it. */
+:root {
+  --bg: #f1f2f1; --surface: #ffffff; --surface-2: #f6f6f4; --line: #dcdedb;
+  --fg: #17181a; --muted: #5f6460;
+  --accent: #ff6b00; --accent-ink: #b84a00; --accent-soft: #ffe7d6;
+  --ink-strong: #0d0d0e; --on-ink: #f4f4f2; --grid: #e6e7e4;
+  --good: #1f7a4d; --good-soft: #dcf1e5; --bad: #b3261e; --bad-soft: #f9dedb;
+  --font-display: "Saira Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --radius: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111213; --surface: #1a1b1d; --surface-2: #212225; --line: #2f3135; --grid: #2a2c30;
+  --fg: #ececea; --muted: #a2a6a2; --accent: #ff7a1a; --accent-ink: #ff9a4d; --accent-soft: #3a2414;
+  --ink-strong: #000000; --on-ink: #f4f4f2; --good: #5cc98f; --good-soft: #15301f; --bad: #ff8a80; --bad-soft: #3a1714;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #111213; --surface: #1a1b1d; --surface-2: #212225; --line: #2f3135; --grid: #2a2c30;
+  --fg: #ececea; --muted: #a2a6a2; --accent: #ff7a1a; --accent-ink: #ff9a4d; --accent-soft: #3a2414;
+  --ink-strong: #000000; --on-ink: #f4f4f2; --good: #5cc98f; --good-soft: #15301f; --bad: #ff8a80; --bad-soft: #3a1714;
+  color-scheme: dark; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font: 400 16px/1.55 var(--font-body); margin: 0; }
+.wrap { max-width: 920px; margin: 0 auto; padding-inline: 16px; padding-block: 0 56px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; margin: 0; line-height: 1.1; text-wrap: balance; }
+h2 { font-size: 1.6rem; text-transform: uppercase; letter-spacing: .01em; }
+h3 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: .04em; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.muted { color: var(--muted); }
+.label { font: 600 .76rem var(--font-display); text-transform: uppercase; letter-spacing: .09em; color: var(--muted); }
+.num { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+
+.board { background: var(--ink-strong); color: var(--on-ink); }
+.board .wrap { padding-block: 16px 22px; display: grid; gap: 14px; }
+.crumbs { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: .88rem; }
+.crumbs a { color: #c9cbc7; text-decoration: none; }
+.crumbs a:hover { color: #fff; }
+.score { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 12px; align-items: center; }
+.score .team { font: 700 clamp(1.3rem, 4vw, 2.2rem)/1 var(--font-display); text-transform: uppercase; }
+.score .team.r { text-align: right; }
+.score .team small { display: block; font: 500 .8rem var(--font-body); text-transform: none; color: #b9bbb7; margin-top: 4px; }
+.score .g { font: 700 clamp(2.6rem, 9vw, 4.6rem)/1 var(--font-data); display: flex; gap: 14px; align-items: center; }
+.score .g .w { color: var(--accent); }
+.score .g .dash { color: #6b6e6a; font-size: .6em; }
+.meta { color: #b9bbb7; font-size: .9rem; text-align: center; }
+
+main .wrap { display: grid; gap: 34px; padding-top: 28px; }
+section { display: grid; gap: 14px; }
+.eyebrow { font: 600 .8rem var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .pair { grid-template-columns: 1fr; } .score { grid-template-columns: 1fr; text-align: center; } .score .team.r { text-align: center; } .score .g { justify-content: center; } }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 4px; align-content: start; }
+.stat .big { font: 700 3.4rem/1 var(--font-display); }
+.stat.hl { border-color: transparent; background: var(--accent-soft); }
+.stat.hl .big { color: var(--accent-ink); }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; min-width: 0; display: grid; gap: 10px; }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th { font: 600 .72rem var(--font-display); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td.wrapc { white-space: normal; }
+th.n, td.n { text-align: right; font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+tr.hl td { background: var(--accent-soft); font-weight: 600; }
+.note { font-size: .86rem; color: var(--muted); }
+.callout { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; }
+.pill { display: inline-block; font: 600 .74rem var(--font-body); padding: 1px 8px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.pill.w { background: var(--good-soft); color: var(--good); border-color: transparent; }
+.pill.l { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
+svg text { font-family: var(--font-data); fill: var(--muted); font-size: 11px; }
+svg .lbl { fill: var(--fg); }
+.tip { position: fixed; pointer-events: none; background: var(--ink-strong); color: var(--on-ink); font: 500 .8rem/1.4 var(--font-body); padding: 6px 9px; border-radius: 4px; z-index: 10; max-width: 260px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: .82rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 12px; height: 12px; border-radius: 2px; background: var(--accent); display: inline-block; }
+.sw.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--fg); }
+.sw.ci { width: 14px; height: 2px; background: var(--fg); border-radius: 0; }
+ol.method { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; max-width: 72ch; }
+.loading { padding: 60px 0; text-align: center; color: var(--muted); }
+</style>
+
+<header class="board">
+  <div class="wrap">
+    <div class="crumbs"><a href="./">← Cowboys M2 Tracker</a><span class="label" style="color:#b9bbb7">Case study · internal</span></div>
+    <div class="score" aria-label="Final score">
+      <div class="team">Oklahoma State<small>ACHA M2 · West</small></div>
+      <div class="g"><span class="w" id="s-osu">3</span><span class="dash">–</span><span id="s-ohio">2</span></div>
+      <div class="team r">Ohio<small id="ohio-sub">ACHA M1 · #3 · defending national champion</small></div>
+    </div>
+    <div class="meta" id="meta">Friday, Nov 6, 2026 · Bird Arena, Athens, Ohio</div>
+  </div>
+</header>
+
+<main><div class="wrap">
+  <div id="boot" class="loading">Loading the case study…</div>
+  <div id="content" hidden style="display:grid;gap:34px">
+
+  <section>
+    <span class="eyebrow">The short answer</span>
+    <h2>How big was this upset?</h2>
+    <div class="pair">
+      <div class="stat"><span class="label">Any M2 team vs an M1 top-5 team</span><span class="big num" id="h-base"></span><span id="h-base-t"></span></div>
+      <div class="stat hl"><span class="label">Oklahoma State, before the puck dropped</span><span class="big num" id="h-model"></span><span id="h-model-t"></span></div>
+    </div>
+    <p class="callout" id="h-take"></p>
+  </section>
+
+  <section>
+    <span class="eyebrow">1 · The history</span>
+    <h2>M2 teams almost never beat M1's best</h2>
+    <p id="base-intro"></p>
+    <div class="panel">
+      <div class="legend"><span><i class="sw"></i>Actual M2 win rate</span><span><i class="sw ci"></i>95% range</span><span><i class="sw dot"></i>What our model expected</span></div>
+      <svg id="tier-chart" role="img" aria-label="M2 win rate against M1 teams by M1 rank at game time" viewBox="0 0 640 260" style="width:100%;height:auto"></svg>
+      <div class="tablewrap"><table id="tier-table"></table></div>
+      <p class="note">M1 rank is our reconstruction of ACHA's M1 computer ranking using only games played before that date (it matches ACHA's published top 10 every week we checked). Teams with fewer than 5 M1 games use last season's final rank. Ranges are bootstrap 95% intervals. This weekend's games are left out so the rates describe the history going in.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">2 · The odds</span>
+    <h2>OSU's chance was about 1 in 4</h2>
+    <p id="odds-intro"></p>
+    <div class="panel">
+      <h3>Every OSU game against an M1 team this season</h3>
+      <svg id="osu-chart" role="img" aria-label="OSU's pre-game win probability in each game against M1 teams" viewBox="0 0 640 230" style="width:100%;height:auto"></svg>
+      <p class="note" id="osu-note"></p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">3 · In context</span>
+    <h2>The biggest M2 upsets of M1 top-10 teams since 2021</h2>
+    <p>Every M2 win over a team ranked in M1's top 10 at the time, ordered by how unlikely it was before the game.</p>
+    <div class="panel"><div class="tablewrap"><table id="board"></table></div>
+      <p class="note">Pre-game odds come from the same calibrated model, using only games played before that date. Surprise in bits: 1 bit is a coin flip landing your way, 2 bits is a 1-in-4 event.</p></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">4 · How it happened</span>
+    <h2 id="how-h">Won on goaltending and finishing, not shots</h2>
+    <p id="how-intro"></p>
+    <div class="pair">
+      <div class="panel"><h3>Period by period</h3><div class="tablewrap"><table id="periods"></table></div></div>
+      <div class="panel"><h3>Against each team's normal game</h3><div class="tablewrap"><table id="norms"></table></div></div>
+    </div>
+    <div class="panel"><h3>The goaltending swing</h3><div id="swing"></div></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">5 · The weekend</span>
+    <h2 id="wk-h">Game 2</h2>
+    <div class="panel" id="weekend"></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">6 · What it means</span>
+    <h2>It counts for nothing officially, and says a lot anyway</h2>
+    <div class="panel"><div class="tablewrap"><table id="means"></table></div></div>
+    <p class="note">ACHA's M1 ranking only counts M1-vs-M1 games and the M2 ranking only counts M2-vs-M2 games, so this result can't move either official ranking.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Method</span>
+    <h2>How these numbers were made</h2>
+    <ol class="method">
+      <li><b>Data:</b> every ACHA men's game since 2021-22 from ACHA's public stats feed (HockeyTech), including <span id="m-n"></span> M1-vs-M2 games, plus box scores for shots, power plays and goalies.</li>
+      <li><b>M1 rank at game time:</b> ACHA's M1 computer ranking rebuilt from games before each date. Two ratings, goal differential capped at 7 and at 1, every OT/shootout game counted as a tie, averaged by rank. Checked against 13 published ACHA rankings: same top 10 every time, 90% of teams within one place.</li>
+      <li><b>Pre-game odds:</b> every ACHA men's team rated on one goal scale from games before the date, anchored to last season. Home ice +0.33 goals, game-to-game spread 3.0 goals, and M1 teams get +0.65 goals against M2 teams. That correction exists because M1 teams have beaten M2 teams more often than the shared scale predicts in each of the last five seasons, though the gap is shrinking.</li>
+      <li><b>Checking the odds:</b> tested on <span id="m-cal"></span> cross-division games using only information available before each game. When the model said 25%, teams won 20% of the time; at 45%, 51%; at 85%, 80%.</li>
+      <li><b>Limits:</b> shots are not expected goals (shot quality isn't in the data), samples against top-5 M1 teams are small, and early-season ratings rely heavily on last season.</li>
+    </ol>
+    <p class="note" id="gen"></p>
+  </section>
+  </div>
+</div></main>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+"use strict";
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pct = (x, d = 0) => x == null ? "–" : (100 * x).toFixed(d) + "%";
+const dstr = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+const tip = $("#tip");
+function hover(el, html) {
+  el.addEventListener("mousemove", (e) => { tip.innerHTML = html; tip.hidden = false; tip.style.left = Math.min(e.clientX + 12, innerWidth - 270) + "px"; tip.style.top = (e.clientY + 12) + "px"; });
+  el.addEventListener("mouseleave", () => (tip.hidden = true));
+}
+const NS = "http://www.w3.org/2000/svg";
+function el(tag, attrs, parent, text) { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (text != null) n.textContent = text; parent.appendChild(n); return n; }
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+fetch("case_study_ohio.json").then((r) => { if (!r.ok) throw 0; return r.json(); }).then(render).catch(() => {
+  $("#boot").textContent = "Couldn't load the case study data (case_study_ohio.json). Reload the page; if it keeps failing, the site needs to be rebuilt.";
+});
+
+function render(D) {
+  $("#boot").hidden = true; $("#content").hidden = false;
+  const g1 = D.series[0], top5 = D.base_rate.tiers[0];
+  const g1row = D.osu_vs_m1.find((r) => r.id === g1.id) || D.leaderboard.find((r) => r.id === g1.id);
+  const osuP = g1.p_osu;
+
+  // headline
+  $("#h-base").textContent = pct(top5.win_rate);
+  $("#h-base-t").innerHTML = `M2 teams were <b>${top5.w}-${top5.l}${top5.t ? "-" + top5.t : ""}</b> against teams ranked top 5 in M1 at the time, ${esc(D.base_rate.seasons)} (95% range ${pct(top5.ci[0])}–${pct(top5.ci[1])}).`;
+  $("#h-model").textContent = pct(osuP);
+  $("#h-model-t").innerHTML = `Our calibrated model had Ohio favored by about ${Math.abs(g1row.margin_m2).toFixed(1)} goals at home. OSU is far stronger than a typical M2 team, so its odds were roughly ${Math.round(osuP / top5.win_rate)}× the historical rate.`;
+  const board = D.leaderboard, me = board.find((r) => r.id === g1.id);
+  $("#h-take").innerHTML = `By the history of the matchup, this was close to unheard of: the <b>${ordinal(top5.w + 1)} M2 win over a top-5 M1 team in six seasons</b>. By OSU's own strength it was a real but ordinary upset, the kind that happens about once every four tries. Among every M2 win over a top-10 M1 team since 2021, it ranks <b>#${me ? me.upset_rank : "–"} of ${board.length}</b> for how unlikely it was going in.`;
+
+  // 1 tiers
+  $("#base-intro").textContent = `Across ${D.all_m1_m2_games} M1-vs-M2 games since 2021-22, M2 teams won ${pct(D.base_rate.overall_m2_win_rate)} overall. Against M1's best the rate collapses.`;
+  tierChart(D.base_rate.tiers);
+  $("#tier-table").innerHTML = `<thead><tr><th>M1 opponent rank</th><th class="n">Games</th><th class="n">M2 W-L-T</th><th class="n">M2 win rate</th><th class="n">95% range</th><th class="n">Model expected</th></tr></thead><tbody>` +
+    D.base_rate.tiers.map((t) => `<tr><td>${esc(t.tier)}</td><td class="n">${t.n}</td><td class="n">${t.w}-${t.l}-${t.t}</td><td class="n">${pct(t.win_rate, 1)}</td><td class="n">${pct(t.ci[0])}–${pct(t.ci[1])}</td><td class="n">${pct(t.mean_model_p, 1)}</td></tr>`).join("") + `</tbody>`;
+
+  // 2 odds
+  const osuGames = D.osu_vs_m1;
+  const pAll = D.p_osu_perfect_vs_m1;
+  $("#odds-intro").innerHTML = `The model rates every ACHA men's team on one goal scale using only games played before the date. Going into Friday it rated Ohio about ${Math.abs(g1row.strength_gap).toFixed(1)} goals better than OSU on neutral ice. Add Ohio's home ice (0.33) and the M1 adjustment (0.65) and Ohio was a ${Math.abs(g1row.margin_m2).toFixed(1)}-goal favorite: <b>OSU win probability ${pct(osuP)}</b>, a surprise of ${(-Math.log2(osuP)).toFixed(1)} bits.`;
+  osuChart(osuGames);
+  const wins = osuGames.filter((g) => g.result === "W").length;
+  $("#osu-note").innerHTML = pAll ? `OSU is ${wins}-0 against M1 teams this season. Multiplying the pre-game odds, the chance of winning all ${osuGames.length} was <b>${pct(pAll, 1)}</b> (about 1 in ${Math.round(1 / pAll)}).` : `OSU's record against M1 teams this season: ${wins}-${osuGames.length - wins}.`;
+
+  // 3 leaderboard
+  $("#board").innerHTML = `<thead><tr><th class="n">#</th><th>Date</th><th>M2 team</th><th>Score</th><th>M1 opponent</th><th class="n">Pre-game odds</th><th class="n">Surprise</th></tr></thead><tbody>` +
+    board.map((r) => `<tr class="${r.osu ? "hl" : ""}"><td class="n">${r.upset_rank}</td><td class="num">${dstr(r.date)}</td><td class="wrapc">${esc(r.m2)}</td><td class="num">${r.m2_goals}-${r.m1_goals}${r.ot ? " OT" : ""}</td><td class="wrapc">${r.m2_home ? "vs" : "at"} #${r.m1_rank} ${esc(r.m1)}</td><td class="n">${pct(r.p_m2)}</td><td class="n">${r.surprise_bits.toFixed(1)} bits</td></tr>`).join("") + `</tbody>`;
+
+  // 4 how
+  const P = D.profiles, o = g1.osu, h = g1.ohio;
+  $("#how-intro").innerHTML = `Ohio outshot OSU ${h.shots}-${o.shots}. That's unusual for both teams: OSU averages ${P.osu.shots_for.toFixed(1)} shots a game and Ohio usually allows ${P.ohio.shots_against.toFixed(1)}. OSU trailed 2-1 after the first period, then won the second 2-0 on even shots.`;
+  $("#periods").innerHTML = `<thead><tr><th>Period</th><th class="n">OSU goals</th><th class="n">Ohio goals</th><th class="n">OSU shots</th><th class="n">Ohio shots</th></tr></thead><tbody>` +
+    g1.periods.filter((p) => p.hs + p.vs + p.hg + p.vg > 0).map((p) => { const os = g1.osu_home ? [p.hg, p.hs] : [p.vg, p.vs], oh = g1.osu_home ? [p.vg, p.vs] : [p.hg, p.hs];
+      return `<tr><td>${esc(p.label)}</td><td class="n">${os[0]}</td><td class="n">${oh[0]}</td><td class="n">${os[1]}</td><td class="n">${oh[1]}</td></tr>`; }).join("") +
+    `<tr><td><b>Total</b></td><td class="n"><b>${o.goals}</b></td><td class="n"><b>${h.goals}</b></td><td class="n"><b>${o.shots}</b></td><td class="n"><b>${h.shots}</b></td></tr></tbody>`;
+  const row = (lab, fri, osuAvg, ohioAvg, fmt) => `<tr><td>${lab}</td><td class="n">${fmt(fri[0])} / ${fmt(fri[1])}</td><td class="n">${fmt(osuAvg)}</td><td class="n">${fmt(ohioAvg)}</td></tr>`;
+  const f1 = (x) => x == null ? "–" : x.toFixed(1), fp = (x) => x == null ? "–" : (100 * x).toFixed(0) + "%";
+  $("#norms").innerHTML = `<thead><tr><th>Per game</th><th class="n">Friday OSU / Ohio</th><th class="n">OSU avg</th><th class="n">Ohio avg</th></tr></thead><tbody>` +
+    row("Shots for", [o.shots, h.shots], P.osu.shots_for, P.ohio.shots_for, f1) +
+    row("Goals for", [o.goals, h.goals], P.osu.gf, P.ohio.gf, f1) +
+    row("Shot share", [o.shots / (o.shots + h.shots), h.shots / (o.shots + h.shots)], P.osu.shot_share, P.ohio.shot_share, fp) +
+    `<tr><td>Power play</td><td class="n">${o.ppg}/${o.ppo} · ${h.ppg}/${h.ppo}</td><td class="n">${fp(P.osu.pp_pct)}</td><td class="n">${fp(P.ohio.pp_pct)}</td></tr>` +
+    `<tr><td>Team save %</td><td class="n">${(1 - h.goals / h.shots).toFixed(3)} / ${(1 - o.goals / o.shots).toFixed(3)}</td><td class="n">${P.osu.save_pct.toFixed(3)}</td><td class="n">${P.ohio.save_pct.toFixed(3)}</td></tr></tbody>`;
+  const gk = o.goalies[0] || {};
+  const savedAbove = g1.expected_ga_at_season_sv - h.goals, scoredAbove = o.goals - g1.expected_gf_at_ohio_sv;
+  $("#swing").innerHTML = `<p>At OSU's season save percentage (${P.osu.save_pct.toFixed(3)}), Ohio's ${h.shots} shots would produce about <b>${g1.expected_ga_at_season_sv.toFixed(1)} goals</b>. ${esc(gk.name || "OSU's goalie")} allowed ${h.goals}, about <b>${savedAbove.toFixed(1)} goals</b> fewer than OSU's normal save rate would allow (${gk.sv}/${gk.sa}, ${(gk.sv / gk.sa).toFixed(3)}). At Ohio's season save percentage (${P.ohio.save_pct.toFixed(3)}), OSU's ${o.shots} shots would produce about ${g1.expected_gf_at_ohio_sv.toFixed(1)} goals; OSU scored ${o.goals}, <b>${scoredAbove.toFixed(1)} above</b>. Together that's a swing of about <b>${(savedAbove + scoredAbove).toFixed(1)} goals</b> in a one-goal game.</p>
+    <p class="note" style="margin-top:8px">Shots aren't shot quality: a team that's outshot can still be getting the better chances. Treat this as a description of what happened, not proof of luck.</p>`;
+
+  // 5 weekend
+  const g2 = D.series[1];
+  if (g2 && g2.final) {
+    const won = g2.result === "W";
+    $("#wk-h").textContent = won ? "OSU swept the defending champions" : g2.result === "T" ? "Game 2 ended in a tie" : "Ohio answered in game 2";
+    const p12 = osuP * g2.p_osu;
+    $("#weekend").innerHTML = `<p><b>Saturday: Oklahoma State ${g2.osu.goals}, Ohio ${g2.ohio.goals}</b>${g2.result === "W" ? "" : ""}. Shots ${g2.osu.shots}-${g2.ohio.shots}. OSU's pre-game chance was ${pct(g2.p_osu)}.</p>
+      <p style="margin-top:8px">${won ? `Before the weekend, the chance of a sweep was about <b>${pct(p12, 1)}</b> (1 in ${Math.round(1 / p12)}).` : `Splitting a road weekend against the defending champion is still a strong result: the model expected OSU to win about ${(osuP + g2.p_osu).toFixed(1)} of the two games.`}</p>`;
+  } else {
+    $("#wk-h").textContent = `Game 2: ${g2 && g2.date ? dstr(g2.date) : "Saturday"}${g2 && g2.status ? ", " + g2.status : ""}`;
+    $("#weekend").innerHTML = `<p>The teams meet again at Bird Arena. Our model gives OSU a <b>${g2 && g2.p_osu != null ? pct(g2.p_osu) : "–"}</b> chance${g2 && g2.p_osu > osuP ? ", slightly better than Friday because Friday's result now counts in OSU's rating" : ""}. This section fills in once the final is posted.</p>`;
+  }
+
+  // 6 means
+  const S = D.standing;
+  $("#means").innerHTML = `<tbody>
+    <tr><td>OSU's rank among M1 teams, on our shared scale</td><td class="n"><b>#${S.m1_scale_rank} of ${S.m1_teams}</b></td></tr>
+    <tr><td>OSU's rank if added to ACHA's M1 computer ranking (${S.guest_record[0]}-${S.guest_record[1]}${S.guest_record[2] ? "-" + S.guest_record[2] : ""} vs M1; small sample)</td><td class="n">#${S.guest_rank} of ${S.guest_teams}</td></tr>
+    <tr><td>Ohio's official M1 rank (ACHA, through Nov 1)</td><td class="n">#${S.ohio_official_rank}</td></tr>
+    <tr><td>Effect on ACHA's official M1 or M2 rankings</td><td class="n">None</td></tr></tbody>`;
+
+  $("#m-n").textContent = D.all_m1_m2_games;
+  $("#m-cal").textContent = (D.model.calibration.fit_all_cross.n + D.model.calibration.holdout_all_cross.n).toString();
+  $("#gen").textContent = `Data built ${new Date(D.generated_at).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })}.`;
+  if (g1) $("#meta").textContent = `Friday, ${dstr(g1.date)} · ${g1.venue || "Bird Arena"}${g1.attendance ? " · attendance " + Number(g1.attendance).toLocaleString() : ""}`;
+}
+
+function ordinal(n) { const s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+
+function tierChart(tiers) {
+  const svg = $("#tier-chart"), W = 640, H = 260, m = { l: 44, r: 12, t: 12, b: 34 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b, max = 0.6;
+  const y = (v) => m.t + ih - (v / max) * ih;
+  for (let v = 0; v <= max + 1e-9; v += 0.1) {
+    el("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: css("--grid"), "stroke-width": 1 }, svg);
+    el("text", { x: m.l - 6, y: y(v) + 4, "text-anchor": "end" }, svg, Math.round(v * 100) + "%");
+  }
+  const bw = iw / tiers.length;
+  tiers.forEach((t, i) => {
+    const cx = m.l + bw * i + bw / 2, w = Math.min(64, bw * 0.45);
+    const top = y(t.win_rate), base = y(0), hgt = Math.max(1, base - top), r = Math.min(4, hgt);
+    el("path", { d: `M${cx - w / 2},${base} V${top + r} Q${cx - w / 2},${top} ${cx - w / 2 + r},${top} H${cx + w / 2 - r} Q${cx + w / 2},${top} ${cx + w / 2},${top + r} V${base} Z`, fill: css("--accent") }, svg);
+    el("line", { x1: cx, x2: cx, y1: y(t.ci[0]), y2: y(Math.min(t.ci[1], max)), stroke: css("--fg"), "stroke-width": 2 }, svg);
+    [t.ci[0], Math.min(t.ci[1], max)].forEach((v) => el("line", { x1: cx - 7, x2: cx + 7, y1: y(v), y2: y(v), stroke: css("--fg"), "stroke-width": 2 }, svg));
+    el("circle", { cx: cx + w / 2 + 12, cy: y(t.mean_model_p), r: 5, fill: css("--fg"), stroke: css("--surface"), "stroke-width": 2 }, svg);
+    el("text", { x: cx, y: H - 12, "text-anchor": "middle", class: "lbl" }, svg, "M1 " + t.tier);
+    el("text", { x: cx - w / 2 - 4, y: top - 6, "text-anchor": "end", class: "lbl" }, svg, (100 * t.win_rate).toFixed(0) + "%");
+    const hit = el("rect", { x: cx - bw / 2 + 4, y: m.t, width: bw - 8, height: ih, fill: "transparent" }, svg);
+    hover(hit, `<b>vs M1 ${esc(t.tier)}</b><br>${t.n} games · M2 ${t.w}-${t.l}-${t.t}<br>Win rate ${pct(t.win_rate, 1)} (95%: ${pct(t.ci[0])}–${pct(t.ci[1])})<br>Model expected ${pct(t.mean_model_p, 1)}`);
+  });
+  el("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: css("--muted"), "stroke-width": 1 }, svg);
+}
+
+function osuChart(games) {
+  const svg = $("#osu-chart"), W = 640, H = 230, m = { l: 44, r: 12, t: 16, b: 48 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const y = (v) => m.t + ih - v * ih;
+  [0, .25, .5, .75, 1].forEach((v) => { el("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: css("--grid"), "stroke-width": 1, "stroke-dasharray": v === .5 ? "4 3" : null }, svg); el("text", { x: m.l - 6, y: y(v) + 4, "text-anchor": "end" }, svg, v * 100 + "%"); });
+  const bw = iw / games.length;
+  games.forEach((g, i) => {
+    const cx = m.l + bw * i + bw / 2, w = Math.min(46, bw * 0.55), top = y(g.p_m2), base = y(0), r = 4;
+    const isOhio = g.ohio_series;
+    el("path", { d: `M${cx - w / 2},${base} V${top + r} Q${cx - w / 2},${top} ${cx - w / 2 + r},${top} H${cx + w / 2 - r} Q${cx + w / 2},${top} ${cx + w / 2},${top + r} V${base} Z`, fill: css("--accent"), opacity: isOhio ? 1 : 0.55 }, svg);
+    el("text", { x: cx, y: top - 6, "text-anchor": "middle", class: "lbl" }, svg, Math.round(100 * g.p_m2) + "%");
+    el("text", { x: cx, y: H - 28, "text-anchor": "middle", class: "lbl" }, svg, (g.m2_home ? "vs " : "@ ") + g.m1.replace("Nevada-Las Vegas", "UNLV").slice(0, 10));
+    el("text", { x: cx, y: H - 12, "text-anchor": "middle" }, svg, `${g.result} ${g.m2_goals}-${g.m1_goals}`);
+    const hit = el("rect", { x: cx - bw / 2 + 2, y: m.t, width: bw - 4, height: ih, fill: "transparent" }, svg);
+    hover(hit, `<b>${dstr(g.date)} ${g.m2_home ? "vs" : "at"} ${esc(g.m1)}</b>${g.m1_rank ? ` (M1 #${g.m1_rank})` : ""}<br>Result: ${g.result} ${g.m2_goals}-${g.m1_goals}<br>Pre-game OSU win chance ${pct(g.p_m2)}`);
+  });
+  el("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: css("--muted"), "stroke-width": 1 }, svg);
+}
+</script>

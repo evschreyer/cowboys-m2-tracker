@@ -21,12 +21,14 @@ body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display
 def main():
     shutil.rmtree(OUT, ignore_errors=True)
     os.makedirs(OUT)
-    with open(os.path.join(ROOT, "dashboard/index.html")) as f:
-        page = f.read()
-    with open(os.path.join(OUT, "index.html"), "w") as f:
-        f.write(HEAD + page + "\n</body></html>\n")
+    for name in ("index.html", "case-study-ohio.html"):
+        with open(os.path.join(ROOT, "dashboard", name)) as f:
+            page = f.read()
+        with open(os.path.join(OUT, name), "w") as f:
+            f.write(HEAD + page + "\n</body></html>\n")
     shutil.copy(os.path.join(ROOT, "engine/engine.js"), OUT)
     shutil.copy(os.path.join(ROOT, "data/snapshots/latest.json"), OUT)
+    shutil.copy(os.path.join(ROOT, "data/case_study_ohio.json"), OUT)
     with open(os.path.join(OUT, "robots.txt"), "w") as f:
         f.write("User-agent: *\nDisallow: /\n")
     open(os.path.join(OUT, ".nojekyll"), "w").close()

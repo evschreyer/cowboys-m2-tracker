@@ -57,3 +57,22 @@ def match_names(official: list[str], feed: list[str]) -> dict[str, str]:
         if c:
             out[o] = norm_feed[c[0]]
     return out
+
+
+M1_ROW = re.compile(r"^(\d+) (.+?) (\d+) (\d+) ([\d.]+) (.+?) (NR|\d+)\s*$")
+
+
+def parse_m1_computer(path: str) -> dict[str, dict]:
+    """ACHA M1 'Computer Poll Average' PDF -> {team: {rank, A, B, avg, league, last}} (ranking-sorted pages only)."""
+    rows = {}
+    for page in pypdf.PdfReader(path).pages:
+        text = page.extract_text()
+        if "SORTED BY LEAGUE" in text:
+            break
+        for line in text.splitlines():
+            m = M1_ROW.match(line.strip())
+            if m:
+                rows[m.group(2).strip()] = dict(rank=int(m.group(1)), A=int(m.group(3)), B=int(m.group(4)),
+                                                avg=float(m.group(5)), league=m.group(6).strip(),
+                                                last=None if m.group(7) == "NR" else int(m.group(7)))
+    return rows

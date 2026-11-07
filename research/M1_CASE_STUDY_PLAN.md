@@ -24,7 +24,14 @@ Nov 6, 2026: **Oklahoma State (M2) 3, Ohio (M1) 2**, in regulation at Ohio. Ohio
    - All-division rating: OSU **#3 of 82 M1 teams** (behind Ohio and Drury). On that scale the average M1 team is 3.1 goals better than the average M2 team.
    - Adding OSU to the M1 computer ranking using its 6 M1 games (6-0): **#1** in both A and B. This is a 6-game sample, so it's overstated.
 5. **Game stats.** Ohio outshot OSU 36-30 (16-11 in the 1st, even after that). OSU's goalie saved 34 of 36 (.944). PP: Ohio 1/2, OSU 0/2. OSU won the 2nd period 2-0.
-6. **Replication gap.** Our copy of the M1 method lands on exactly the official rank for only 10-13 of 80 teams (mean miss about 3 places), with 74 of 80 agreeing on top-25 membership. ACHA's M1 game set differs from the feed, possibly through the home-game penalty or data differences. This needs reconciling before we present "phantom M1" ranks as ACHA-equivalent.
+6. **M1 replication is already close.** The first quick check matched only 10-13 of 80 teams exactly. That came from a team-name matching error in the check, not the method. Corrected (step 1, using `engine/allgames.py` and `scripts/official.py`):
+
+   | Ranking | Exact rating A | Exact rating B | Exact final rank | Top-25 agreement |
+   |---|---|---|---|---|
+   | 2026-27 R5 | 70/80 | 80/80 | 70/80 | 80/80 |
+   | 2025-26 (12 releases) | 51-70/79 | 35-62/79 | 39-63/79 | 76-79/79 |
+
+   In 2025-26 the mean miss is 0.1-0.5 places on rating A and 0.3-1.0 on B. Buffalo and Navy aren't matched yet. Step 2 explains the rest.
 
 ## Proposed methods
 

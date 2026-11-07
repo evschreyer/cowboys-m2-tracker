@@ -7,3 +7,7 @@ data/feeds/season73.json
 .claude/
 # ACHA manuals / referee documents: kept locally, not redistributed
 /*.pdf
+data/feeds/season46.json
+data/feeds/season34.json
+data/feeds/season21.json
+data/feeds/season10.json

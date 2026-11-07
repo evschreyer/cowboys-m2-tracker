@@ -68,7 +68,7 @@ Nov 6, 2026: **Oklahoma State (M2) 3, Ohio (M1) 2**, in regulation at Ohio. Ohio
 ## Build order
 1. **Data layer.** Done 2026-11-07: engine/allgames.py, engine/gamestats.py, scripts/fetch_game_stats.py, data/official/m1.
 2. **M1 replication.** Done 2026-11-07, see FINDINGS §7. Top 10 identical in all 13 releases, rank within one place 90%. The remaining misses are data drift. The home penalty isn't applied.
-3. **Win-probability model.** All-division rating as of each game date. Calibrate on 2021-22 to 2025-26 M1-M2 games (Brier score, calibration). Fit home edge and SD.
+3. **Win-probability model.** Done 2026-11-07, see FINDINGS §8. Calibrated. OSU at Ohio pre-game P = 24%. Includes a division-gap correction of +0.65 goals for M1 vs M2.
 4. **Case study (internal).** Base rates by tier at game time, pre-game odds, surprise, performance vs result, historical leaderboard, weekend series. Published as a report page on the site.
 5. **"vs M1" tab.** Projected M1 rank (both methods, with intervals), OSU vs M1 game log, stat comparison, division gap tracker, combined M1+M2 top 25.
 6. **Public version** of the case study.

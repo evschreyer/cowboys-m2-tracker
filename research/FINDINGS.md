@@ -109,3 +109,27 @@ Context: OSU were the 2026 M2 national runner-up (lost 3-2 in OT to FGCU) and fi
 - The remaining 2025-26 misses are data drift. Today's feed includes score corrections and late additions made after each ranking was published. Every 2025-26 game was re-saved in a later bulk update, so the `last_modified` timestamps can't recover what ACHA saw.
 - Name aliases for the M1 PDFs: Buffalo = University at Buffalo, Navy = United States Naval Academy (`scripts/official.py`).
 - Guest ranking: `m1_games(games, extra=osu_games)` ranks a non-M1 team on its games vs M1 teams. As of Nov 7 (before game 2 at Ohio), OSU is 6-0 in 6 M1 games and comes out #1 of 82 in both A and B. That's a small sample, and an unbeaten record automatically tops B. Step 3 adds uncertainty.
+
+## 8. Cross-division win-probability model (M1 study step 3, 2026-11-07)
+`engine/xdiv.py` (FITTED params), `scripts/calibrate_xdiv.py`, results in `data/xdiv_model.json`.
+- **Shared scale:** every ACHA men's team (M1/M2/M3) gets a goal-unit strength. It is the average of (capped GD − home edge + opponent strength), with last season's final strength (regressed 0.6 toward its division mean) counted as k = 2 extra games. Every prediction uses only games before that date. Cross-division games tie the divisions together.
+- **Fitted:** home edge 0.33 goals (all-game residual MLE), game spread sigma 3.0 (chosen on cross-division log loss).
+- **Division gap correction:** the higher division wins more often than the shared scale implies.
+  - M1-side lean in M1-M2 games, actual minus predicted: 2022-23 +0.16, 2023-24 +0.16, 2024-25 +0.06, 2025-26 +0.04, 2026-27 +0.01. It is shrinking every year and is largest in Jan-Mar (+0.15).
+  - Leave-one-season-out log loss improves from 0.531 to 0.515 with the correction.
+  - Adopted recency-weighted values: **M1 +0.65 goals vs M2**, M1 +0.85 vs M3, M2 +0.50 vs M3.
+- **Accuracy:**
+
+  | Games | Log loss | Brier | Constant-rate baseline log loss |
+  |---|---|---|---|
+  | M1-M2, 2022-23..2025-26 (n=274) | 0.514 | 0.174 | |
+  | M1-M2, 2026-27 holdout before Nov 6 (n=52) | 0.504 | 0.170 | |
+  | All cross-division (n=825) | 0.534 | 0.181 | 0.656 |
+
+  Calibration is good across deciles; for example, games predicted at 0.25 were won 20% of the time, 0.45 → 51%, 0.85 → 80%, 0.94 → 96%.
+- **OSU at Ohio (Nov 6):** pre-game strengths OSU 6.76, Ohio 7.93. Predicted Ohio by 2.1 goals (strength gap, home edge and division correction). **P(OSU win) = 24%**, a surprise of 2.06 bits.
+  - Superseded estimate: 32% from the earlier uncalibrated version, with no division correction.
+  - Historical base rate for M2 vs a top-5 M1 team: 11.5%, i.e. 3.1 bits.
+- **OSU's 6-0 vs M1 this season:** pre-game P(win) of 49%, 59%, 75%, 59%, 64% and 24%. The chance of sweeping all six was 2.0% (1 in 51).
+- **OSU on the M1 scale after Nov 6** (M1 strengths + 0.65): about **#8 of 81 M1 teams**. That is more conservative than the uncalibrated estimate (#3) and the guest-ranking estimate (#1). On this scale OSU leads M2 by 1.5 goals over #2 Lindenwood.
+- Game 2 at Ohio (Nov 7): pre-game P(OSU win) = 27%.

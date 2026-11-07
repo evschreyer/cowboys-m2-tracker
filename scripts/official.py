@@ -12,7 +12,10 @@ ROW = re.compile(
     r"\s*(-?[\d.]+)\s+(-?[\d.]+),")
 
 # Official-name -> feed-name exceptions that fuzzy matching gets wrong.
-MANUAL_ALIASES: dict[str, str] = {}
+MANUAL_ALIASES: dict[str, str] = {
+    "Buffalo": "University at Buffalo",          # M1 computer PDFs use short names
+    "Navy": "United States Naval Academy",
+}
 
 
 def parse_raw_pdf(path: str) -> dict[str, dict]:
@@ -47,7 +50,7 @@ def match_names(official: list[str], feed: list[str]) -> dict[str, str]:
     norm_feed = {_norm(f): f for f in feed}
     out = {}
     for o in official:
-        if o in MANUAL_ALIASES:
+        if MANUAL_ALIASES.get(o) in feed:
             out[o] = MANUAL_ALIASES[o]
             continue
         if o in feed:

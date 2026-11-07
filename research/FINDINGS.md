@@ -96,3 +96,16 @@ Context: OSU were the 2026 M2 national runner-up (lost 3-2 in OT to FGCU) and fi
 - `engine/engine.py` and `engine/engine.js` agree to 0.0 on the 2025-26 season (`tests/parity.html`).
 - `scripts/backtest.py` on all 9 official 2025-26 rankings: rating MAE 0.10-0.24. Top-2 per region correct in 8 of 9 rankings (6/8 in R2). Top-16 sets 97%+.
 - OSU's official GmPerf is about 4 goals (total) lower than the feed from R1 onward. This is a single-game data difference, probably a Creighton game. It is not systematic: there is no correlation with blowout counts.
+
+## 7. ACHA M1 computer ranking: reconstruction (M1 study step 2, 2026-11-07)
+`engine/m1rank.py`, validated by `scripts/backtest_m1.py` against all 13 published M1 "Computer Poll Average" PDFs (2025-26 R5-R16 and 2026-27 R5).
+- Method: M1 vs M1 games only. **Every OT/SO game is a tie.** Rating A has GD capped at 7 and rating B at 1, using the same recursive rating as M2. Published rank = order of the average of the A and B rank positions, with ties going to the better B rank.
+- Accuracy across 1,053 team-weeks: top 10 identical in all 13 releases. Top 25 matched for 23-25 of 25. Rank exact 65%, within one place 90%, mean miss 0.15-0.89 places. 2026-27 R5: B exact 81/81, A 71/81, rank 71/81.
+- Alternatives tested and rejected:
+  - Only shootouts as ties: A 55%, B 24% exact.
+  - No ties at all: A 52%, B 19%.
+  - Ranking on ratings rounded to 2 decimals, with several tiebreakers: no better.
+  - The home-game imbalance penalty (§1F): no correlation between schedule imbalance and our misses, so ACHA apparently doesn't apply it.
+- The remaining 2025-26 misses are data drift. Today's feed includes score corrections and late additions made after each ranking was published. Every 2025-26 game was re-saved in a later bulk update, so the `last_modified` timestamps can't recover what ACHA saw.
+- Name aliases for the M1 PDFs: Buffalo = University at Buffalo, Navy = United States Naval Academy (`scripts/official.py`).
+- Guest ranking: `m1_games(games, extra=osu_games)` ranks a non-M1 team on its games vs M1 teams. As of Nov 7 (before game 2 at Ohio), OSU is 6-0 in 6 M1 games and comes out #1 of 82 in both A and B. That's a small sample, and an unbeaten record automatically tops B. Step 3 adds uncertainty.

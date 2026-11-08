@@ -215,4 +215,4 @@ Context: OSU were the 2026 M2 national runner-up (lost 3-2 in OT to FGCU) and fi
   - Nationals pools if the season ended today.
 
   Data comes from `data/title_odds.json`, whose `teams` block covers every M2 team.
-- **Schedule change detected:** OSU's Dec 4-5 games are now at Penn State (M2), replacing the trip to Minot State (M1). OSU now has 18 M2 games scheduled through Feb 14 (minimum 16) and 2 fewer M1 games remaining.
+- **Schedule conflict (Dec 4-5):** the feed lists OSU both at Minot State (M1, ids 33221/33222) and at Penn State (M2, ids 37833/37834, added later) on the same dates. Only one series can be real. This is now detected automatically (`snapshot.schedule_conflicts`) and shown as an alert on the OSU tab. Resolve it by adding the wrong pair to `exclude_game_ids` in `data/overrides_2026-27.json`. Exclusions now apply to scheduled games everywhere: eligibility, projections, title simulation and the record chase.

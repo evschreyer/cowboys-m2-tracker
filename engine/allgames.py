@@ -82,7 +82,11 @@ def games(season: str, through: str = "9999-12-31", divisions: set[int] | None =
     """Completed ACHA men's games (forfeits excluded). divisions limits to games where BOTH teams
     are in the set; None = every game between two ACHA men's teams."""
     out = []
+    ov_path = os.path.join(ROOT, f"data/overrides_{season}.json")
+    excluded = set(map(str, json.load(open(ov_path)).get("exclude_game_ids", []))) if os.path.exists(ov_path) else set()
     for g in load_feed(season, refresh):
+        if str(g["id"]) in excluded:
+            continue
         if g["game_status"] not in FINAL or g["date_played"] > through or not plausible_final(g):
             continue
         hd, h = parse_team(g["home_team_name"])

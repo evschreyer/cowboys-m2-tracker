@@ -251,7 +251,10 @@ def main():
 
     # ---------- remaining M1 schedule and record chase
     rem = []
+    excluded = set(map(str, json.load(open(os.path.join(ROOT, f"data/overrides_{CUR}.json"))).get("exclude_game_ids", [])))
     for g in load_feed(CUR):
+        if str(g["id"]) in excluded:
+            continue
         hd, h = parse_team(g["home_team_name"]); ad, a = parse_team(g["visiting_team_name"])
         if g["game_status"].startswith("Final") or g["date_played"] <= WEEKEND[1] or g["date_played"] > "2027-03-01":
             continue

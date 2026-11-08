@@ -593,6 +593,7 @@ function renderOSU() {
   const linked = S.teams.filter((t) => t.region === REG[FOCUS] && t.linked_to_focus).length;
   const westAll = S.teams.filter((t) => t.region === REG[FOCUS] && t.gp > 0).length;
   if (S.counts.groups > 1) alerts.push(["warn", `<b>Early-season ratings.</b> The M2 schedule is still split into ${S.counts.groups} separate groups of teams that haven't played each other, even through opponents. Only ${linked} of ${westAll} West teams with games are linked to OSU, so ratings between unlinked teams can't be compared yet. This settles as more games are played.`]);
+  for (const c of S.schedule_conflicts || []) alerts.push(["bad", `<b>Schedule conflict on ${dstr(c.date)}.</b> ACHA's schedule lists OSU for ${c.games.length} games that day: ${c.games.map((g) => `${g.home ? "vs" : "at"} ${esc(g.opponent.replace(/^MD[123] /, ""))} (${esc(g.status)})`).join(" and ")}. Only one can be real; the extra one inflates game counts and odds until it's corrected in ACHA's schedule or excluded in the corrections file.`]);
   const u = S.upcoming.filter((g) => g.state === "unreported").length;
   if (u) alerts.push(["", `<b>${u} past M2 games have no score in the feed yet.</b> Teams have until Monday at midnight to report. ACHA ranks with the same data.`]);
   $("#osu-alerts").innerHTML = alerts.map(([c, t]) => `<div class="alert ${c}"><span>${c === "warn" ? "⚠" : "ℹ"}</span><div>${t}</div></div>`).join("");

@@ -127,7 +127,10 @@ def main():
     focus = cfg["focus_team"]
     focus_all = []  # every ACHA game for the focus team (M2 and cross-division)
     counted_ids = {g.id for g in games}
+    excluded = set(map(str, ov.get("exclude_game_ids", [])))
     for g in feed:
+        if str(g["id"]) in excluded:
+            continue
         h, a = m2_name(g["home_team_name"]), m2_name(g["visiting_team_name"])
         st = game_state(g["game_status"])
         if st == "scheduled" and g["date_played"] < now.strftime("%Y-%m-%d"):
@@ -144,6 +147,14 @@ def main():
             focus_all.append(dict(id=g["id"], date=g["date_played"], opponent=opp, home=home, gf=int(gf), ga=int(ga),
                                   state=st, status=g["game_status"], m2=opp.startswith("MD2 "),
                                   acha=opp[:3] in ("MD1", "MD2", "MD3"), counted=g["id"] in counted_ids))
+
+    # schedule conflicts: the focus team listed for more than one game on the same date
+    by_day = defaultdict(list)
+    for x in focus_all:
+        if x["state"] in ("scheduled", "unreported", "postponed"):
+            by_day[x["date"]].append(x)
+    conflicts = [dict(date=d, games=[dict(id=x["id"], opponent=x["opponent"], home=x["home"], status=x["status"]) for x in xs])
+                 for d, xs in sorted(by_day.items()) if len(xs) > 1]
 
     elig = cfg["eligibility"]
     f_m2 = [x for x in focus_all if x["m2"] and x["date"] <= elig["by"]]
@@ -177,7 +188,7 @@ def main():
         last_game_date=max((g.date for g in games), default=None),
         engine=dict(cap=7, start=7.0, ot_adj=0.5, awp_weight=0.8), model=None, priors=priors(), strengths=strengths(),
         config=cfg, teams=team_rows, games=counted, upcoming=sorted(upcoming, key=lambda x: x['date']), focus_games=focus_all, eligibility=eligibility,
-        forfeits=forfeits, suggested_penalties=forfeit_penalties(forfeits),
+        forfeits=forfeits, suggested_penalties=forfeit_penalties(forfeits), schedule_conflicts=conflicts,
         overrides_notes=ov.get("notes", []),
         counts=dict(groups=len(set(comp.values())), m2_games_counted=len(games), m2_games_upcoming=len(upcoming), teams=len(team_rows)))
     snap["data_hash"] = hashlib.sha256(json.dumps([snap["games"], snap["upcoming"], snap["teams"], snap["focus_games"]],

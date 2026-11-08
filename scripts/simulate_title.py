@@ -115,7 +115,8 @@ def main():
     remaining = []
     for g in feed:
         h, a = m2_name(g["home_team_name"]), m2_name(g["visiting_team_name"])
-        if not h or not a or "TBD" in (h, a) or str(g["id"]) in played_ids or g["date_played"] > FINAL_DAY:
+        if not h or not a or "TBD" in (h, a) or str(g["id"]) in played_ids or g["date_played"] > FINAL_DAY \
+                or str(g["id"]) in set(map(str, ov.get("exclude_game_ids", []))):
             continue
         if g["game_status"] in ("Postponed", "Cancelled", "Canceled") or "Forfeit" in g["game_status"]:
             continue

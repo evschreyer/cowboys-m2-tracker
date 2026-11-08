@@ -14,3 +14,6 @@ data/feeds/season10.json
 data/cache/
 press/
 research/out/
+
+# local secrets (EliteProspects API key)
+.env

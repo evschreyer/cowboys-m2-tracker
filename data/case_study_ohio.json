@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07T13:46",
+ "generated_at": "2026-11-07T19:00",
  "model": {
   "params": {
    "k": 2,
@@ -231,6 +231,27 @@
    "upset_rank": 3
   },
   {
+   "id": "31986",
+   "season": "2026-27",
+   "date": "2026-11-07",
+   "m2": "Oklahoma State",
+   "m1": "Ohio",
+   "m2_home": false,
+   "m2_goals": 3,
+   "m1_goals": 1,
+   "ot": false,
+   "result": "W",
+   "m1_rank": 3,
+   "margin_m2": -1.859,
+   "strength_gap": -0.881,
+   "rank_source": "current",
+   "p_m2": 0.2705,
+   "surprise_bits": 1.886,
+   "osu": true,
+   "ohio_series": true,
+   "upset_rank": 4
+  },
+  {
    "id": "1391",
    "season": "2021-22",
    "date": "2021-10-22",
@@ -249,7 +270,7 @@
    "surprise_bits": 1.604,
    "osu": false,
    "ohio_series": false,
-   "upset_rank": 4
+   "upset_rank": 5
   },
   {
    "id": "7640",
@@ -270,7 +291,7 @@
    "surprise_bits": 1.004,
    "osu": false,
    "ohio_series": false,
-   "upset_rank": 5
+   "upset_rank": 6
   },
   {
    "id": "6757",
@@ -291,7 +312,7 @@
    "surprise_bits": 0.976,
    "osu": false,
    "ohio_series": false,
-   "upset_rank": 6
+   "upset_rank": 7
   },
   {
    "id": "32780",
@@ -312,7 +333,7 @@
    "surprise_bits": 0.751,
    "osu": true,
    "ohio_series": false,
-   "upset_rank": 7
+   "upset_rank": 8
   },
   {
    "id": "32781",
@@ -333,7 +354,7 @@
    "surprise_bits": 0.649,
    "osu": true,
    "ohio_series": false,
-   "upset_rank": 8
+   "upset_rank": 9
   },
   {
    "id": "3545",
@@ -354,7 +375,7 @@
    "surprise_bits": 0.257,
    "osu": false,
    "ohio_series": false,
-   "upset_rank": 9
+   "upset_rank": 10
   }
  ],
  "osu_vs_m1": [
@@ -437,7 +458,7 @@
    "surprise_bits": 0.751,
    "osu": true,
    "ohio_series": false,
-   "upset_rank": 7
+   "upset_rank": 8
   },
   {
    "id": "32781",
@@ -458,7 +479,7 @@
    "surprise_bits": 0.649,
    "osu": true,
    "ohio_series": false,
-   "upset_rank": 8
+   "upset_rank": 9
   },
   {
    "id": "31985",
@@ -480,9 +501,30 @@
    "osu": true,
    "ohio_series": true,
    "upset_rank": 2
+  },
+  {
+   "id": "31986",
+   "season": "2026-27",
+   "date": "2026-11-07",
+   "m2": "Oklahoma State",
+   "m1": "Ohio",
+   "m2_home": false,
+   "m2_goals": 3,
+   "m1_goals": 1,
+   "ot": false,
+   "result": "W",
+   "m1_rank": 3,
+   "margin_m2": -1.859,
+   "strength_gap": -0.881,
+   "rank_source": "current",
+   "p_m2": 0.2705,
+   "surprise_bits": 1.886,
+   "osu": true,
+   "ohio_series": true,
+   "upset_rank": 4
   }
  ],
- "p_osu_perfect_vs_m1": 0.019812405716880078,
+ "p_osu_perfect_vs_m1": 0.005359255746416061,
  "series": [
   {
    "id": "31985",
@@ -554,10 +596,78 @@
   },
   {
    "id": "31986",
-   "final": false,
+   "final": true,
    "date": "2026-11-07",
-   "status": "5:00 pm EST",
-   "p_osu": 0.2706
+   "osu": {
+    "goals": 3,
+    "shots": 27,
+    "ppg": 1,
+    "ppo": 2,
+    "pim": 49,
+    "goalies": [
+     {
+      "name": "Dmytro Kubrytskyi",
+      "toi": "60:00",
+      "sa": 33,
+      "ga": 1,
+      "sv": 32
+     }
+    ]
+   },
+   "ohio": {
+    "goals": 1,
+    "shots": 34,
+    "ppg": 1,
+    "ppo": 6,
+    "pim": 8,
+    "goalies": [
+     {
+      "name": "Garrett Alderman",
+      "toi": "57:00",
+      "sa": 24,
+      "ga": 2,
+      "sv": 22
+     },
+     {
+      "name": "Garrett Alderman",
+      "toi": "02:19",
+      "sa": 2,
+      "ga": 0,
+      "sv": 2
+     }
+    ]
+   },
+   "periods": [
+    {
+     "label": "1st",
+     "hg": 1,
+     "vg": 2,
+     "hs": 11,
+     "vs": 10
+    },
+    {
+     "label": "2nd",
+     "hg": 0,
+     "vg": 0,
+     "hs": 10,
+     "vs": 6
+    },
+    {
+     "label": "3rd",
+     "hg": 0,
+     "vg": 1,
+     "hs": 13,
+     "vs": 11
+    }
+   ],
+   "osu_home": false,
+   "venue": "Bird Arena (OH)",
+   "attendance": 1250,
+   "p_osu": 0.2705,
+   "result": "W",
+   "m1_rank": 3,
+   "expected_ga_at_season_sv": 2.91,
+   "expected_gf_at_ohio_sv": 1.68
   }
  ],
  "profiles": {
@@ -587,41 +697,41 @@
   }
  },
  "standing": {
-  "osu_strength": 6.925079523768173,
-  "m1_scale_rank": 8,
+  "osu_strength": 7.114875249576333,
+  "m1_scale_rank": 7,
   "m1_teams": 81,
   "m1_top": [
    {
-    "team": "Ohio",
-    "strength": 8.45
-   },
-   {
     "team": "Drury",
     "strength": 8.35
+   },
+   {
+    "team": "Ohio",
+    "strength": 8.25
    },
    {
     "team": "Minot State",
     "strength": 7.73
    },
    {
-    "team": "Niagara",
-    "strength": 7.37
+    "team": "Nevada-Las Vegas",
+    "strength": 7.36
    },
    {
-    "team": "Nevada-Las Vegas",
-    "strength": 7.35
+    "team": "Niagara",
+    "strength": 7.34
    },
    {
     "team": "Liberty",
-    "strength": 7.24
+    "strength": 7.21
    },
    {
     "team": "Adrian",
-    "strength": 6.93
+    "strength": 6.88
    },
    {
     "team": "Maryville",
-    "strength": 6.83
+    "strength": 6.79
    },
    {
     "team": "Jamestown",
@@ -629,17 +739,17 @@
    },
    {
     "team": "Calvin",
-    "strength": 6.68
+    "strength": 6.7
    }
   ],
   "guest_rank": 1,
   "guest_teams": 82,
   "guest_record": [
-   6,
+   7,
    0,
    0
   ],
   "ohio_official_rank": 3
  },
- "all_m1_m2_games": 407
+ "all_m1_m2_games": 408
 }

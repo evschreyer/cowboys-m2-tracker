@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07T20:14",
+ "generated_at": "2026-11-07T19:16",
  "model": {
   "params": {
    "k": 2,
@@ -119,7 +119,7 @@
      0.0,
      0.125
     ],
-    "mean_model_p": 0.14109999999999995
+    "mean_model_p": 0.1411
    },
    {
     "tier": "6-10",
@@ -145,7 +145,7 @@
      0.175,
      0.45
     ],
-    "mean_model_p": 0.3282599999999999
+    "mean_model_p": 0.32826
    },
    {
     "tier": "26+",
@@ -158,7 +158,7 @@
      0.3279569892473118,
      0.44086021505376344
     ],
-    "mean_model_p": 0.43332974910394223
+    "mean_model_p": 0.4333297491039427
    }
   ],
   "overall_m2_win_rate": 0.34236453201970446,
@@ -697,13 +697,13 @@
   }
  },
  "standing": {
-  "osu_strength": 7.117200610305129,
+  "osu_strength": 7.116237349657759,
   "m1_scale_rank": 7,
   "m1_teams": 81,
   "m1_top": [
    {
     "team": "Drury",
-    "strength": 8.35
+    "strength": 8.37
    },
    {
     "team": "Ohio",
@@ -711,15 +711,15 @@
    },
    {
     "team": "Minot State",
-    "strength": 7.74
+    "strength": 7.77
    },
    {
     "team": "Nevada-Las Vegas",
-    "strength": 7.36
+    "strength": 7.37
    },
    {
     "team": "Niagara",
-    "strength": 7.34
+    "strength": 7.35
    },
    {
     "team": "Liberty",
@@ -727,7 +727,7 @@
    },
    {
     "team": "Adrian",
-    "strength": 6.88
+    "strength": 6.87
    },
    {
     "team": "Maryville",
@@ -735,7 +735,7 @@
    },
    {
     "team": "Jamestown",
-    "strength": 6.71
+    "strength": 6.73
    },
    {
     "team": "Calvin",

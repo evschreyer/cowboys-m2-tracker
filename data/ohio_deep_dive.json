@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-08T06:06",
+ "generated_at": "2026-11-08T08:31",
  "rarity": {
   "series": [
    {
@@ -706,18 +706,18 @@
    "osu": 7.115,
    "gp": 15,
    "m1_equiv": 7,
-   "m1_1": 8.429,
-   "m1_10": 6.606,
-   "m1_25": 5.01
+   "m1_1": 8.43,
+   "m1_10": 6.605,
+   "m1_25": 5.037
   },
   {
    "date": "2026-11-09",
    "osu": 7.115,
    "gp": 15,
    "m1_equiv": 7,
-   "m1_1": 8.429,
-   "m1_10": 6.606,
-   "m1_25": 5.01
+   "m1_1": 8.43,
+   "m1_10": 6.605,
+   "m1_25": 5.037
   }
  ],
  "odds": {
@@ -731,7 +731,7 @@
    {
     "id": "31986",
     "date": "2026-11-07",
-    "p": 0.2706,
+    "p": 0.2707,
     "score": "3-1"
    }
   ],
@@ -810,7 +810,7 @@
     "date": "2026-11-07",
     "opp": "Ohio",
     "home": false,
-    "p": 0.2706,
+    "p": 0.2707,
     "res": "W",
     "score": "3-1"
    }
@@ -818,11 +818,11 @@
   "win_distribution": [
    0.00418,
    0.03924,
-   0.14673,
-   0.28254,
+   0.14672,
+   0.28253,
    0.29988,
-   0.17283,
-   0.04922,
+   0.17284,
+   0.04923,
    0.00537
   ],
   "expected_wins": 3.58
@@ -848,7 +848,7 @@
   "ohio_season_sv": 0.9379310344827586,
   "ohio_pp_season": 0.42857142857142855,
   "ohio_pp_expected": 3.43,
-  "m1_avg_sv": 0.8998157812437448,
+  "m1_avg_sv": 0.8998022102082351,
   "gsaa_vs_m1_avg": 4.01
  },
  "goalies": [
@@ -921,13 +921,13 @@
    "with_osu": 6
   },
   {
-   "team": "Jamestown",
-   "actual": 8,
+   "team": "Liberty",
+   "actual": 6,
    "with_osu": 7
   },
   {
-   "team": "Liberty",
-   "actual": 6,
+   "team": "Jamestown",
+   "actual": 8,
    "with_osu": 8
   },
   {
@@ -941,8 +941,8 @@
    "with_osu": 10
   },
   {
-   "team": "West Chester",
-   "actual": 10,
+   "team": "Calvin",
+   "actual": 11,
    "with_osu": 11
   },
   {
@@ -961,63 +961,63 @@
     "date": "2026-11-13",
     "opp": "Illinois",
     "home": false,
-    "p": 0.7775,
+    "p": 0.7778,
     "opp_m1_rank": 25
    },
    {
     "date": "2026-11-14",
     "opp": "Illinois",
     "home": false,
-    "p": 0.7775,
+    "p": 0.7778,
     "opp_m1_rank": 25
    },
    {
     "date": "2026-12-04",
     "opp": "Minot State",
     "home": false,
-    "p": 0.3926,
+    "p": 0.3928,
     "opp_m1_rank": 3
    },
    {
     "date": "2026-12-05",
     "opp": "Minot State",
     "home": false,
-    "p": 0.3926,
+    "p": 0.3928,
     "opp_m1_rank": 3
    },
    {
     "date": "2026-12-11",
     "opp": "Nevada-Las Vegas",
     "home": false,
-    "p": 0.4322,
+    "p": 0.4326,
     "opp_m1_rank": 2
    },
    {
     "date": "2026-12-12",
     "opp": "Nevada-Las Vegas",
     "home": false,
-    "p": 0.4322,
+    "p": 0.4326,
     "opp_m1_rank": 2
    },
    {
     "date": "2027-01-30",
     "opp": "Oklahoma",
     "home": true,
-    "p": 0.9209,
-    "opp_m1_rank": 40
+    "p": 0.921,
+    "opp_m1_rank": 41
    },
    {
     "date": "2027-02-26",
     "opp": "Midland",
     "home": true,
-    "p": 0.7854,
+    "p": 0.7855,
     "opp_m1_rank": 14
    },
    {
     "date": "2027-02-27",
     "opp": "Midland",
     "home": true,
-    "p": 0.7854,
+    "p": 0.7855,
     "opp_m1_rank": 14
    }
   ],
@@ -1027,18 +1027,18 @@
   "record_holder": "Mary (2022-23)",
   "p_break": 0.9925,
   "p_tie_or_break": 0.9994,
-  "p_perfect": 0.00989,
+  "p_perfect": 0.00993,
   "dist": [
    2e-05,
-   0.00062,
-   0.00685,
-   0.03947,
-   0.13047,
-   0.25521,
-   0.29414,
-   0.19485,
-   0.06848,
-   0.00989
+   0.00061,
+   0.00682,
+   0.03934,
+   0.1302,
+   0.25499,
+   0.29425,
+   0.19516,
+   0.06867,
+   0.00993
   ]
  }
 }

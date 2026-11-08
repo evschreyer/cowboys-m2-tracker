@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-08T06:06",
+ "generated_at": "2026-11-08T08:30",
  "model": {
   "gap_12": 0.65,
   "home_edge": 0.328,
   "sigma": 3.0
  },
  "osu": {
-  "strength": 7.114949196185586,
+  "strength": 7.114540834835882,
   "gp": 15
  },
  "m1_scale": {
@@ -16,7 +16,7 @@
   "p90": 14,
   "p025": 2,
   "p975": 18,
-  "p_top10": 0.75325,
+  "p_top10": 0.759,
   "top": [
    {
     "team": "Drury",
@@ -30,42 +30,42 @@
    },
    {
     "team": "Minot State",
-    "strength": 7.62,
+    "strength": 7.61,
     "m1_rank": 3
    },
    {
     "team": "Niagara",
-    "strength": 7.53,
+    "strength": 7.52,
     "m1_rank": 5
    },
    {
     "team": "Liberty",
-    "strength": 7.35,
+    "strength": 7.38,
     "m1_rank": 6
    },
    {
     "team": "Nevada-Las Vegas",
-    "strength": 7.31,
+    "strength": 7.3,
     "m1_rank": 2
    },
    {
     "team": "Adrian",
-    "strength": 6.9,
+    "strength": 6.91,
     "m1_rank": 7
    },
    {
     "team": "Maryville",
-    "strength": 6.76,
+    "strength": 6.75,
     "m1_rank": 9
    },
    {
     "team": "Calvin",
-    "strength": 6.7,
-    "m1_rank": 12
+    "strength": 6.75,
+    "m1_rank": 11
    },
    {
     "team": "Jamestown",
-    "strength": 6.61,
+    "strength": 6.6,
     "m1_rank": 8
    }
   ]
@@ -89,7 +89,7 @@
    "ga": 3,
    "ot": false,
    "result": "W",
-   "opp_m1_rank": 40,
+   "opp_m1_rank": 41,
    "p_osu": 0.4854,
    "surprise_bits": 1.04,
    "shots_for": 40,
@@ -192,7 +192,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 4,
-   "p_osu": 0.2706,
+   "p_osu": 0.2707,
    "surprise_bits": 1.89,
    "shots_for": 27,
    "shots_against": 34,
@@ -200,7 +200,7 @@
    "save_pct": 0.971
   }
  ],
- "p_perfect": 0.0053668248962554675,
+ "p_perfect": 0.005368808201834276,
  "stats": {
   "osu_all": {
    "games": 15,
@@ -236,25 +236,25 @@
    "teams": 5
   },
   "m1_top25": {
-   "gf": 4.3160274431450905,
-   "ga": 2.501081891964245,
-   "shots_for": 39.004968475968475,
-   "shots_against": 29.69621916971917,
-   "shot_share": 0.5677471660246143,
-   "save_pct": 0.9171244439472468,
-   "pp_pct": 0.3060244146882381,
-   "pk_pct": 0.8041900199710253,
+   "gf": 4.31444469256234,
+   "ga": 2.507649491031844,
+   "shots_for": 38.97882045732046,
+   "shots_against": 29.754582806082805,
+   "shot_share": 0.5671635173888895,
+   "save_pct": 0.9170740953594321,
+   "pp_pct": 0.3036901161039395,
+   "pk_pct": 0.8051793541662419,
    "teams": 25
   },
   "m1_all": {
-   "gf": 3.6891271874659672,
-   "ga": 3.637897755435882,
-   "shots_for": 35.797562195965476,
-   "shots_against": 35.64174766915995,
-   "shot_share": 0.5030357328656014,
-   "save_pct": 0.8998157812437448,
-   "pp_pct": 0.27137612002804157,
-   "pk_pct": 0.688004285374182,
+   "gf": 3.6885625600494882,
+   "ga": 3.6428722733733627,
+   "shots_for": 35.802838212815566,
+   "shots_against": 35.68039112447007,
+   "shot_share": 0.5028960586261544,
+   "save_pct": 0.8998022102082351,
+   "pp_pct": 0.26963438729048456,
+   "pk_pct": 0.6931787049432957,
    "teams": 81
   }
  },
@@ -343,10 +343,10 @@
   {
    "season": "2026-27",
    "anchored": true,
-   "m1_mean": 3.059200635496966,
-   "m2_mean": 0.544833891146557,
-   "gap": 3.1643667443504087,
-   "top25_gap": 2.24047966380012,
+   "m1_mean": 3.0612764864611,
+   "m2_mean": 0.5424930060064854,
+   "gap": 3.1687834804546147,
+   "top25_gap": 2.233972765879368,
    "m1_teams": 81,
    "m2_teams": 159,
    "games": 52,
@@ -378,7 +378,7 @@
    "rank": 3,
    "team": "Minot State",
    "div": 1,
-   "strength": 7.62,
+   "strength": 7.61,
    "gp": 15,
    "div_rank": 3
   },
@@ -386,7 +386,7 @@
    "rank": 4,
    "team": "Niagara",
    "div": 1,
-   "strength": 7.53,
+   "strength": 7.52,
    "gp": 13,
    "div_rank": 5
   },
@@ -394,7 +394,7 @@
    "rank": 5,
    "team": "Liberty",
    "div": 1,
-   "strength": 7.35,
+   "strength": 7.38,
    "gp": 14,
    "div_rank": 6
   },
@@ -402,7 +402,7 @@
    "rank": 6,
    "team": "Nevada-Las Vegas",
    "div": 1,
-   "strength": 7.31,
+   "strength": 7.3,
    "gp": 12,
    "div_rank": 2
   },
@@ -420,7 +420,7 @@
    "rank": 8,
    "team": "Adrian",
    "div": 1,
-   "strength": 6.9,
+   "strength": 6.91,
    "gp": 14,
    "div_rank": 7
   },
@@ -428,7 +428,7 @@
    "rank": 9,
    "team": "Maryville",
    "div": 1,
-   "strength": 6.76,
+   "strength": 6.75,
    "gp": 10,
    "div_rank": 9
   },
@@ -436,15 +436,15 @@
    "rank": 10,
    "team": "Calvin",
    "div": 1,
-   "strength": 6.7,
-   "gp": 10,
-   "div_rank": 12
+   "strength": 6.75,
+   "gp": 11,
+   "div_rank": 11
   },
   {
    "rank": 11,
    "team": "Jamestown",
    "div": 1,
-   "strength": 6.61,
+   "strength": 6.6,
    "gp": 10,
    "div_rank": 8
   },
@@ -462,15 +462,15 @@
    "div": 1,
    "strength": 6.17,
    "gp": 12,
-   "div_rank": 11
+   "div_rank": 10
   },
   {
    "rank": 14,
    "team": "West Chester",
    "div": 1,
-   "strength": 6.17,
-   "gp": 12,
-   "div_rank": 10
+   "strength": 5.88,
+   "gp": 13,
+   "div_rank": 12
   },
   {
    "rank": 15,
@@ -484,15 +484,15 @@
    "rank": 16,
    "team": "Northwood",
    "div": 1,
-   "strength": 5.7,
-   "gp": 15,
-   "div_rank": 20
+   "strength": 5.69,
+   "gp": 16,
+   "div_rank": 19
   },
   {
    "rank": 17,
    "team": "Davenport",
    "div": 1,
-   "strength": 5.54,
+   "strength": 5.55,
    "gp": 15,
    "div_rank": 17
   },
@@ -518,7 +518,7 @@
    "rank": 20,
    "team": "Kentucky",
    "div": 1,
-   "strength": 5.36,
+   "strength": 5.34,
    "gp": 14,
    "div_rank": 16
   },
@@ -528,26 +528,18 @@
    "div": 1,
    "strength": 5.32,
    "gp": 15,
-   "div_rank": 21
+   "div_rank": 22
   },
   {
    "rank": 22,
    "team": "Hope",
    "div": 1,
-   "strength": 5.18,
+   "strength": 5.19,
    "gp": 14,
    "div_rank": 26
   },
   {
    "rank": 23,
-   "team": "Indiana Pennsylvania",
-   "div": 1,
-   "strength": 5.14,
-   "gp": 16,
-   "div_rank": 29
-  },
-  {
-   "rank": 24,
    "team": "Arizona",
    "div": 1,
    "strength": 5.12,
@@ -555,10 +547,18 @@
    "div_rank": 18
   },
   {
+   "rank": 24,
+   "team": "Indiana Pennsylvania",
+   "div": 1,
+   "strength": 5.11,
+   "gp": 16,
+   "div_rank": 28
+  },
+  {
    "rank": 25,
    "team": "Indiana Tech",
    "div": 1,
-   "strength": 5.09,
+   "strength": 5.11,
    "gp": 12,
    "div_rank": 32
   }

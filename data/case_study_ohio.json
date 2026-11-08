@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07T19:48",
+ "generated_at": "2026-11-07T19:56",
  "model": {
   "params": {
    "k": 2,
@@ -697,7 +697,7 @@
   }
  },
  "standing": {
-  "osu_strength": 7.118709324324757,
+  "osu_strength": 7.118727712352009,
   "m1_scale_rank": 7,
   "m1_teams": 81,
   "m1_top": [

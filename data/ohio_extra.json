@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07T19:49",
+ "generated_at": "2026-11-07T19:58",
  "players": [
   {
    "name": "Jack Budd",
@@ -476,7 +476,7 @@
    "m1_rank": 7,
    "strength": 7.23,
    "margin": -0.11,
-   "p_neutral": 0.4864,
+   "p_neutral": 0.4865,
    "p_home": 0.527,
    "p_away": 0.446,
    "p_osu_stronger": 0.459,
@@ -538,7 +538,7 @@
    "p_neutral": 0.606,
    "p_home": 0.6445,
    "p_away": 0.5664,
-   "p_osu_stronger": 0.7886,
+   "p_osu_stronger": 0.7887,
    "common": [],
    "common_margin": null,
    "played": 0
@@ -549,7 +549,7 @@
   "osu_sd": 0.73
  },
  "significance": {
-  "p_perfect": 0.005359553381595835,
+  "p_perfect": 0.005359633004761682,
   "n_m1_games": 7,
   "top5_series": 7,
   "expected_sweeps": 0.266,

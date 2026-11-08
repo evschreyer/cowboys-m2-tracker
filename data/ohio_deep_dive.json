@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07T21:36",
+ "generated_at": "2026-11-07T23:20",
  "rarity": {
   "series": [
    {
@@ -610,11 +610,11 @@
   {
    "season": "2026-27",
    "team": "Oklahoma State",
-   "strength": 7.13,
+   "strength": 7.14,
    "m1_equiv": 7,
    "m1_teams": 81,
-   "above_m2_avg": 6.59,
-   "lead_over_2nd": 1.69,
+   "above_m2_avg": 6.6,
+   "lead_over_2nd": 1.66,
    "second": "Lindenwood",
    "to_date": true
   }
@@ -703,12 +703,12 @@
   },
   {
    "date": "2026-11-08",
-   "osu": 7.13,
+   "osu": 7.136,
    "gp": 15,
    "m1_equiv": 7,
-   "m1_1": 8.508,
-   "m1_10": 6.659,
-   "m1_25": 4.975
+   "m1_1": 8.441,
+   "m1_10": 6.592,
+   "m1_25": 5.009
   }
  ],
  "odds": {
@@ -839,8 +839,8 @@
   "ohio_season_sv": 0.9379310344827586,
   "ohio_pp_season": 0.42857142857142855,
   "ohio_pp_expected": 3.43,
-  "m1_avg_sv": 0.8996110881669094,
-  "gsaa_vs_m1_avg": 4.03
+  "m1_avg_sv": 0.8998157812437448,
+  "gsaa_vs_m1_avg": 4.01
  },
  "goalies": [
   {
@@ -892,38 +892,38 @@
    "with_osu": 2
   },
   {
-   "team": "Minot State",
+   "team": "Nevada-Las Vegas",
    "actual": 2,
    "with_osu": 3
   },
   {
-   "team": "Ohio",
+   "team": "Minot State",
    "actual": 3,
    "with_osu": 4
   },
   {
-   "team": "Nevada-Las Vegas",
+   "team": "Ohio",
    "actual": 4,
    "with_osu": 5
   },
   {
-   "team": "Jamestown",
+   "team": "Niagara",
    "actual": 5,
    "with_osu": 6
   },
   {
-   "team": "Niagara",
-   "actual": 6,
+   "team": "Jamestown",
+   "actual": 8,
    "with_osu": 7
   },
   {
    "team": "Liberty",
-   "actual": 7,
+   "actual": 6,
    "with_osu": 8
   },
   {
    "team": "Adrian",
-   "actual": 8,
+   "actual": 7,
    "with_osu": 9
   },
   {
@@ -932,19 +932,19 @@
    "with_osu": 10
   },
   {
-   "team": "Mary",
+   "team": "West Chester",
    "actual": 10,
    "with_osu": 11
   },
   {
-   "team": "West Chester",
-   "actual": 11,
+   "team": "Calvin",
+   "actual": 12,
    "with_osu": 12
   }
  ],
  "counterfactual_ohio": {
-  "actual": 3,
-  "with_osu": 4
+  "actual": 4,
+  "with_osu": 5
  },
  "remaining": {
   "games": [
@@ -952,84 +952,84 @@
     "date": "2026-11-13",
     "opp": "Illinois",
     "home": false,
-    "p": 0.7876,
-    "opp_m1_rank": 28
+    "p": 0.7821,
+    "opp_m1_rank": 26
    },
    {
     "date": "2026-11-14",
     "opp": "Illinois",
     "home": false,
-    "p": 0.7876,
-    "opp_m1_rank": 28
+    "p": 0.7821,
+    "opp_m1_rank": 26
    },
    {
     "date": "2026-12-04",
     "opp": "Minot State",
     "home": false,
-    "p": 0.3704,
-    "opp_m1_rank": 2
+    "p": 0.3953,
+    "opp_m1_rank": 3
    },
    {
     "date": "2026-12-05",
     "opp": "Minot State",
     "home": false,
-    "p": 0.3704,
-    "opp_m1_rank": 2
+    "p": 0.3953,
+    "opp_m1_rank": 3
    },
    {
     "date": "2026-12-11",
     "opp": "Nevada-Las Vegas",
     "home": false,
-    "p": 0.4249,
-    "opp_m1_rank": 4
+    "p": 0.4332,
+    "opp_m1_rank": 2
    },
    {
     "date": "2026-12-12",
     "opp": "Nevada-Las Vegas",
     "home": false,
-    "p": 0.4249,
-    "opp_m1_rank": 4
+    "p": 0.4332,
+    "opp_m1_rank": 2
    },
    {
     "date": "2027-01-30",
     "opp": "Oklahoma",
     "home": true,
-    "p": 0.9242,
-    "opp_m1_rank": 43
+    "p": 0.9246,
+    "opp_m1_rank": 44
    },
    {
     "date": "2027-02-26",
     "opp": "Midland",
     "home": true,
-    "p": 0.7826,
-    "opp_m1_rank": 13
+    "p": 0.7881,
+    "opp_m1_rank": 14
    },
    {
     "date": "2027-02-27",
     "opp": "Midland",
     "home": true,
-    "p": 0.7826,
-    "opp_m1_rank": 13
+    "p": 0.7881,
+    "opp_m1_rank": 14
    }
   ],
-  "expected_more": 5.66,
+  "expected_more": 5.72,
   "have": 7,
   "record": 9,
   "record_holder": "Mary (2022-23)",
-  "p_break": 0.9923,
+  "p_break": 0.993,
   "p_tie_or_break": 0.9994,
-  "p_perfect": 0.0087,
+  "p_perfect": 0.0103,
   "dist": [
    2e-05,
-   0.00062,
-   0.00704,
-   0.04088,
-   0.13514,
-   0.26158,
-   0.29439,
-   0.18829,
-   0.06335,
-   0.0087
+   0.00056,
+   0.00639,
+   0.03768,
+   0.12707,
+   0.25295,
+   0.29589,
+   0.19855,
+   0.07059,
+   0.0103
   ]
  }
 }

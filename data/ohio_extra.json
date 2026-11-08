@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07T21:37",
+ "generated_at": "2026-11-07T23:21",
  "players": [
   {
    "name": "Jack Budd",
@@ -356,12 +356,12 @@
   {
    "team": "Drury",
    "m1_rank": 1,
-   "strength": 8.51,
-   "margin": -1.38,
-   "p_neutral": 0.3345,
-   "p_home": 0.3723,
-   "p_away": 0.2983,
-   "p_osu_stronger": 0.0974,
+   "strength": 8.44,
+   "margin": -1.31,
+   "p_neutral": 0.3427,
+   "p_home": 0.3809,
+   "p_away": 0.3061,
+   "p_osu_stronger": 0.1097,
    "common": [
     {
      "opp": "Midland",
@@ -377,14 +377,27 @@
    "played": 0
   },
   {
-   "team": "Minot State",
+   "team": "Nevada-Las Vegas",
    "m1_rank": 2,
-   "strength": 7.81,
-   "margin": -0.68,
-   "p_neutral": 0.4165,
-   "p_home": 0.4567,
-   "p_away": 0.3772,
-   "p_osu_stronger": 0.2582,
+   "strength": 7.32,
+   "margin": -0.18,
+   "p_neutral": 0.4773,
+   "p_home": 0.5178,
+   "p_away": 0.4371,
+   "p_osu_stronger": 0.4327,
+   "common": [],
+   "common_margin": null,
+   "played": 0
+  },
+  {
+   "team": "Minot State",
+   "m1_rank": 3,
+   "strength": 7.62,
+   "margin": -0.48,
+   "p_neutral": 0.4406,
+   "p_home": 0.4812,
+   "p_away": 0.4007,
+   "p_osu_stronger": 0.3205,
    "common": [
     {
      "opp": "Midland",
@@ -401,62 +414,26 @@
   },
   {
    "team": "Ohio",
-   "m1_rank": 3,
-   "strength": 8.23,
-   "margin": -1.1,
-   "p_neutral": 0.3664,
-   "p_home": 0.4054,
-   "p_away": 0.3287,
-   "p_osu_stronger": 0.1466,
+   "m1_rank": 4,
+   "strength": 8.24,
+   "margin": -1.11,
+   "p_neutral": 0.3655,
+   "p_home": 0.4045,
+   "p_away": 0.3279,
+   "p_osu_stronger": 0.1451,
    "common": [],
    "common_margin": null,
    "played": 2
   },
   {
-   "team": "Nevada-Las Vegas",
-   "m1_rank": 4,
-   "strength": 7.38,
-   "margin": -0.25,
-   "p_neutral": 0.4694,
-   "p_home": 0.5099,
-   "p_away": 0.4292,
-   "p_osu_stronger": 0.4095,
-   "common": [],
-   "common_margin": null,
-   "played": 0
-  },
-  {
-   "team": "Jamestown",
-   "m1_rank": 5,
-   "strength": 6.66,
-   "margin": 0.47,
-   "p_neutral": 0.5578,
-   "p_home": 0.5973,
-   "p_away": 0.5176,
-   "p_osu_stronger": 0.6616,
-   "common": [
-    {
-     "opp": "Midland",
-     "div": 1,
-     "osu": 4.33,
-     "them": 2.17,
-     "diff": 2.16,
-     "osu_games": 2,
-     "their_games": 2
-    }
-   ],
-   "common_margin": 2.16,
-   "played": 0
-  },
-  {
    "team": "Niagara",
-   "m1_rank": 6,
-   "strength": 7.35,
-   "margin": -0.22,
-   "p_neutral": 0.4728,
-   "p_home": 0.5133,
-   "p_away": 0.4326,
-   "p_osu_stronger": 0.4193,
+   "m1_rank": 5,
+   "strength": 7.53,
+   "margin": -0.39,
+   "p_neutral": 0.4516,
+   "p_home": 0.4921,
+   "p_away": 0.4116,
+   "p_osu_stronger": 0.3562,
    "common": [
     {
      "opp": "Ohio",
@@ -473,26 +450,26 @@
   },
   {
    "team": "Liberty",
-   "m1_rank": 7,
-   "strength": 7.35,
-   "margin": -0.22,
-   "p_neutral": 0.4724,
-   "p_home": 0.513,
-   "p_away": 0.432,
-   "p_osu_stronger": 0.4156,
+   "m1_rank": 6,
+   "strength": 7.34,
+   "margin": -0.21,
+   "p_neutral": 0.4741,
+   "p_home": 0.5147,
+   "p_away": 0.4337,
+   "p_osu_stronger": 0.4206,
    "common": [],
    "common_margin": null,
    "played": 0
   },
   {
    "team": "Adrian",
-   "m1_rank": 8,
-   "strength": 6.9,
-   "margin": 0.23,
-   "p_neutral": 0.5282,
-   "p_home": 0.5685,
-   "p_away": 0.4875,
-   "p_osu_stronger": 0.5861,
+   "m1_rank": 7,
+   "strength": 6.89,
+   "margin": 0.24,
+   "p_neutral": 0.5299,
+   "p_home": 0.5702,
+   "p_away": 0.4893,
+   "p_osu_stronger": 0.5913,
    "common": [
     {
      "opp": "Ohio",
@@ -508,14 +485,37 @@
    "played": 0
   },
   {
+   "team": "Jamestown",
+   "m1_rank": 8,
+   "strength": 6.59,
+   "margin": 0.54,
+   "p_neutral": 0.5666,
+   "p_home": 0.6059,
+   "p_away": 0.5265,
+   "p_osu_stronger": 0.6847,
+   "common": [
+    {
+     "opp": "Midland",
+     "div": 1,
+     "osu": 4.33,
+     "them": 2.17,
+     "diff": 2.16,
+     "osu_games": 2,
+     "their_games": 2
+    }
+   ],
+   "common_margin": 2.16,
+   "played": 0
+  },
+  {
    "team": "Maryville",
    "m1_rank": 9,
-   "strength": 6.77,
-   "margin": 0.36,
-   "p_neutral": 0.5437,
-   "p_home": 0.5835,
-   "p_away": 0.5035,
-   "p_osu_stronger": 0.6237,
+   "strength": 6.74,
+   "margin": 0.39,
+   "p_neutral": 0.5482,
+   "p_home": 0.5879,
+   "p_away": 0.508,
+   "p_osu_stronger": 0.636,
    "common": [
     {
      "opp": "Ohio",
@@ -531,34 +531,34 @@
    "played": 0
   },
   {
-   "team": "Mary",
+   "team": "West Chester",
    "m1_rank": 10,
-   "strength": 6.24,
-   "margin": 0.89,
-   "p_neutral": 0.6084,
-   "p_home": 0.6469,
-   "p_away": 0.5689,
-   "p_osu_stronger": 0.7941,
+   "strength": 6.17,
+   "margin": 0.97,
+   "p_neutral": 0.6181,
+   "p_home": 0.6562,
+   "p_away": 0.5788,
+   "p_osu_stronger": 0.8149,
    "common": [],
    "common_margin": null,
    "played": 0
   }
  ],
  "osu_strength": {
-  "osu": 7.13,
+  "osu": 7.14,
   "osu_sd": 0.73
  },
  "significance": {
-  "p_perfect": 0.005359980391933103,
+  "p_perfect": 0.0053599803919330904,
   "n_m1_games": 7,
   "top5_series": 7,
   "expected_sweeps": 0.266,
   "p_any_sweep": 0.242,
   "osu_sweep_share": 0.245,
-  "p_osu_stronger_than_ohio": 0.147,
+  "p_osu_stronger_than_ohio": 0.145,
   "osu_rating_80": [
    6.2,
-   8.06
+   8.07
   ]
  },
  "robustness": [
@@ -580,11 +580,11 @@
    "p_31985": 0.3117,
    "p_31986": 0.3455,
    "sweep": 0.1077,
-   "m1_equiv": 4,
+   "m1_equiv": 3,
    "above_rank": 1,
    "above": 2.8935,
    "p_perfect": 0.0163,
-   "osu_best_m1_equiv": 4,
+   "osu_best_m1_equiv": 3,
    "osu_is_best_m1_equiv": true,
    "osu_widest_lead": true
   },

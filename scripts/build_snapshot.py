@@ -6,6 +6,7 @@ Writes data/snapshots/<date>.json and data/snapshots/latest.json.
 from __future__ import annotations
 
 import argparse
+from collections import defaultdict
 import datetime as dt
 import glob
 import hashlib
@@ -22,7 +23,9 @@ from engine.engine import (FINAL_STATUSES, FORFEIT_STATUSES, components, forfeit
 
 SEASON = "2026-27"
 # Projection model, calibrated on 2024-25 -> 2025-26 (see research/FINDINGS.md section 5)
-MODEL = dict(prior_slope=0.733, ridge_k=3, new_team_k=1, home_edge=0.24, game_sd=2.6, new_team_prior=6.5)
+# Win probabilities use the cross-division strength model (engine/xdiv.py, FITTED): ratings built from
+# EVERY ACHA men's game, so results against M1 and M3 teams count toward a team's strength.
+# (The ACHA ranking itself stays M2-vs-M2 only.)
 
 
 def jload(rel):
@@ -38,6 +41,28 @@ def fetch_feed(cfg: dict, dest: str) -> None:
     json.loads(data)  # validate before overwriting
     with open(dest, "wb") as f:
         f.write(data)
+
+
+def strengths() -> dict:
+    """Shared-scale strength (goals) and its uncertainty for every M2 team, from all ACHA men's games."""
+    from engine.xdiv import FITTED, build_chain
+    import math
+    m = build_chain(FITTED)[SEASON]
+    s = m.final()
+    gp = m.gp_before("2999-01-01")
+    cross = defaultdict(int)
+    for g in m.games:
+        if g.hdiv != g.adiv:
+            cross[g.home] += 1; cross[g.away] += 1
+    out_s, out_sd, out_gp, out_x = {}, {}, {}, {}
+    for t in jload(f"data/regions_{SEASON}.json")["regions"]:
+        k = "M2 " + t
+        out_s[t] = round(s.get(k, m.priors.get(k, m.div_prior.get(2, 0.0))), 4)
+        out_sd[t] = round(FITTED.sigma / math.sqrt(gp.get(k, 0) + FITTED.k), 4)
+        out_gp[t], out_x[t] = gp.get(k, 0), cross.get(k, 0)
+    model = dict(source="cross-division (all ACHA men's games)", home_edge=FITTED.home_edge, game_sd=FITTED.sigma,
+                 prior_games=FITTED.k, m1_gap=FITTED.gap_12)
+    return dict(s=out_s, sd=out_sd, gp=out_gp, cross_gp=out_x, model=model)
 
 
 def priors() -> dict[str, float]:
@@ -150,7 +175,7 @@ def main():
     snap = dict(
         season=SEASON, generated_at=now.isoformat(timespec="minutes"), through=args.through,
         last_game_date=max((g.date for g in games), default=None),
-        engine=dict(cap=7, start=7.0, ot_adj=0.5, awp_weight=0.8), model=MODEL, priors=priors(),
+        engine=dict(cap=7, start=7.0, ot_adj=0.5, awp_weight=0.8), model=None, priors=priors(), strengths=strengths(),
         config=cfg, teams=team_rows, games=counted, upcoming=sorted(upcoming, key=lambda x: x['date']), focus_games=focus_all, eligibility=eligibility,
         forfeits=forfeits, suggested_penalties=forfeit_penalties(forfeits),
         overrides_notes=ov.get("notes", []),

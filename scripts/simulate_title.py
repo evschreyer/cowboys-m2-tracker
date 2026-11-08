@@ -252,7 +252,15 @@ def main():
                    m1_equiv=sum(x > s_hat[OSU] for x in m1now) + 1, anchored=True, to_date=True)
 
     out = dict(generated_at=dt.datetime.now().isoformat(timespec="minutes"), sims=N, remaining_m2_games=len(remaining),
-               osu=row(OSU), osu_west_rank=osu_ranks, contenders=[row(t) for t in contenders], west=[row(t) for t in west],
+               osu=row(OSU), osu_west_rank=osu_ranks,
+               teams={t: dict(region=regions.get(t), auto=round(stats[t]["auto_bid"] / N, 4), reg=round(stats[t]["regionals"] / N, 4),
+                              rt=round(stats[t]["regional_title"] / N, 4), nat=round(stats[t]["nationals"] / N, 4),
+                              semi=round(stats[t]["semis"] / N, 4), fin=round(stats[t]["final"] / N, 4), champ=round(stats[t]["champion"] / N, 4),
+                              seed=round(sum(k * v for k, v in region_rank[t].items()) / max(1, sum(region_rank[t].values())), 2) if region_rank[t] else None,
+                              p_top16=round(sum(v for k, v in region_rank[t].items() if k <= 16) / N, 4),
+                              eligible=t in eligible, sched=sched[t])
+                      for t in teams if regions.get(t)},
+               final_ranking_date=FINAL_DAY, min_m2_games=MIN_M2, pools={k: [f"{r} {n}" for r, n in v] for k, v in POOLS.items()}, contenders=[row(t) for t in contenders], west=[row(t) for t in west],
                champions=champs, osu_vs_champions=osu_now,
                solver_check=round(float(max(abs(fr[fast.ix[t]] - (eng[t].total + eng[t].otadj + eng[t].awp)) for t in eng)), 4),
                notes=["League auto-bids, good-standing rulings and the Nationals host bye are not modeled.",

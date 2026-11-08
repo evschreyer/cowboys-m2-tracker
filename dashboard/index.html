@@ -164,6 +164,29 @@ input[type="number"] { width: 3.4em; font-family: var(--font-data); text-align: 
 .prob i { position: absolute; inset: 0 auto 0 0; background: var(--accent); }
 
 .prose { max-width: 70ch; display: grid; gap: 10px; }
+/* Postseason bracket */
+.bracket { display: grid; grid-template-columns: repeat(4, minmax(170px, 1fr)); gap: 14px; overflow-x: auto; padding-bottom: 4px; }
+.bcol { display: grid; gap: 8px; align-content: start; }
+.bcol h4 { margin: 0 0 2px; font: 600 .78rem var(--font-display); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.match { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); font-size: .86rem; }
+.match .slot { display: grid; grid-template-columns: 2.1em minmax(0, 1fr) auto; gap: 6px; padding: 5px 8px; align-items: center; }
+.match .slot + .slot { border-top: 1px solid var(--line); }
+.match .seed { font: 600 .8rem var(--font-data); color: var(--muted); }
+.match .tm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.match .pr { font: .75rem var(--font-data); color: var(--muted); }
+.match.rule { background: var(--surface-2); color: var(--muted); padding: 8px; font-size: .82rem; }
+.match .slot.focus, .pool li.focus { background: var(--accent-soft); font-weight: 600; }
+.byes { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.pools { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 860px) { .pools { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .pools { grid-template-columns: 1fr; } }
+.pool { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; background: var(--surface); }
+.pool.focus { border-color: var(--accent); }
+.pool ol { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 2px; font-size: .86rem; }
+.pool li { display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 6px; padding: 3px 4px; border-radius: 3px; }
+.pool li .rg { font: .75rem var(--font-data); color: var(--muted); }
+.timeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 700px) { .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .prose ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
 pre.formula { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; overflow-x: auto; font: .85rem/1.6 var(--font-data); margin: 0; }
 .loading { padding: 40px 0; text-align: center; color: var(--muted); }
@@ -183,6 +206,7 @@ pre.formula { background: var(--surface-2); border: 1px solid var(--line); borde
       <button role="tab" id="t-m1" aria-controls="m1" aria-selected="false">vs M1</button>
       <button role="tab" id="t-whatif" aria-controls="whatif" aria-selected="false">What-If</button>
       <button role="tab" id="t-proj" aria-controls="proj" aria-selected="false">Projections</button>
+      <button role="tab" id="t-post" aria-controls="post" aria-selected="false">Postseason</button>
       <button role="tab" id="t-method" aria-controls="method" aria-selected="false">Method</button>
     </nav>
   </div>
@@ -375,6 +399,43 @@ pre.formula { background: var(--surface-2); border: 1px solid var(--line); borde
     </div>
   </section>
 
+  <!-- Postseason path -->
+  <section class="tab" id="post" role="tabpanel" aria-labelledby="t-post" hidden>
+    <div class="panel">
+      <div class="panel-head"><h2>Path to the national title</h2><span class="muted" style="font-size:.85rem" id="post-sims"></span></div>
+      <div class="timeline" id="post-dates"></div>
+    </div>
+    <div id="post-loading" class="loading">Loading postseason odds…</div>
+    <div id="post-body" hidden style="display:grid;gap:18px">
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-head"><h3>OSU's route, simulated</h3><span id="post-osu-pill"></span></div>
+          <div id="post-osu" style="display:grid;gap:10px"></div>
+          <p class="muted" style="font-size:.82rem" id="post-osu-note"></p>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>National title odds</h3></div>
+          <div class="tablewrap"><table id="post-title"></table></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3 id="post-br-title">Regionals bracket if the season ended today</h3><div class="seg" id="post-seg" role="group" aria-label="Region"></div></div>
+        <div class="byes" id="post-byes"></div>
+        <div class="bracket" id="post-bracket"></div>
+        <p class="muted" style="font-size:.82rem;margin-top:8px">Seeds from today's ranking. Day 2 and Day 3 re-seed, so later matchups depend on who wins (ACHA Manual Part Five, Art. V §2F). Small figures are each team's simulated chance of winning its regional. League auto-bids that would bump the lowest seeds are not shown.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3 id="post-odds-title">Postseason odds</h3></div>
+        <div class="tablewrap"><table id="post-odds"></table></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Nationals pools if the season ended today</h3><span class="muted" style="font-size:.85rem">St. Louis · March 11–16, 2027</span></div>
+        <div class="pools" id="post-pools"></div>
+        <p class="muted" style="font-size:.82rem;margin-top:8px">Each region sends four teams: its top two plus the two Regionals winners, re-ordered by final ranking. Pools follow the manual's 2027 table. Round robin; win 2 points, tie 1 (10-minute OT, no shootout). Pool winners reach the semifinals, re-seeded by national ranking (1 vs 4, 2 vs 3). Shown here assuming each region's top four reach Nationals.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Method -->
   <section class="tab" id="method" role="tabpanel" aria-labelledby="t-method" hidden>
     <div class="grid-2">
@@ -428,7 +489,7 @@ Ranked by Final within each region</pre>
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const REGIONS = ["West", "Central", "Northeast", "Southeast"];
-let MODEL = null; // projection model from the snapshot (calibrated 2024-25 -> 2025-26)
+let MODEL = null; // win-probability model settings from the snapshot (engine/xdiv.py FITTED)
 const BACKTEST = [ // scripts/backtest.py, 2025-26
   ["R1", "Nov 9", 0.237, "8/8", "62/64"], ["R2", "Nov 16", 0.189, "6/8", "47/48"], ["R3", "Nov 24", 0.169, "8/8", "63/64"],
   ["R4", "Dec 7", 0.181, "8/8", "62/64"], ["R5", "Dec 14", 0.178, "8/8", "62/64"], ["R6", "Jan 18", 0.161, "8/8", "62/64"],
@@ -454,12 +515,12 @@ fetch("latest.json").then((r) => { if (!r.ok) throw new Error(r.status); return 
 });
 
 function init(snap) {
-  S = snap; FOCUS = S.config.focus_team; MODEL = S.model;
+  S = snap; FOCUS = S.config.focus_team; MODEL = S.strengths.model;
   for (const t of S.teams) REG[t.team] = t.region;
   // penalties/standing as applied in the snapshot
   for (const t of S.teams) { if (t.penalty) PEN[t.team] = t.penalty; if (t.status === "not_good_standing") NGS.push(t.team); }
   CUR = compute(S.games);
-  STR = strengths(S.games);
+  STR = { s: S.strengths.s, sd: S.strengths.sd };
   BYREG = CUR.byRegion;
   const g = new Date(S.generated_at);
   $("#stamp").textContent = `Scores through ${S.last_game_date ? dstr(S.last_game_date) : "–"} · updated ${g.toLocaleDateString("en-US", { month: "short", day: "numeric" })} ${g.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}`;
@@ -471,7 +532,7 @@ function init(snap) {
   renderOSU(); renderRankings(); setupNational(); setupWhatIf(); setupProj(); renderMethod();
   document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => showTab(b.getAttribute("aria-controls"))));
   const h = location.hash.replace("#", "");
-  showTab(["osu", "rank", "nat", "m1", "whatif", "proj", "method"].includes(h) ? h : "osu");
+  showTab(["osu", "rank", "nat", "m1", "whatif", "proj", "post", "method"].includes(h) ? h : "osu");
 }
 
 function compute(games, opts) {
@@ -487,6 +548,7 @@ function showTab(id) {
   try { history.replaceState(null, "", "#" + id); } catch (e) {}
   if (id === "proj" && !state.proj) runProjection();
   if (id === "m1") loadM1();
+  if (id === "post") loadPost();
 }
 
 function buildSeg(sel, key, onChange) {
@@ -604,34 +666,10 @@ function renderOSU() {
   }).join("") + S.config.events.map((e) => `<tr><td>${esc(e.label)}</td><td class="num" colspan="2">${esc(e.dates.split(" to ").map(dstr).join(" – "))}</td></tr>`).join("") + `</tbody>`;
 }
 
-// Prediction model (goal units), separate from the ACHA formula. Each team's strength is its average
-// game score (GD minus home edge, plus opponent strength) with last season's final rating counted as
-// MODEL.ridge_k extra games (MODEL.new_team_k for teams new to M2). Anchoring every team to a prior keeps
-// early-season groups that haven't played each other comparable. Calibrated on 2024-25 -> 2025-26.
-function priorOf(name) { const p = S.priors[name]; return p == null ? MODEL.new_team_prior : p; }
-function kOf(name) { return S.priors[name] == null ? MODEL.new_team_k : MODEL.ridge_k; }
-function strengths(games) {
-  const opp = {}, names = new Set(Object.keys(REG));
-  for (const g of games) { names.add(g.home); names.add(g.away); }
-  for (const t of names) opp[t] = [];
-  for (const g of games) {
-    const d = M2Engine.gdHome(g, M2Engine.CAP);
-    opp[g.home].push([d - MODEL.home_edge, g.away]); opp[g.away].push([-d + MODEL.home_edge, g.home]);
-  }
-  let s = {}; for (const t of names) s[t] = priorOf(t);
-  for (let it = 0; it < 5000; it++) {
-    let delta = 0; const n = {};
-    for (const t of names) {
-      let sum = kOf(t) * priorOf(t);
-      for (const [d, o] of opp[t]) sum += d + s[o];
-      n[t] = sum / (opp[t].length + kOf(t)); delta = Math.max(delta, Math.abs(n[t] - s[t]));
-    }
-    s = n; if (delta < 1e-7) break;
-  }
-  const sd = {}; for (const t of names) sd[t] = MODEL.game_sd / Math.sqrt(opp[t].length + kOf(t));
-  return { s, sd };
-}
-let STR = null;
+// Prediction model (goal units), separate from the ACHA formula: shared-scale strengths built from every
+// ACHA men's game (M1, M2, M3 and cross-division), so a team's results against M1 opponents count toward
+// how good it is. Computed in scripts/build_snapshot.py with the calibrated model in engine/xdiv.py.
+let STR = null; // {s: strength, sd: uncertainty} per team
 function predict(home, away) {
   const margin = STR.s[home] - STR.s[away] + MODEL.home_edge;
   const sd = Math.sqrt(MODEL.game_sd ** 2 + STR.sd[home] ** 2 + STR.sd[away] ** 2);
@@ -789,6 +827,86 @@ function gapChart(gaps) {
   mk("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: col("--muted"), "stroke-width": 1 });
 }
 
+// ---------- Postseason tab ----------
+let POST = null;
+const POOLS = { A: [["Northeast", 1], ["Central", 2], ["Southeast", 3], ["West", 4]], B: [["Central", 1], ["Northeast", 2], ["West", 3], ["Southeast", 4]],
+  C: [["Southeast", 1], ["West", 2], ["Northeast", 3], ["Central", 4]], D: [["West", 1], ["Southeast", 2], ["Central", 3], ["Northeast", 4]] };
+function scheduledM2(team) {
+  const r = CUR.teams[team]; return (r ? r.gp : 0) + S.upcoming.filter((g) => g.home === team || g.away === team).length;
+}
+function seedsNow(reg) { // ranked, postseason-eligible teams in order
+  const minG = S.eligibility.min_m2_games;
+  return ranked(BYREG, reg).map((r) => ({ ...r, sched: scheduledM2(r.team), ok: scheduledM2(r.team) >= minG }));
+}
+function loadPost() {
+  if (!state.postRegion) state.postRegion = REG[FOCUS];
+  renderPostDates();
+  if (POST) return;
+  POST = "loading";
+  fetch("title_odds.json").then((r) => { if (!r.ok) throw 0; return r.json(); }).then((d) => {
+    POST = d;
+    buildSeg("#post-seg", "postRegion", renderPostRegion);
+    renderPost();
+  }).catch(() => { POST = null; $("#post-loading").textContent = "Couldn't load the postseason odds (title_odds.json). Reload the page to try again."; });
+}
+function renderPostDates() {
+  const t = today(), days = (d) => Math.round((new Date(d + "T12:00:00") - new Date(t + "T12:00:00")) / 864e5);
+  const fin = S.config.ranking_periods[S.config.ranking_periods.length - 1].through;
+  const items = [["Final ranking", `Games through ${dstr(fin)}`, fin], ...S.config.events.map((e) => [e.label, e.dates.split(" to ").map(dstr).join(" – "), e.dates.split(" to ")[0]])];
+  items.splice(2, 0, ["Bids accepted", "In writing, 1 week before the final ranking", null]);
+  $("#post-dates").innerHTML = items.map(([l, d, iso]) => `<div class="cut"><span class="label">${esc(l)}</span><span style="font-weight:600">${esc(d)}</span>${iso ? `<span class="muted" style="font-size:.8rem">${days(iso) > 0 ? days(iso) + " days away" : "done"}</span>` : ""}</div>`).join("");
+}
+function renderPost() {
+  const d = POST, o = d.osu, pr = (x, dd = 0) => x == null ? "–" : (x > 0.995 && x < 1 ? ">99" : x < 0.005 && x > 0 ? "<1" : (100 * x).toFixed(dd)) + "%";
+  $("#post-loading").hidden = true; $("#post-body").hidden = false;
+  $("#post-sims").textContent = `${d.sims.toLocaleString()} simulated seasons · ${d.remaining_m2_games} M2 games left`;
+  const steps = [["Finish top 2 in the West (Nationals bid)", o.auto_bid], ["Reach Nationals (bid or Regionals title)", o.nationals], ["Win Nationals pool (semifinal)", o.semis], ["Reach the final", o.final], ["National champion", o.champion]];
+  $("#post-osu").innerHTML = steps.map(([l, v], i) => `<div class="meter"><div class="meter-row"><span${i === steps.length - 1 ? ' style="font-weight:700"' : ""}>${l}</span><span class="num">${pr(v, v < 0.1 ? 1 : 0)}</span></div><div class="meter-bar"><span class="played" style="width:${100 * v}%"></span></div></div>`).join("");
+  const p1 = d.osu_west_rank["1"] || 0;
+  $("#post-osu-pill").innerHTML = `<span class="pill ${o.champion >= .3 ? "good" : "accent"}">Title ${pr(o.champion)}</span>`;
+  const pool = Object.entries(POOLS).find(([, m]) => m.some(([r, n]) => r === REG[FOCUS] && n === 1));
+  const poolMates = pool ? pool[1].filter(([r]) => r !== REG[FOCUS]).map(([r, n]) => { const t = seedsNow(r).filter((x) => x.ok)[n - 1]; return `${r} #${n}${t ? ` (today: ${esc(short(t.team))})` : ""}`; }).join(", ") : "";
+  $("#post-osu-note").innerHTML = `OSU finishes No. 1 in the ${REG[FOCUS]} in ${pr(p1, 1)} of simulations, which means skipping Regionals and going to Nationals as ${REG[FOCUS]} #1 in <b>Pool ${pool ? pool[0] : "?"}</b> with ${poolMates}. It needs ${d.min_m2_games} M2 games by ${dstr(d.final_ranking_date)}; ${scheduledM2(FOCUS)} are played or scheduled. ${d.notes[0]}`;
+  const contenders = Object.entries(d.teams).filter(([, v]) => v.champ > 0).sort((a, b) => b[1].champ - a[1].champ).slice(0, 10);
+  $("#post-title").innerHTML = `<thead><tr><th>Team</th><th>Region</th><th class="n">Nationals</th><th class="n">Semis</th><th class="n">Title</th></tr></thead><tbody>` +
+    contenders.map(([t, v]) => `<tr class="${t === FOCUS ? "focus" : ""}"><td class="team">${esc(short(t))}</td><td>${v.region}</td><td class="n">${pr(v.nat)}</td><td class="n">${pr(v.semi)}</td>${probCell(v.champ)}</tr>`).join("") + `</tbody>`;
+  renderPostRegion();
+  renderPools();
+}
+function renderPostRegion() {
+  if (!POST || POST === "loading") return;
+  const reg = state.postRegion, d = POST, T = d.teams, pr = (x) => x == null ? "–" : (x > 0.995 && x < 1 ? ">99" : x < 0.005 && x > 0 ? "<1" : Math.round(100 * x)) + "%";
+  const all = seedsNow(reg), seeds = all.filter((x) => x.ok), short16 = all.filter((x) => !x.ok && x.rank <= 16);
+  $("#post-br-title").textContent = `${reg} Regionals bracket if the season ended today`;
+  const ev = S.config.events.find((e) => e.label.startsWith(reg));
+  const nm = (r) => r ? esc(short(r.team)) : "–";
+  const slot = (n, r) => r ? `<div class="slot ${r.team === FOCUS ? "focus" : ""}"><span class="seed">#${n}</span><span class="tm">${nm(r)}</span><span class="pr">${pr((T[r.team] || {}).rt)}</span></div>` : `<div class="slot"><span class="seed">#${n}</span><span class="tm muted">—</span><span></span></div>`;
+  $("#post-byes").innerHTML = `<span class="pill good">Nationals bid: #1 ${nm(seeds[0])}</span><span class="pill good">Nationals bid: #2 ${nm(seeds[1])}</span><span class="pill accent">Day-1 bye: #3 ${nm(seeds[2])}</span><span class="pill accent">Day-1 bye: #4 ${nm(seeds[3])}</span>` +
+    (short16.length ? `<span class="pill warn">Short of ${d.min_m2_games} M2 games, skipped: ${short16.map((x) => esc(short(x.team))).join(", ")}</span>` : "") + (ev ? `<span class="pill neutral">${esc(ev.dates.split(" to ").map(dstr).join(" – "))}</span>` : "");
+  const day1 = [[5, 16], [6, 15], [7, 14], [8, 13], [9, 12], [10, 11]];
+  $("#post-bracket").innerHTML = `
+    <div class="bcol"><h4>Day 1</h4>${day1.map(([a, b]) => `<div class="match">${slot(a, seeds[a - 1])}${slot(b, seeds[b - 1])}</div>`).join("")}</div>
+    <div class="bcol"><h4>Day 2 · re-seeded</h4>
+      <div class="match">${slot(3, seeds[2])}<div class="slot"><span class="seed"></span><span class="tm muted">Lowest remaining seed</span><span></span></div></div>
+      <div class="match">${slot(4, seeds[3])}<div class="slot"><span class="seed"></span><span class="tm muted">2nd-lowest remaining</span><span></span></div></div>
+      <div class="match rule">3rd-highest Day-1 winner vs 3rd-lowest</div>
+      <div class="match rule">4th-highest Day-1 winner vs 4th-lowest</div></div>
+    <div class="bcol"><h4>Day 3 · re-seeded</h4><div class="match rule">Highest remaining seed vs lowest</div><div class="match rule">2nd-highest vs 2nd-lowest</div></div>
+    <div class="bcol"><h4>To Nationals</h4><div class="match rule">Both Day-3 winners advance, joining #1 ${nm(seeds[0])} and #2 ${nm(seeds[1])}</div></div>`;
+  $("#post-odds-title").textContent = `${reg}: postseason odds`;
+  const rows = Object.entries(T).filter(([, v]) => v.region === reg && (v.nat >= 0.005 || v.p_top16 >= 0.25)).sort((a, b) => b[1].nat - a[1].nat || a[1].seed - b[1].seed);
+  const now = Object.fromEntries(all.map((r) => [r.team, r.rank]));
+  $("#post-odds").innerHTML = `<thead><tr><th>Team</th><th class="n">Rank now</th><th class="n">Avg final seed</th><th class="n">Top 2 (bid)</th><th class="n">Top 16</th><th class="n">Wins Regionals</th><th class="n">Nationals</th><th class="n">Semis</th><th class="n">Title</th></tr></thead><tbody>` +
+    rows.map(([t, v]) => `<tr class="${t === FOCUS ? "focus" : ""}"><td class="team">${esc(short(t))}${v.eligible ? "" : ' <span class="pill warn">under 16 M2 games</span>'}</td><td class="n">${now[t] ? "#" + now[t] : "–"}</td><td class="n">${v.seed != null ? v.seed.toFixed(1) : "–"}</td><td class="n">${pr(v.auto)}</td><td class="n">${pr(v.p_top16)}</td><td class="n">${pr(v.rt)}</td>${probCell(v.nat)}<td class="n">${pr(v.semi)}</td><td class="n">${pr(v.champ)}</td></tr>`).join("") + `</tbody>`;
+}
+function renderPools() {
+  $("#post-pools").innerHTML = Object.entries(POOLS).map(([k, m]) => {
+    const items = m.map(([r, n]) => { const t = seedsNow(r).filter((x) => x.ok)[n - 1]; return { r, n, t }; });
+    const has = items.some((i) => i.t && i.t.team === FOCUS);
+    return `<div class="pool ${has ? "focus" : ""}"><span class="label">Pool ${k}</span><ol>${items.map((i) => `<li class="${i.t && i.t.team === FOCUS ? "focus" : ""}"><span class="rg">${i.r} #${i.n}</span><span>${i.t ? esc(short(i.t.team)) : "–"}</span></li>`).join("")}</ol></div>`;
+  }).join("");
+}
+
 // ---------- What-if tab ----------
 function setupWhatIf() {
   const teams = Object.keys(REG).filter((t) => S.upcoming.some((g) => g.home === t || g.away === t)).sort((a, b) => short(a).localeCompare(short(b)));
@@ -860,7 +978,7 @@ function renderWhatIfTable() {
 // ---------- Projections tab ----------
 function setupProj() {
   $("#pj-run").addEventListener("click", runProjection);
-  $("#pj-note").textContent = `Each simulated season plays every remaining M2 game through ${dstr(S.config.ranking_periods.at(-1).through)}, including ${S.upcoming.filter((g) => g.state === "unreported").length} past games with no score yet. Team strength comes from this season's results, anchored to last season's final ACHA rating, which counts as ${MODEL.ridge_k} extra games. Each simulated season also draws how good every team really is, so early-season odds stay wide. Each game adds a ${MODEL.home_edge}-goal home edge and ${MODEL.game_sd} goals of game-to-game spread, and tied margins go to OT or a shootout. Then the full ACHA formula is rerun. Penalties stay as they are today.`;
+  $("#pj-note").textContent = `Each simulated season plays every remaining M2 game through ${dstr(S.config.ranking_periods.at(-1).through)}, including ${S.upcoming.filter((g) => g.state === "unreported").length} past games with no score yet. Team strength comes from every ACHA game this season, including results against M1 and M3 teams, anchored to last season (counted as ${MODEL.prior_games} extra games). The ranking itself still uses only M2-vs-M2 games, as ACHA does. Each simulated season also draws how good every team really is, so early-season odds stay wide. Each game adds a ${MODEL.home_edge}-goal home edge and ${MODEL.game_sd} goals of game-to-game spread, and tied margins go to OT or a shootout. Then the full ACHA formula is rerun. Penalties stay as they are today.`;
 }
 function randn() { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
 function runProjection() {

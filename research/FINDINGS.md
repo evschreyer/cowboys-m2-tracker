@@ -203,3 +203,16 @@ Context: OSU were the 2026 M2 national runner-up (lost 3-2 in OT to FGCU) and fi
   - Holds in 9 of 10: OSU is the strongest M2 team on the M1 scale (fails at k=5).
   - Ranges: Friday 21-31%, sweep 1 in 9 to 1 in 21, M1-equivalent #3-#9, P(7-0) 0.27-1.63%.
 - **Significance:** expected M2 sweeps across the 7 top-5 M1 series is 0.27. P(at least one) is 24%, and OSU's series alone makes up 25% of that expectation.
+
+## 12. Postseason tab; win probabilities now count cross-division results (2026-11-07)
+- **Dashboard predictions** (OSU Breakdown upcoming games, Projections, What-If odds) now use the shared-scale strengths from `engine/xdiv.py`. Those strengths are built from every ACHA men's game, so results vs M1 and M3 count toward every team's strength. They are computed in `scripts/build_snapshot.py`, stored in `snapshot.strengths`, and use home edge 0.33 and spread 3.0. The old M2-only ridge model in the page was removed. Official ranking calculations remain M2-vs-M2 only.
+- **Postseason tab:**
+  - Dates.
+  - OSU's simulated route.
+  - Title odds.
+  - A Regionals bracket per region from today's ranking. Teams scheduled for fewer than 16 M2 games are skipped.
+  - Per-team odds.
+  - Nationals pools if the season ended today.
+
+  Data comes from `data/title_odds.json`, whose `teams` block covers every M2 team.
+- **Schedule change detected:** OSU's Dec 4-5 games are now at Penn State (M2), replacing the trip to Minot State (M1). OSU now has 18 M2 games scheduled through Feb 14 (minimum 16) and 2 fewer M1 games remaining.

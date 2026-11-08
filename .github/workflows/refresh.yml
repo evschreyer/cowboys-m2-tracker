@@ -47,6 +47,7 @@ jobs:
         run: echo "hash=$(python3 -c "import json;print(json.load(open('data/snapshots/latest.json')).get('data_hash',''))" 2>/dev/null)" >> "$GITHUB_OUTPUT"
       - name: Fetch scores and rebuild snapshot
         run: |
+          pip install --quiet numpy
           for i in 1 2; do python3 scripts/build_snapshot.py && break; echo "retrying in 60s"; sleep 60; done
           test -s data/snapshots/latest.json
       - name: Sanity check

@@ -10,11 +10,16 @@
     "notes": "free-text log of why each override exists"
   },
   "aliases": {},
-  "exclude_game_ids": [],
+  "exclude_game_ids": [
+    "37833",
+    "37834"
+  ],
   "score_fixes": {},
   "tie_game_ids": [],
   "add_games": [],
   "penalties": {},
   "not_good_standing": [],
-  "notes": []
+  "notes": [
+    "37833/37834 (OSU at Penn State, Dec 4-5, 2026): erroneous entries that conflict with the Minot State series on the same dates; confirmed a mistake by OSU staff on 2026-11-07, excluded."
+  ]
 }

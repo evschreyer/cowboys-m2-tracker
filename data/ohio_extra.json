@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07T19:58",
+ "generated_at": "2026-11-07T20:03",
  "players": [
   {
    "name": "Jack Budd",
@@ -549,7 +549,7 @@
   "osu_sd": 0.73
  },
  "significance": {
-  "p_perfect": 0.005359633004761682,
+  "p_perfect": 0.005359633004761697,
   "n_m1_games": 7,
   "top5_series": 7,
   "expected_sweeps": 0.266,

@@ -1,0 +1,1875 @@
+{
+ "season": "2025-26",
+ "label": "R1",
+ "thru": "2025-11-09",
+ "validated_at": "2026-11-08T16:59",
+ "overall": "WARN",
+ "raw": "data/official/2025-26/R1_raw.pdf",
+ "full": "data/official/2025-26/R1_full.pdf",
+ "games_counted": 1032,
+ "dashboard": null,
+ "checks": [
+  {
+   "n": 1,
+   "title": "Files parsed",
+   "status": "PASS",
+   "summary": "raw PDF 186 teams (R1_raw.pdf), full rankings 189 teams (R1_full.pdf)",
+   "details": []
+  },
+  {
+   "n": 3,
+   "title": "Team names",
+   "status": "PASS",
+   "summary": "189/189 official names mapped one-to-one",
+   "details": [
+    {
+     "official": "Army",
+     "feed": "Army (West Point)"
+    },
+    {
+     "official": "CSU- Northridge",
+     "feed": "California State University-Northridge"
+    },
+    {
+     "official": "Central Connecticut State Univ.",
+     "feed": "Central Connecticut State University"
+    },
+    {
+     "official": "Dakota College",
+     "feed": "Dakota College-Bottineau"
+    },
+    {
+     "official": "MSU-Denver",
+     "feed": "Metropolitan State University-Denver"
+    },
+    {
+     "official": "Michigan Tech University",
+     "feed": "Michigan Technological University"
+    },
+    {
+     "official": "Minnesota State Univ - Mankato",
+     "feed": "Minnesota State University-Mankato"
+    },
+    {
+     "official": "North Dakota State",
+     "feed": "North Dakota State University"
+    },
+    {
+     "official": "Saint Johns University",
+     "feed": "Saint John's University"
+    },
+    {
+     "official": "Southern Illinois -Edwardsville",
+     "feed": "Southern Illinois University-Edwardsville"
+    },
+    {
+     "official": "Southern New Hampshire Univ",
+     "feed": "Southern New Hampshire University"
+    },
+    {
+     "official": "UCLA",
+     "feed": "University of California-Los Angeles"
+    },
+    {
+     "official": "University Georgia",
+     "feed": "University of Georgia"
+    },
+    {
+     "official": "University South Carolina",
+     "feed": "University of South Carolina"
+    },
+    {
+     "official": "University Texas-San Antonio",
+     "feed": "University of Texas-San Antonio"
+    },
+    {
+     "official": "University of Mass.-Amherst",
+     "feed": "University of Massachusetts-Amherst"
+    },
+    {
+     "official": "University of Mass.-Lowell",
+     "feed": "University of Massachusetts-Lowell"
+    },
+    {
+     "official": "University of NC-Wilmington",
+     "feed": "University of North Carolina-Wilmington"
+    },
+    {
+     "official": "University of North Carolina-Charolette",
+     "feed": "University of North Carolina-Charlotte"
+    },
+    {
+     "official": "University of Southern Cal",
+     "feed": "University of Southern California"
+    },
+    {
+     "official": "University of Wisc.-Eau Claire",
+     "feed": "University of Wisconsin-Eau Claire"
+    },
+    {
+     "official": "University of Wisc.-LaCrosse",
+     "feed": "University of Wisconsin-LaCrosse"
+    },
+    {
+     "official": "University of Wisc.-Oshkosh",
+     "feed": "University of Wisconsin-Oshkosh"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "title": "Formula unchanged",
+   "status": "PASS",
+   "summary": "0 AWP/Final/Raw inconsistencies, 0 OTAdj != 0.5*OTL/GP, GP-weighted mean of Total-OTAdj = 7.009 (expect 7.000)",
+   "details": []
+  },
+  {
+   "n": 4,
+   "title": "Team set",
+   "status": "PASS",
+   "summary": "we rate 189, ACHA lists 189; ours-only 0, ACHA-only 0",
+   "details": []
+  },
+  {
+   "n": 5,
+   "title": "Regions",
+   "status": "PASS",
+   "summary": "no region file for this season (ACHA regions used)",
+   "details": []
+  },
+  {
+   "n": 6,
+   "title": "Records (W-L-T)",
+   "status": "PASS",
+   "summary": "118/186 teams (63%) have the same W-L-T (2025-26 baseline: 61% at R1, 77% at the final); exact incl. OT flags 112. ACHA has fewer games: 57, ACHA has more games: 5, OT flags only: 6, different results: 6; 135 specific suspect games",
+   "details": [
+    {
+     "team": "St. Bonaventure University",
+     "official": "7-3-0-0-0",
+     "ours": "8-3-0-0-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Connecticut College",
+     "official": "8-0-0-1-0",
+     "ours": "9-0-0-1-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Brockport State University",
+     "official": "1-4-0-0-1",
+     "ours": "2-4-0-0-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "West Chester University",
+     "official": "14-1-0-1-0",
+     "ours": "15-1-0-1-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Boston University",
+     "official": "5-7-0-1-3",
+     "ours": "6-7-0-1-3",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Sacred Heart University",
+     "official": "5-6-0-1-1",
+     "ours": "6-6-0-1-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Bentley University",
+     "official": "2-9-0-1-0",
+     "ours": "3-9-0-1-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "College of The Holy Cross",
+     "official": "5-2-0-1-0",
+     "ours": "6-3-0-1-1",
+     "gp_diff": -2,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University of Vermont",
+     "official": "7-6-0-0-2",
+     "ours": "8-6-0-0-2",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Quinnipiac University",
+     "official": "3-9-0-2-0",
+     "ours": "4-9-0-2-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University of New Hampshire",
+     "official": "3-5-0-1-1",
+     "ours": "3-7-0-1-1",
+     "gp_diff": -2,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Marist University",
+     "official": "2-9-0-0-1",
+     "ours": "2-12-0-0-1",
+     "gp_diff": -3,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University at Buffalo",
+     "official": "1-5-0-0-0",
+     "ours": "1-6-0-0-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Clarkson University",
+     "official": "1-10-0-1-1",
+     "ours": "2-10-0-1-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Keene State College",
+     "official": "0-5-1-0-0",
+     "ours": "2-5-0-0-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Saint Anselm College",
+     "official": "2-10-0-2-1",
+     "ours": "2-12-0-2-1",
+     "gp_diff": -2,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Bridgewater State University",
+     "official": "6-8-0-1-0",
+     "ours": "6-9-0-1-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Westfield State University",
+     "official": "3-8-0-0-0",
+     "ours": "3-9-0-0-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Drexel University",
+     "official": "5-6-0-1-0",
+     "ours": "5-7-0-1-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Cornell University",
+     "official": "0-1-0-0-0",
+     "ours": "1-3-0-0-0",
+     "gp_diff": -3,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Norwich University",
+     "official": "1-6-0-0-1",
+     "ours": "3-6-0-1-1",
+     "gp_diff": -2,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Ohio State University",
+     "official": "9-2-0-0-1",
+     "ours": "10-2-0-0-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "High Point University",
+     "official": "8-4-0-0-0",
+     "ours": "9-4-0-0-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University of Alabama",
+     "official": "4-3-0-0-1",
+     "ours": "4-4-0-0-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University of Delaware",
+     "official": "4-10-0-0-1",
+     "ours": "4-11-0-0-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Elon University",
+     "official": "3-0-0-0-0",
+     "ours": "4-0-0-1-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "George Washington University",
+     "official": "5-5-0-2-0",
+     "ours": "5-6-0-2-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University of North Carolina-Charlotte",
+     "official": "0-3-0-0-0",
+     "ours": "0-4-0-0-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Schoolcraft College",
+     "official": "7-3-0-0-0",
+     "ours": "8-3-0-0-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Maryville University",
+     "official": "7-4-1-0-0",
+     "ours": "8-5-0-0-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Sault College",
+     "official": "5-3-0-0-0",
+     "ours": "6-3-0-0-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Marian University",
+     "official": "6-3-0-0-1",
+     "ours": "7-3-0-0-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Trine University",
+     "official": "4-7-0-0-0",
+     "ours": "6-7-0-1-0",
+     "gp_diff": -2,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University of Jamestown",
+     "official": "7-3-0-0-1",
+     "ours": "8-3-0-0-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Adrian College",
+     "official": "4-4-0-0-0",
+     "ours": "6-4-0-0-0",
+     "gp_diff": -2,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Lake Superior State University",
+     "official": "6-8-0-0-0",
+     "ours": "6-9-0-0-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "North Dakota State University",
+     "official": "3-7-0-0-1",
+     "ours": "4-7-0-0-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University of Wisconsin-Oshkosh",
+     "official": "5-3-0-0-1",
+     "ours": "6-3-0-1-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Milwaukee School of Engineering",
+     "official": "7-3-0-1-0",
+     "ours": "8-9-0-1-1",
+     "gp_diff": -7,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University of Minnesota-Duluth",
+     "official": "1-8-0-0-1",
+     "ours": "4-10-0-0-1",
+     "gp_diff": -5,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Aurora University",
+     "official": "0-3-0-0-0",
+     "ours": "0-5-0-0-0",
+     "gp_diff": -2,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Indiana Tech",
+     "official": "0-7-0-0-0",
+     "ours": "0-10-0-0-1",
+     "gp_diff": -3,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University of Wisconsin-Milwaukee",
+     "official": "3-7-0-0-0",
+     "ours": "4-8-0-0-1",
+     "gp_diff": -2,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Roosevelt University",
+     "official": "2-11-0-0-0",
+     "ours": "2-12-0-0-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Saint Norbert College",
+     "official": "4-9-0-0-0",
+     "ours": "5-10-0-0-0",
+     "gp_diff": -2,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Waldorf University",
+     "official": "0-9-0-0-3",
+     "ours": "0-11-0-0-3",
+     "gp_diff": -2,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Northern Michigan University",
+     "official": "3-6-0-0-0",
+     "ours": "3-7-0-1-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Southern Illinois University-Edwardsville",
+     "official": "1-6-0-0-0",
+     "ours": "1-7-0-0-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University of Wisconsin-LaCrosse",
+     "official": "1-7-0-0-1",
+     "ours": "3-8-0-1-1",
+     "gp_diff": -3,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Bemidji State University",
+     "official": "0-4-0-0-0",
+     "ours": "1-5-0-0-0",
+     "gp_diff": -2,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University of California-Berkeley",
+     "official": "11-1-0-0-0",
+     "ours": "12-1-0-0-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Arizona State University",
+     "official": "7-5-0-0-2",
+     "ours": "8-5-0-0-2",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Southern Methodist University",
+     "official": "7-1-0-0-0",
+     "ours": "8-1-0-0-1",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Northern Arizona University",
+     "official": "5-7-0-2-0",
+     "ours": "6-7-0-2-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "University of California-Los Angeles",
+     "official": "2-5-0-1-0",
+     "ours": "2-7-0-1-0",
+     "gp_diff": -2,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Baylor University",
+     "official": "1-3-0-0-0",
+     "ours": "1-4-0-0-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "San Jose State University",
+     "official": "5-11-0-2-0",
+     "ours": "5-12-0-2-0",
+     "gp_diff": -1,
+     "kind": "ACHA has fewer games"
+    },
+    {
+     "team": "Ohio University",
+     "official": "10-6-0-0-3",
+     "ours": "10-5-0-0-2",
+     "gp_diff": 1,
+     "kind": "ACHA has more games"
+    },
+    {
+     "team": "University of Dayton",
+     "official": "3-9-0-3-1",
+     "ours": "2-9-0-2-1",
+     "gp_diff": 1,
+     "kind": "ACHA has more games"
+    },
+    {
+     "team": "James Madison University",
+     "official": "10-6-0-0-2",
+     "ours": "8-6-0-1-3",
+     "gp_diff": 2,
+     "kind": "ACHA has more games"
+    },
+    {
+     "team": "West Virginia University",
+     "official": "5-9-0-2-0",
+     "ours": "5-8-0-2-0",
+     "gp_diff": 1,
+     "kind": "ACHA has more games"
+    },
+    {
+     "team": "Davenport University",
+     "official": "7-3-0-0-0",
+     "ours": "6-3-0-0-0",
+     "gp_diff": 1,
+     "kind": "ACHA has more games"
+    },
+    {
+     "team": "Union College",
+     "official": "1-2-0-0-0",
+     "ours": "1-2-0-1-0",
+     "gp_diff": 0,
+     "kind": "OT flags only"
+    },
+    {
+     "team": "Florida Atlantic University",
+     "official": "5-4-0-0-0",
+     "ours": "5-4-0-0-1",
+     "gp_diff": 0,
+     "kind": "OT flags only"
+    },
+    {
+     "team": "University of Mississippi",
+     "official": "2-7-0-0-1",
+     "ours": "2-7-0-0-2",
+     "gp_diff": 0,
+     "kind": "OT flags only"
+    },
+    {
+     "team": "Michigan Technological University",
+     "official": "6-9-0-1-0",
+     "ours": "6-9-0-1-2",
+     "gp_diff": 0,
+     "kind": "OT flags only"
+    },
+    {
+     "team": "East Texas Baptist University",
+     "official": "7-10-0-1-3",
+     "ours": "7-10-0-2-3",
+     "gp_diff": 0,
+     "kind": "OT flags only"
+    },
+    {
+     "team": "University of North Texas",
+     "official": "4-7-0-1-1",
+     "ours": "4-7-0-2-1",
+     "gp_diff": 0,
+     "kind": "OT flags only"
+    },
+    {
+     "team": "University of Tampa",
+     "official": "10-5-0-1-0",
+     "ours": "9-5-1-1-0",
+     "gp_diff": 0,
+     "kind": "different results"
+    },
+    {
+     "team": "University of Florida",
+     "official": "3-6-0-0-1",
+     "ours": "3-5-1-0-0",
+     "gp_diff": 0,
+     "kind": "different results"
+    },
+    {
+     "team": "University of Virginia",
+     "official": "3-4-0-0-0",
+     "ours": "4-3-0-0-1",
+     "gp_diff": 0,
+     "kind": "different results"
+    },
+    {
+     "team": "University of Missouri",
+     "official": "5-8-1-0-1",
+     "ours": "6-8-0-1-1",
+     "gp_diff": 0,
+     "kind": "different results"
+    },
+    {
+     "team": "Lewis University",
+     "official": "7-3-0-0-0",
+     "ours": "8-2-0-1-0",
+     "gp_diff": 0,
+     "kind": "different results"
+    },
+    {
+     "team": "Illinois State University",
+     "official": "6-8-0-1-1",
+     "ours": "7-7-0-1-1",
+     "gp_diff": 0,
+     "kind": "different results"
+    },
+    {
+     "id": "30888",
+     "date": "2025-09-12",
+     "game": "University of Wisconsin-LaCrosse 3 at Milwaukee School of Engineering 11",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30889",
+     "date": "2025-09-13",
+     "game": "University of Wisconsin-LaCrosse 8 at Milwaukee School of Engineering 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "27753",
+     "date": "2025-09-14",
+     "game": "West Chester University 8 at University of Delaware 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29412",
+     "date": "2025-09-19",
+     "game": "Illinois State University 3 at University of Missouri 2",
+     "note": "both teams' results differ: check the score"
+    },
+    {
+     "id": "28227",
+     "date": "2025-09-19",
+     "game": "Northern Michigan University 2 at Southern Illinois University-Edwardsville 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29737",
+     "date": "2025-09-19",
+     "game": "Arizona State University 5 at Northern Arizona University 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28228",
+     "date": "2025-09-20",
+     "game": "Northern Michigan University 2 at Southern Illinois University-Edwardsville 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29413",
+     "date": "2025-09-20",
+     "game": "Illinois State University 3 at University of Missouri 2",
+     "note": "both teams' results differ: check the score"
+    },
+    {
+     "id": "25382",
+     "date": "2025-09-20",
+     "game": "Northern Arizona University 7 at Arizona State University 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30890",
+     "date": "2025-09-21",
+     "game": "Saint Norbert College 5 at Milwaukee School of Engineering 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30634",
+     "date": "2025-09-21",
+     "game": "Saint Anselm College 2 at College of The Holy Cross 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "24873",
+     "date": "2025-09-24",
+     "game": "Southern Illinois University-Edwardsville 0 at Maryville University 7",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28768",
+     "date": "2025-09-26",
+     "game": "Keene State College 2 at University of New Hampshire 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29168",
+     "date": "2025-09-26",
+     "game": "Northern Michigan University 3 at Lake Superior State University 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "27907",
+     "date": "2025-09-26",
+     "game": "Milwaukee School of Engineering 6 at Roosevelt University 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30779",
+     "date": "2025-09-26",
+     "game": "Waldorf University 0 at University of Minnesota-Duluth 8",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28412",
+     "date": "2025-09-26",
+     "game": "Maryville University 5 at Southern Illinois University-Edwardsville 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30726",
+     "date": "2025-09-26",
+     "game": "University of Wisconsin-Milwaukee 2 at University of Wisconsin-Oshkosh 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30001",
+     "date": "2025-09-26",
+     "game": "University of California-Berkeley 7 at San Jose State University 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29169",
+     "date": "2025-09-27",
+     "game": "Northern Michigan University 1 at Lake Superior State University 12",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30780",
+     "date": "2025-09-27",
+     "game": "Waldorf University 4 at University of Minnesota-Duluth 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30211",
+     "date": "2025-09-27",
+     "game": "Keene State College 3 at Boston University 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30891",
+     "date": "2025-09-27",
+     "game": "Roosevelt University 4 at Milwaukee School of Engineering 2",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30758",
+     "date": "2025-09-27",
+     "game": "University at Buffalo 3 at Cornell University 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28953",
+     "date": "2025-09-27",
+     "game": "Bentley University 8 at Saint Anselm College 0",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29810",
+     "date": "2025-09-27",
+     "game": "University of Delaware 7 at Drexel University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30028",
+     "date": "2025-09-27",
+     "game": "University of California-Berkeley 15 at San Jose State University 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "31019",
+     "date": "2025-09-28",
+     "game": "Northern Arizona University 8 at University of California-Los Angeles 0",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28719",
+     "date": "2025-10-03",
+     "game": "Indiana Tech 0 at Trine University 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30656",
+     "date": "2025-10-03",
+     "game": "Schoolcraft College 14 at Northern Michigan University 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29984",
+     "date": "2025-10-03",
+     "game": "Illinois State University 2 at Lewis University 3",
+     "note": "both teams' results differ: check the score"
+    },
+    {
+     "id": "30233",
+     "date": "2025-10-03",
+     "game": "University of Jamestown 4 at North Dakota State University 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29787",
+     "date": "2025-10-03",
+     "game": "Clarkson University 5 at Marist University 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28720",
+     "date": "2025-10-04",
+     "game": "Indiana Tech 3 at Trine University 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29914",
+     "date": "2025-10-04",
+     "game": "Boston University 4 at Southern Methodist University 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29788",
+     "date": "2025-10-04",
+     "game": "Clarkson University 3 at Marist University 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29985",
+     "date": "2025-10-04",
+     "game": "Illinois State University 5 at Lewis University 1",
+     "note": "both teams' results differ: check the score"
+    },
+    {
+     "id": "30234",
+     "date": "2025-10-04",
+     "game": "University of Jamestown 5 at North Dakota State University 2",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "31029",
+     "date": "2025-10-04",
+     "game": "Schoolcraft College 11 at Northern Michigan University 0",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30160",
+     "date": "2025-10-05",
+     "game": "Bentley University 1 at Connecticut College 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30635",
+     "date": "2025-10-05",
+     "game": "University of Vermont 4 at College of The Holy Cross 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28770",
+     "date": "2025-10-10",
+     "game": "Bentley University 4 at University of New Hampshire 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30442",
+     "date": "2025-10-10",
+     "game": "Brockport State University 6 at University at Buffalo 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30202",
+     "date": "2025-10-10",
+     "game": "University of Vermont 10 at Norwich University 0",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30161",
+     "date": "2025-10-10",
+     "game": "Saint Anselm College 3 at Connecticut College 8",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "26964",
+     "date": "2025-10-10",
+     "game": "Trine University 2 at Schoolcraft College 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29848",
+     "date": "2025-10-10",
+     "game": "Drexel University 1 at West Chester University 10",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30740",
+     "date": "2025-10-10",
+     "game": "Marian University 12 at University of Wisconsin-Milwaukee 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28721",
+     "date": "2025-10-11",
+     "game": "Schoolcraft College 3 at Trine University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29789",
+     "date": "2025-10-11",
+     "game": "Quinnipiac University 3 at Marist University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29802",
+     "date": "2025-10-11",
+     "game": "Saint Anselm College 5 at University of Vermont 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29775",
+     "date": "2025-10-12",
+     "game": "Northern Michigan University 8 at University of Wisconsin-LaCrosse 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29662",
+     "date": "2025-10-17",
+     "game": "Norwich University 1 at University of Vermont 7",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29174",
+     "date": "2025-10-17",
+     "game": "Sault College 5 at Lake Superior State University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29865",
+     "date": "2025-10-17",
+     "game": "St. Bonaventure University 4 at Brockport State University 2",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30528",
+     "date": "2025-10-17",
+     "game": "Roosevelt University 4 at Saint Norbert College 8",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30781",
+     "date": "2025-10-17",
+     "game": "North Dakota State University 10 at University of Minnesota-Duluth 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30892",
+     "date": "2025-10-17",
+     "game": "University of Wisconsin-Oshkosh 5 at Milwaukee School of Engineering 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30741",
+     "date": "2025-10-17",
+     "game": "University of Wisconsin-LaCrosse 3 at University of Wisconsin-Milwaukee 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29097",
+     "date": "2025-10-17",
+     "game": "University of North Carolina-Charlotte 2 at High Point University 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29664",
+     "date": "2025-10-18",
+     "game": "University of Vermont 4 at Bridgewater State University 2",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29175",
+     "date": "2025-10-18",
+     "game": "Sault College 8 at Lake Superior State University 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30529",
+     "date": "2025-10-18",
+     "game": "Roosevelt University 1 at Saint Norbert College 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30727",
+     "date": "2025-10-18",
+     "game": "Milwaukee School of Engineering 3 at University of Wisconsin-Oshkosh 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29397",
+     "date": "2025-10-18",
+     "game": "Indiana Tech 0 at Adrian College 12",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30594",
+     "date": "2025-10-18",
+     "game": "University of New Hampshire 0 at Keene State College 2",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29666",
+     "date": "2025-10-18",
+     "game": "Bridgewater State University 3 at Norwich University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30742",
+     "date": "2025-10-18",
+     "game": "University of Wisconsin-LaCrosse 7 at University of Wisconsin-Milwaukee 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30033",
+     "date": "2025-10-19",
+     "game": "Bridgewater State University 5 at University of Vermont 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30759",
+     "date": "2025-10-19",
+     "game": "St. Bonaventure University 5 at Cornell University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29069",
+     "date": "2025-10-19",
+     "game": "Adrian College 5 at Indiana Tech 0",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30021",
+     "date": "2025-10-19",
+     "game": "Sacred Heart University 7 at Quinnipiac University 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29364",
+     "date": "2025-10-22",
+     "game": "Saint Anselm College 0 at Bridgewater State University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30870",
+     "date": "2025-10-24",
+     "game": "Aurora University 2 at University of Jamestown 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28932",
+     "date": "2025-10-24",
+     "game": "University of Florida 7 at University of Tampa 6",
+     "note": "both teams' results differ: check the score"
+    },
+    {
+     "id": "30728",
+     "date": "2025-10-24",
+     "game": "Northern Michigan University 0 at University of Wisconsin-Oshkosh 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30381",
+     "date": "2025-10-24",
+     "game": "Sault College 3 at Marian University 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28490",
+     "date": "2025-10-24",
+     "game": "Ohio State University 6 at University of Alabama 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28491",
+     "date": "2025-10-25",
+     "game": "Ohio State University 1 at University of Alabama 0",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30729",
+     "date": "2025-10-25",
+     "game": "Northern Michigan University 1 at University of Wisconsin-Oshkosh 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28933",
+     "date": "2025-10-25",
+     "game": "University of Florida 6 at University of Tampa 6",
+     "note": "both teams' results differ: check the score"
+    },
+    {
+     "id": "28265",
+     "date": "2025-10-25",
+     "game": "Milwaukee School of Engineering 2 at Waldorf University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29791",
+     "date": "2025-10-25",
+     "game": "Sacred Heart University 4 at Marist University 2",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30203",
+     "date": "2025-10-25",
+     "game": "College of The Holy Cross 3 at Norwich University 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "31036",
+     "date": "2025-10-25",
+     "game": "Sault College 12 at Aurora University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30783",
+     "date": "2025-10-25",
+     "game": "Bemidji State University 5 at University of Minnesota-Duluth 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30382",
+     "date": "2025-10-25",
+     "game": "University of Jamestown 3 at Marian University 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30540",
+     "date": "2025-10-25",
+     "game": "Elon University 3 at University of North Carolina-Charlotte 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29804",
+     "date": "2025-10-26",
+     "game": "College of The Holy Cross 3 at University of Vermont 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29275",
+     "date": "2025-10-26",
+     "game": "University of Jamestown 4 at Sault College 7",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30784",
+     "date": "2025-10-26",
+     "game": "Bemidji State University 4 at University of Minnesota-Duluth 9",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28266",
+     "date": "2025-10-26",
+     "game": "Milwaukee School of Engineering 5 at Waldorf University 2",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28273",
+     "date": "2025-10-26",
+     "game": "Bridgewater State University 3 at Westfield State University 0",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30383",
+     "date": "2025-10-26",
+     "game": "Aurora University 3 at Marian University 7",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30570",
+     "date": "2025-10-31",
+     "game": "Sacred Heart University 5 at Clarkson University 2",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30443",
+     "date": "2025-10-31",
+     "game": "St. Bonaventure University 11 at University at Buffalo 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "27912",
+     "date": "2025-10-31",
+     "game": "University of Wisconsin-Oshkosh 2 at Roosevelt University 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29399",
+     "date": "2025-10-31",
+     "game": "Lake Superior State University 1 at Adrian College 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30743",
+     "date": "2025-10-31",
+     "game": "Milwaukee School of Engineering 2 at University of Wisconsin-Milwaukee 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29389",
+     "date": "2025-10-31",
+     "game": "Arizona State University 4 at University of California-Los Angeles 2",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30204",
+     "date": "2025-11-01",
+     "game": "Saint Anselm College 5 at Norwich University 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29400",
+     "date": "2025-11-01",
+     "game": "Lake Superior State University 0 at Adrian College 7",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30730",
+     "date": "2025-11-01",
+     "game": "Roosevelt University 1 at University of Wisconsin-Oshkosh 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30894",
+     "date": "2025-11-01",
+     "game": "University of Wisconsin-Milwaukee 3 at Milwaukee School of Engineering 8",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30571",
+     "date": "2025-11-01",
+     "game": "Sacred Heart University 4 at Clarkson University 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29813",
+     "date": "2025-11-01",
+     "game": "West Chester University 11 at Drexel University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29390",
+     "date": "2025-11-01",
+     "game": "Arizona State University 7 at University of California-Los Angeles 8",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29059",
+     "date": "2025-11-02",
+     "game": "Boston University 6 at Bentley University 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28274",
+     "date": "2025-11-02",
+     "game": "Marist University 3 at Westfield State University 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28978",
+     "date": "2025-11-02",
+     "game": "University of North Carolina-Charlotte 1 at Elon University 7",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29081",
+     "date": "2025-11-02",
+     "game": "Brockport State University 3 at St. Bonaventure University 7",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "24879",
+     "date": "2025-11-06",
+     "game": "Schoolcraft College 5 at Maryville University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28773",
+     "date": "2025-11-07",
+     "game": "Saint Anselm College 2 at University of New Hampshire 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30384",
+     "date": "2025-11-07",
+     "game": "Milwaukee School of Engineering 1 at Marian University 10",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30745",
+     "date": "2025-11-07",
+     "game": "Saint Norbert College 5 at University of Wisconsin-Milwaukee 8",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30572",
+     "date": "2025-11-07",
+     "game": "West Chester University 8 at Clarkson University 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29278",
+     "date": "2025-11-07",
+     "game": "Adrian College 4 at Sault College 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29367",
+     "date": "2025-11-07",
+     "game": "Connecticut College 5 at Bridgewater State University 0",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29917",
+     "date": "2025-11-07",
+     "game": "Baylor University 3 at Southern Methodist University 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "27757",
+     "date": "2025-11-07",
+     "game": "High Point University 6 at University of Delaware 3",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28723",
+     "date": "2025-11-07",
+     "game": "Indiana Tech 1 at Trine University 8",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29279",
+     "date": "2025-11-08",
+     "game": "Adrian College 3 at Sault College 5",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30531",
+     "date": "2025-11-08",
+     "game": "University of Wisconsin-Milwaukee 3 at Saint Norbert College 6",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30573",
+     "date": "2025-11-08",
+     "game": "West Chester University 7 at Clarkson University 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29071",
+     "date": "2025-11-08",
+     "game": "Trine University 3 at Indiana Tech 2",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30760",
+     "date": "2025-11-08",
+     "game": "University at Buffalo 2 at Cornell University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28956",
+     "date": "2025-11-08",
+     "game": "University of Vermont 8 at Saint Anselm College 2",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29918",
+     "date": "2025-11-08",
+     "game": "Baylor University 2 at Southern Methodist University 11",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "27758",
+     "date": "2025-11-08",
+     "game": "High Point University 4 at University of Delaware 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30895",
+     "date": "2025-11-08",
+     "game": "Marian University 10 at Milwaukee School of Engineering 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "30761",
+     "date": "2025-11-09",
+     "game": "Brockport State University 6 at Cornell University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "29178",
+     "date": "2025-11-09",
+     "game": "Adrian College 3 at Lake Superior State University 1",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28275",
+     "date": "2025-11-09",
+     "game": "Connecticut College 8 at Westfield State University 0",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28775",
+     "date": "2025-11-09",
+     "game": "Boston University 2 at University of New Hampshire 0",
+     "note": "in the feed, probably not yet reported to ACHA"
+    },
+    {
+     "id": "28957",
+     "date": "2025-11-09",
+     "game": "College of The Holy Cross 5 at Saint Anselm College 4",
+     "note": "in the feed, probably not yet reported to ACHA"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "title": "Rating components",
+   "status": "WARN",
+   "summary": "Total MAE 0.237 (bias -0.086, max 2.27); teams with matching records MAE 0.153. 2025-26 backtest: 0.10-0.24",
+   "details": [
+    {
+     "team": "Cornell University",
+     "records_match": false,
+     "d_gmperf": 0.0,
+     "d_sched": -2.302,
+     "d_otadj": 0.0,
+     "d_total": -2.272
+    },
+    {
+     "team": "Bemidji State University",
+     "records_match": false,
+     "d_gmperf": -1.167,
+     "d_sched": -0.69,
+     "d_otadj": 0.0,
+     "d_total": -1.867
+    },
+    {
+     "team": "Illinois State University",
+     "records_match": false,
+     "d_gmperf": -1.043,
+     "d_sched": -0.254,
+     "d_otadj": 0.004,
+     "d_total": -1.263
+    },
+    {
+     "team": "Creighton University",
+     "records_match": true,
+     "d_gmperf": 1.0,
+     "d_sched": 0.261,
+     "d_otadj": 0.0,
+     "d_total": 1.241
+    },
+    {
+     "team": "Adrian College",
+     "records_match": false,
+     "d_gmperf": -1.4,
+     "d_sched": 0.396,
+     "d_otadj": 0.0,
+     "d_total": -1.014
+    },
+    {
+     "team": "Waldorf University",
+     "records_match": false,
+     "d_gmperf": 0.464,
+     "d_sched": 0.47,
+     "d_otadj": 0.034,
+     "d_total": 0.998
+    },
+    {
+     "team": "Keene State College",
+     "records_match": false,
+     "d_gmperf": -1.129,
+     "d_sched": 0.107,
+     "d_otadj": 0.0,
+     "d_total": -0.952
+    },
+    {
+     "team": "Saint John's University",
+     "records_match": true,
+     "d_gmperf": 0.014,
+     "d_sched": -0.945,
+     "d_otadj": 0.0,
+     "d_total": -0.9
+    },
+    {
+     "team": "Southern Illinois University-Edwardsville",
+     "records_match": false,
+     "d_gmperf": 0.025,
+     "d_sched": -0.92,
+     "d_otadj": 0.0,
+     "d_total": -0.895
+    },
+    {
+     "team": "Baylor University",
+     "records_match": false,
+     "d_gmperf": -0.2,
+     "d_sched": -0.588,
+     "d_otadj": 0.0,
+     "d_total": -0.808
+    },
+    {
+     "team": "Roosevelt University",
+     "records_match": false,
+     "d_gmperf": 0.629,
+     "d_sched": 0.107,
+     "d_otadj": 0.0,
+     "d_total": 0.786
+    },
+    {
+     "team": "Davenport University",
+     "records_match": false,
+     "d_gmperf": 0.389,
+     "d_sched": 0.241,
+     "d_otadj": 0.0,
+     "d_total": 0.659
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "title": "Ranked vs unranked",
+   "status": "WARN",
+   "summary": "2 teams ranked by one side only; 0 teams ACHA lists as not in good standing that the dashboard still ranks. Our minimum is 3 GP; ACHA's fewest W+L among ranked teams: 3; below-minimum teams had W+L [1]",
+   "details": [
+    {
+     "team": "Southern New Hampshire University",
+     "official": "min_games",
+     "ours": "ranked",
+     "official_W_L": "0-1",
+     "our_gp": 7
+    },
+    {
+     "team": "Cornell University",
+     "official": "min_games",
+     "ours": "ranked",
+     "official_W_L": "0-1",
+     "our_gp": 4
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "title": "Penalties",
+   "status": "WARN",
+   "summary": "3 penalty differences (add confirmed ones to overrides 'penalties')",
+   "details": [
+    {
+     "team": "George Mason University",
+     "official": 0.0,
+     "ours": 0.5,
+     "ours_source": "forfeit suggestion"
+    },
+    {
+     "team": "Marquette University",
+     "official": 0.25,
+     "ours": 0.0,
+     "ours_source": "forfeit suggestion"
+    },
+    {
+     "team": "University of Minnesota-Duluth",
+     "official": 0.0,
+     "ours": 0.25,
+     "ours_source": "forfeit suggestion"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "title": "Regional order",
+   "status": "PASS",
+   "summary": "top 2 8/8, top 16 set 62/64, top 20 set 78/80, exact position (top 20) 46/80",
+   "details": [
+    {
+     "region": "Northeast",
+     "team": "Siena University",
+     "official": 9,
+     "ours": 10
+    },
+    {
+     "region": "Northeast",
+     "team": "Army (West Point)",
+     "official": 10,
+     "ours": 11
+    },
+    {
+     "region": "Northeast",
+     "team": "Brockport State University",
+     "official": 11,
+     "ours": 9
+    },
+    {
+     "region": "Northeast",
+     "team": "Providence College",
+     "official": 18,
+     "ours": 19
+    },
+    {
+     "region": "Northeast",
+     "team": "Sacred Heart University",
+     "official": 19,
+     "ours": 18
+    },
+    {
+     "region": "Northeast",
+     "team": "College of The Holy Cross",
+     "official": 20,
+     "ours": 23
+    },
+    {
+     "region": "Southeast",
+     "team": "Indiana University",
+     "official": 3,
+     "ours": 4
+    },
+    {
+     "region": "Southeast",
+     "team": "Ohio University",
+     "official": 4,
+     "ours": 3
+    },
+    {
+     "region": "Southeast",
+     "team": "University of North Carolina-Wilmington",
+     "official": 7,
+     "ours": 8
+    },
+    {
+     "region": "Southeast",
+     "team": "Florida Atlantic University",
+     "official": 8,
+     "ours": 7
+    },
+    {
+     "region": "Southeast",
+     "team": "Penn State University",
+     "official": 10,
+     "ours": 11
+    },
+    {
+     "region": "Southeast",
+     "team": "University of Georgia",
+     "official": 11,
+     "ours": 10
+    },
+    {
+     "region": "Southeast",
+     "team": "Ohio State University",
+     "official": 12,
+     "ours": 13
+    },
+    {
+     "region": "Southeast",
+     "team": "University of Florida",
+     "official": 13,
+     "ours": 12
+    },
+    {
+     "region": "Southeast",
+     "team": "Saint Josephs University",
+     "official": 18,
+     "ours": 19
+    },
+    {
+     "region": "Southeast",
+     "team": "University of Michigan",
+     "official": 19,
+     "ours": 18
+    },
+    {
+     "region": "Central",
+     "team": "Schoolcraft College",
+     "official": 3,
+     "ours": 4
+    },
+    {
+     "region": "Central",
+     "team": "University of Minnesota",
+     "official": 4,
+     "ours": 3
+    },
+    {
+     "region": "Central",
+     "team": "Concordia University of Wisconsin",
+     "official": 8,
+     "ours": 10
+    },
+    {
+     "region": "Central",
+     "team": "University of Wisconsin",
+     "official": 10,
+     "ours": 11
+    },
+    {
+     "region": "Central",
+     "team": "Sault College",
+     "official": 11,
+     "ours": 8
+    },
+    {
+     "region": "Central",
+     "team": "South Dakota State University",
+     "official": 15,
+     "ours": 18
+    },
+    {
+     "region": "Central",
+     "team": "University of Jamestown",
+     "official": 16,
+     "ours": 17
+    },
+    {
+     "region": "Central",
+     "team": "University of Missouri",
+     "official": 17,
+     "ours": 16
+    },
+    {
+     "region": "Central",
+     "team": "Trine University",
+     "official": 18,
+     "ours": 20
+    },
+    {
+     "region": "Central",
+     "team": "Adrian College",
+     "official": 20,
+     "ours": 15
+    },
+    {
+     "region": "West",
+     "team": "Grand Canyon University",
+     "official": 11,
+     "ours": 12
+    },
+    {
+     "region": "West",
+     "team": "Southern Methodist University",
+     "official": 12,
+     "ours": 11
+    },
+    {
+     "region": "West",
+     "team": "Boise State University",
+     "official": 13,
+     "ours": 14
+    },
+    {
+     "region": "West",
+     "team": "University of Washington",
+     "official": 14,
+     "ours": 16
+    },
+    {
+     "region": "West",
+     "team": "Texas A&M University",
+     "official": 16,
+     "ours": 13
+    },
+    {
+     "region": "West",
+     "team": "University of Montana",
+     "official": 17,
+     "ours": 18
+    },
+    {
+     "region": "West",
+     "team": "Northern Arizona University",
+     "official": 18,
+     "ours": 17
+    },
+    {
+     "region": "West",
+     "team": "Dakota College-Bottineau",
+     "official": 20,
+     "ours": 21
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "title": "Oklahoma State",
+   "status": "WARN",
+   "summary": "official #1 West, Final 12.66 | ours #1, Final 13.133",
+   "details": [
+    {
+     "official": {
+      "rank": 1,
+      "W": 9,
+      "L": 1,
+      "OTL": 0,
+      "GmPerf": 4.5,
+      "Sched": 7.4,
+      "Total": 11.94,
+      "AWP": 0.72,
+      "Penalty": 0.0,
+      "Final": 12.66
+     },
+     "ours": {
+      "rank": 1,
+      "W": 9,
+      "L": 1,
+      "OTL": 0,
+      "GmPerf": 4.9,
+      "Sched": 7.51,
+      "Total": 12.413,
+      "AWP": 0.72,
+      "Penalty": 0.0,
+      "Final": 13.133
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -64,23 +64,24 @@ jobs:
                   sys.exit(f"M2 games counted dropped from {prev} to {cur}; feed looks broken, not publishing")
           print("ok", new["counts"])
           PY
-      - name: Update box scores and the Ohio case study
+      - name: Update box scores, the Ohio case study and the vs-M1 comparison
         run: |
           pip install --quiet numpy
           python3 scripts/fetch_game_stats.py --seasons 2026-27
           python3 scripts/build_case_study.py
+          python3 scripts/build_m1_compare.py
       - name: Detect change
         id: check
         run: |
           NEW=$(python3 -c "import json;print(json.load(open('data/snapshots/latest.json'))['data_hash'])")
-          EXTRA=$(git status --porcelain data/game_stats data/case_study_ohio.json)
+          EXTRA=$(git status --porcelain data/game_stats data/case_study_ohio.json data/m1_compare.json)
           if [ "$NEW" != "${{ steps.before.outputs.hash }}" ] || [ -n "$EXTRA" ] || [ "${{ github.event_name }}" != "schedule" ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; else echo "changed=false" >> "$GITHUB_OUTPUT"; fi
       - name: Commit snapshot
         if: steps.check.outputs.changed == 'true'
         run: |
           git config user.name "m2-tracker-bot"
           git config user.email "m2-tracker-bot@users.noreply.github.com"
-          git add data/snapshots data/game_stats data/case_study_ohio.json
+          git add data/snapshots data/game_stats data/case_study_ohio.json data/m1_compare.json
           git diff --cached --quiet || git commit -m "Refresh rankings snapshot $(date +'%Y-%m-%d %H:%M %Z')"
           git push
       - name: Build site

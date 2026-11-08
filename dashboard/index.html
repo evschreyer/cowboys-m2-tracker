@@ -180,6 +180,7 @@ pre.formula { background: var(--surface-2); border: 1px solid var(--line); borde
       <button role="tab" id="t-osu" aria-controls="osu" aria-selected="true">OSU Breakdown</button>
       <button role="tab" id="t-rank" aria-controls="rank" aria-selected="false">Regional Rankings</button>
       <button role="tab" id="t-nat" aria-controls="nat" aria-selected="false">National</button>
+      <button role="tab" id="t-m1" aria-controls="m1" aria-selected="false">vs M1</button>
       <button role="tab" id="t-whatif" aria-controls="whatif" aria-selected="false">What-If</button>
       <button role="tab" id="t-proj" aria-controls="proj" aria-selected="false">Projections</button>
       <button role="tab" id="t-method" aria-controls="method" aria-selected="false">Method</button>
@@ -270,6 +271,45 @@ pre.formula { background: var(--surface-2); border: 1px solid var(--line); borde
     <div class="panel">
       <p class="muted" style="font-size:.85rem;margin-bottom:10px" id="nat-note"></p>
       <div class="tablewrap"><table id="nat-table"></table></div>
+    </div>
+  </section>
+
+  <!-- vs M1 (unofficial, cross-division model) -->
+  <section class="tab" id="m1" role="tabpanel" aria-labelledby="t-m1" hidden>
+    <div class="panel">
+      <div class="panel-head"><h2>OSU against M1 <span class="pill accent" style="vertical-align:middle">Unofficial</span></h2><a href="case-study-ohio.html" class="label" style="color:var(--accent-ink)">Case study: OSU at Ohio →</a></div>
+      <p class="muted" style="font-size:.88rem">ACHA never compares divisions, so these are our own methods: one strength scale for every ACHA men's team built from all games (including cross-division games), and ACHA's own M1 formula with OSU added as if it were an M1 team. Cross-division games don't count in any official ranking.</p>
+    </div>
+    <div id="m1-loading" class="loading">Loading M1 comparison…</div>
+    <div id="m1-body" hidden style="display:grid;gap:18px">
+      <div class="cuts" id="m1-tiles"></div>
+      <div class="panel">
+        <div class="panel-head"><h3>Every OSU game against an M1 team</h3><span class="muted" style="font-size:.85rem" id="m1-games-note"></span></div>
+        <div class="tablewrap"><table id="m1-games"></table></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Per-game numbers</h3><span class="muted" style="font-size:.85rem">2026-27, from box scores</span></div>
+        <div class="tablewrap"><table id="m1-stats"></table></div>
+        <p class="muted" style="font-size:.82rem;margin-top:8px" id="m1-stats-note"></p>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-head"><h3>Unofficial combined top 25</h3><span class="muted" style="font-size:.85rem" id="m1-comb-note"></span></div>
+          <div class="tablewrap"><table id="m1-comb"></table></div>
+        </div>
+        <div style="display:grid;gap:18px;align-content:start">
+          <div class="panel">
+            <div class="panel-head"><h3>Where OSU would sit in M1</h3></div>
+            <div class="tablewrap"><table id="m1-top"></table></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3>The M1–M2 gap by season</h3></div>
+            <svg id="m1-gap-chart" role="img" aria-label="Top-25 M1 minus top-25 M2 strength by season, in goals" viewBox="0 0 420 200" style="width:100%;height:auto"></svg>
+            <div class="tablewrap"><table id="m1-gap"></table></div>
+            <p class="muted" style="font-size:.82rem;margin-top:8px">Chart: how many goals better the average top-25 M1 team is than the average top-25 M2 team on neutral ice, including the +<span id="m1-gapadj"></span> M1 adjustment. The all-teams gap is wider partly because M2 has added many new, weaker teams. 2021-22 is left out: with no earlier season to anchor it, every division started level, so its gap reads too small. 2026-27 is to date.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -431,7 +471,7 @@ function init(snap) {
   renderOSU(); renderRankings(); setupNational(); setupWhatIf(); setupProj(); renderMethod();
   document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => showTab(b.getAttribute("aria-controls"))));
   const h = location.hash.replace("#", "");
-  showTab(["osu", "rank", "nat", "whatif", "proj", "method"].includes(h) ? h : "osu");
+  showTab(["osu", "rank", "nat", "m1", "whatif", "proj", "method"].includes(h) ? h : "osu");
 }
 
 function compute(games, opts) {
@@ -446,6 +486,7 @@ function showTab(id) {
   document.querySelectorAll("section.tab").forEach((s) => (s.hidden = s.id !== id));
   try { history.replaceState(null, "", "#" + id); } catch (e) {}
   if (id === "proj" && !state.proj) runProjection();
+  if (id === "m1") loadM1();
 }
 
 function buildSeg(sel, key, onChange) {
@@ -686,6 +727,66 @@ function renderNational() {
       return `<tr class="${r.team === FOCUS ? "focus" : linked ? "" : "dim"}"><td class="n">${i + 1}</td>${chg}<td class="team">${esc(short(r.team))}${linked ? "" : ' <span class="pill neutral">unlinked</span>'}</td>
         <td>${r.region} <span class="muted num">#${r.rank}</span></td><td class="n">${r.w}-${r.l}</td><td class="n">${fmt(r.gmperf)}</td><td class="n">${fmt(r.sched)}</td><td class="n"><b>${fmt(r.final, 3)}</b></td></tr>`;
     }).join("") + `</tbody>`;
+}
+
+// ---------- vs M1 tab ----------
+let M1 = null;
+function loadM1() {
+  if (M1) return;
+  M1 = "loading";
+  fetch("m1_compare.json").then((r) => { if (!r.ok) throw 0; return r.json(); }).then((d) => { M1 = d; renderM1(); })
+    .catch(() => { M1 = null; $("#m1-loading").textContent = "Couldn't load the M1 comparison (m1_compare.json). Reload the page to try again."; });
+}
+function renderM1() {
+  const d = M1, sc = d.m1_scale, g = d.guest, P = (x) => x == null ? "–" : Math.round(100 * x) + "%";
+  $("#m1-loading").hidden = true; $("#m1-body").hidden = false;
+  const wins = d.games.filter((x) => x.result === "W").length, losses = d.games.filter((x) => x.result === "L").length, ties = d.games.length - wins - losses;
+  $("#m1-tiles").innerHTML = `
+    <div class="cut in"><span class="label">Rank among M1 teams · shared scale</span><span class="v">#${sc.rank} of ${sc.of}</span><span class="muted" style="font-size:.82rem">80% likely #${sc.p10}–#${sc.p90} · ${P(sc.p_top10)} chance top 10</span></div>
+    <div class="cut in"><span class="label">ACHA's M1 formula, OSU added</span><span class="v">#${g.rank} of ${g.of}</span><span class="muted" style="font-size:.82rem">Ranking A #${g.rank_a}, B #${g.rank_b} · only ${g.w + g.l + g.t} games, so small-sample</span></div>
+    <div class="cut ${losses ? "out" : "in"}"><span class="label">Record vs M1 this season</span><span class="v">${wins}-${losses}${ties ? "-" + ties : ""}</span><span class="muted" style="font-size:.82rem">${d.p_perfect ? `Pre-game odds of a perfect run: ${(100 * d.p_perfect).toFixed(1)}% (1 in ${Math.round(1 / d.p_perfect)})` : "Pre-game odds in the table below"}</span></div>`;
+  $("#m1-games-note").textContent = "Odds are pre-game, from games played before each date";
+  $("#m1-games").innerHTML = `<thead><tr><th>Date</th><th>Opponent</th><th class="n">Opp M1 rank</th><th>Result</th><th class="n">Shots</th><th class="n">PP</th><th class="n">Sv %</th><th class="n">Pre-game odds</th><th class="n">Surprise</th></tr></thead><tbody>` +
+    d.games.map((x) => `<tr><td class="num">${dstr(x.date)}</td><td class="team">${x.home ? "vs" : "at"} ${esc(x.opponent)}</td><td class="n">${x.opp_m1_rank ? "#" + x.opp_m1_rank : "–"}</td>
+      <td><span class="pill ${x.result === "W" ? "good" : x.result === "L" ? "bad" : "neutral"}">${x.result} ${x.gf}-${x.ga}${x.ot ? " OT" : ""}</span></td>
+      <td class="n">${x.shots_for != null ? x.shots_for + "-" + x.shots_against : "–"}</td><td class="n">${x.pp || "–"}</td><td class="n">${x.save_pct != null ? x.save_pct.toFixed(3) : "–"}</td>
+      ${probCell(x.p_osu)}<td class="n">${x.surprise_bits.toFixed(1)} bits</td></tr>`).join("") + `</tbody>`;
+  const S = d.stats, cols = [["OSU all games", S.osu_all], ["OSU vs M1", S.osu_vs_m1], ["M1 top 5", S.m1_top5], ["M1 top 25", S.m1_top25], ["M1 average", S.m1_all]];
+  const f1 = (x) => x == null ? "–" : x.toFixed(1), f3 = (x) => x == null ? "–" : x.toFixed(3), fp = (x) => x == null ? "–" : Math.round(100 * x) + "%";
+  const rows = [["Goals for", "gf", f1], ["Goals against", "ga", f1], ["Shots for", "shots_for", f1], ["Shots against", "shots_against", f1], ["Shot share", "shot_share", fp], ["Team save %", "save_pct", f3], ["Power play %", "pp_pct", fp], ["Penalty kill %", "pk_pct", fp]];
+  $("#m1-stats").innerHTML = `<thead><tr><th>Per game</th>${cols.map(([c]) => `<th class="n">${c}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map(([lab, k, f]) => `<tr><td>${lab}</td>${cols.map(([c, v], i) => `<td class="n"${i < 2 ? ' style="font-weight:600"' : ""}>${v ? f(v[k]) : "–"}</td>`).join("")}</tr>`).join("") + `</tbody>`;
+  $("#m1-stats-note").textContent = `Raw numbers come from each team's own schedule: OSU plays mostly M2 opponents, so "OSU all games" flatters OSU; "OSU vs M1" is the fairer comparison but only ${S.osu_vs_m1 ? S.osu_vs_m1.games : 0} games. The shared-scale rank above adjusts for schedule. M1 groups use our rebuild of ACHA's current M1 computer ranking; box scores cover ${Math.round(100 * d.stats_coverage)}% of M1 games.`;
+  $("#m1-comb-note").textContent = `${d.combined_m1} M1 · ${d.combined_m2} M2`;
+  $("#m1-comb").innerHTML = `<thead><tr><th class="n">#</th><th>Team</th><th>Division</th><th class="n">Strength</th></tr></thead><tbody>` +
+    d.combined.map((r) => `<tr class="${r.team === "Oklahoma State" ? "focus" : ""}"><td class="n">${r.rank}</td><td class="team">${esc(r.team)}</td><td>${r.div === 1 ? `<span class="pill neutral">M1</span> <span class="muted num">#${r.div_rank ?? "–"}</span>` : `<span class="pill accent">M2</span> <span class="muted num">${r.region || ""} #${r.div_rank ?? "–"}</span>`}</td><td class="n">${r.strength.toFixed(2)}</td></tr>`).join("") + `</tbody>`;
+  const top = sc.top.slice(), osuS = d.osu.strength; let placed = false;
+  $("#m1-top").innerHTML = `<thead><tr><th class="n">#</th><th>Team</th><th class="n">M1 rank</th><th class="n">Strength</th></tr></thead><tbody>` +
+    top.map((r, i) => { let pre = ""; if (!placed && osuS > r.strength) { placed = true; pre = `<tr class="focus"><td class="n">${i + 1}</td><td class="team">Oklahoma State <span class="pill accent">M2</span></td><td class="n">–</td><td class="n">${osuS.toFixed(2)}</td></tr>`; }
+      return pre + `<tr><td class="n">${i + 1 + (placed ? 1 : 0)}</td><td class="team">${esc(r.team)}</td><td class="n">${r.m1_rank ? "#" + r.m1_rank : "–"}</td><td class="n">${r.strength.toFixed(2)}</td></tr>`; }).join("") +
+    (placed ? "" : `<tr><td colspan="4" class="muted" style="font-size:.82rem">OSU (${osuS.toFixed(2)}) sits at #${sc.rank}, just below this list.</td></tr>`) + `</tbody>`;
+  $("#m1-gapadj").textContent = d.model.gap_12.toFixed(2);
+  const gs = d.gaps.filter((x) => x.anchored);
+  gapChart(gs);
+  $("#m1-gap").innerHTML = `<thead><tr><th>Season</th><th class="n">Top-25 gap</th><th class="n">All-teams gap</th><th class="n">M2 vs M1</th><th class="n">M2 win rate</th></tr></thead><tbody>` +
+    gs.map((x) => `<tr><td class="num">${x.season}</td><td class="n">${x.top25_gap.toFixed(2)}</td><td class="n">${x.gap.toFixed(2)}</td><td class="n">${x.m2_w}-${x.m2_l}${x.m2_t ? "-" + x.m2_t : ""}</td><td class="n">${P(x.m2_win_rate)}</td></tr>`).join("") + `</tbody>`;
+}
+function gapChart(gaps) {
+  const svg = $("#m1-gap-chart"), W = 420, H = 200, m = { l: 34, r: 8, t: 14, b: 26 }, NS = "http://www.w3.org/2000/svg";
+  svg.innerHTML = "";
+  const mk = (tag, a, txt) => { const n = document.createElementNS(NS, tag); for (const k in a) n.setAttribute(k, a[k]); if (txt != null) n.textContent = txt; svg.appendChild(n); return n; };
+  const cs = getComputedStyle(document.documentElement), col = (v) => cs.getPropertyValue(v).trim();
+  const max = Math.max(3, Math.ceil(Math.max(...gaps.map((g) => g.top25_gap)))), iw = W - m.l - m.r, ih = H - m.t - m.b, y = (v) => m.t + ih - v / max * ih;
+  for (let v = 0; v <= max; v++) { mk("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: col("--line"), "stroke-width": 1 }); mk("text", { x: m.l - 6, y: y(v) + 4, "text-anchor": "end", "font-size": 10, fill: col("--muted"), "font-family": "IBM Plex Mono, monospace" }, v); }
+  const bw = iw / gaps.length;
+  gaps.forEach((g, i) => {
+    const cx = m.l + bw * i + bw / 2, w = Math.min(34, bw * .55), top = y(g.top25_gap), base = y(0), r = 4;
+    mk("path", { d: `M${cx - w / 2},${base} V${top + r} Q${cx - w / 2},${top} ${cx - w / 2 + r},${top} H${cx + w / 2 - r} Q${cx + w / 2},${top} ${cx + w / 2},${top + r} V${base} Z`, fill: col("--accent"), opacity: i === gaps.length - 1 ? 1 : .7 });
+    mk("text", { x: cx, y: top - 5, "text-anchor": "middle", "font-size": 10, fill: col("--fg"), "font-family": "IBM Plex Mono, monospace" }, g.top25_gap.toFixed(1));
+    mk("text", { x: cx, y: H - 8, "text-anchor": "middle", "font-size": 10, fill: col("--muted"), "font-family": "IBM Plex Mono, monospace" }, g.season.slice(2));
+    const hit = mk("rect", { x: cx - bw / 2, y: m.t, width: bw, height: ih, fill: "transparent" }); const t = document.createElementNS(NS, "title"); t.textContent = `${g.season}: top-25 M1 ${g.top25_gap.toFixed(2)} goals better than top-25 M2; M2 ${g.m2_w}-${g.m2_l}${g.m2_t ? "-" + g.m2_t : ""} vs M1`; hit.appendChild(t);
+  });
+  mk("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: col("--muted"), "stroke-width": 1 });
 }
 
 // ---------- What-if tab ----------

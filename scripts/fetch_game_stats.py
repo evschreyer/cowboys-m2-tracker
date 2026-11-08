@@ -1,6 +1,7 @@
 """Download and compact box-score stats for the games the M1 study needs.
 
-Selection (per season): every M1-vs-M2 game, plus every game played by the focus team.
+Selection (per season): every M1-vs-M2 game, plus every game played by the focus team;
+in the current season, every game involving an M1 team.
 Usage: python3 scripts/fetch_game_stats.py [--seasons 2025-26 2026-27] [--refresh-feed]
 Writes data/game_stats/<season>.json  ({game_id: compact stats}).
 """
@@ -21,8 +22,11 @@ FOCUS = "M2 Oklahoma State University"
 
 
 def selected(season: str, refresh: bool) -> list:
+    """Every M1-vs-M2 game and every focus-team game; in the current season also every game
+    involving an M1 team (for the OSU-vs-M1 stat comparison)."""
+    current = season == list(MEN_SEASONS)[-1]
     return [g for g in games(season, refresh=refresh)
-            if {g.hdiv, g.adiv} == {1, 2} or FOCUS in (g.home, g.away)]
+            if {g.hdiv, g.adiv} == {1, 2} or FOCUS in (g.home, g.away) or (current and 1 in (g.hdiv, g.adiv))]
 
 
 def main():

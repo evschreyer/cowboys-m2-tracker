@@ -133,3 +133,10 @@ Context: OSU were the 2026 M2 national runner-up (lost 3-2 in OT to FGCU) and fi
 - **OSU's 6-0 vs M1 this season:** pre-game P(win) of 49%, 59%, 75%, 59%, 64% and 24%. The chance of sweeping all six was 2.0% (1 in 51).
 - **OSU on the M1 scale after Nov 6** (M1 strengths + 0.65): about **#8 of 81 M1 teams**. That is more conservative than the uncalibrated estimate (#3) and the guest-ranking estimate (#1). On this scale OSU leads M2 by 1.5 goals over #2 Lindenwood.
 - Game 2 at Ohio (Nov 7): pre-game P(OSU win) = 27%.
+
+## 9. vs-M1 tab and data-quality fixes (M1 study step 5, 2026-11-07)
+- After the Ohio sweep (3-2, 3-1), OSU is 7-0 vs M1 in 2026-27. The pre-game odds of a perfect run were 0.54% (1 in 187).
+- On the shared scale OSU is #7 of 81 M1 teams. A Monte Carlo over strength uncertainty (sd = sigma/sqrt(GP + k)) gives an 80% range of #3-#14, a 95% range of #2-#18, and a 76% chance of being top 10.
+- Gap between the average top-25 M1 and top-25 M2 team, including the +0.65 adjustment: 2022-23 1.27, 2023-24 1.26, 2024-25 1.89, 2025-26 2.39, 2026-27 2.22 goals. The all-teams gap is larger (2.4-3.5) partly because M2 keeps adding new, weaker teams. 2021-22 is excluded: it has no prior season, so every division started level and its gap reads too small (0.6 top-25).
+- **Data guard added** (`engine.engine.plausible_final`): skip games dated after today and 0-0 "Unofficial Final" placeholders. Two JMU M2 games (Nov 14 and Jan 23) had been counted as 0-0 ties. Backtests are unchanged.
+- **Save % fix:** team save % now uses goals against only from games where shots were tracked.

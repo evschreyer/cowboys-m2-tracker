@@ -29,6 +29,7 @@ def main():
     shutil.copy(os.path.join(ROOT, "engine/engine.js"), OUT)
     shutil.copy(os.path.join(ROOT, "data/snapshots/latest.json"), OUT)
     shutil.copy(os.path.join(ROOT, "data/case_study_ohio.json"), OUT)
+    shutil.copy(os.path.join(ROOT, "data/m1_compare.json"), OUT)
     with open(os.path.join(OUT, "robots.txt"), "w") as f:
         f.write("User-agent: *\nDisallow: /\n")
     open(os.path.join(OUT, ".nojekyll"), "w").close()

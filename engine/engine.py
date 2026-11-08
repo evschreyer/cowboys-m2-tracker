@@ -74,6 +74,18 @@ class TeamRating:
     opponents: list = field(default_factory=list)
 
 
+def plausible_final(g: dict, today: str | None = None) -> bool:
+    """Reject placeholder 'finals': games dated in the future, and 0-0 'Unofficial Final' entries
+    (seen in 2026-27: JMU games marked Unofficial Final 0-0 weeks before they were played)."""
+    import datetime as _dt
+    today = today or _dt.date.today().isoformat()
+    if g["date_played"] > today:
+        return False
+    if g["game_status"] == "Unofficial Final" and g["home_goal_count"] in ("0", 0) and g["visiting_goal_count"] in ("0", 0):
+        return False
+    return True
+
+
 def m2_name(feed_name: str) -> str | None:
     return feed_name[4:].strip() if feed_name.startswith("MD2 ") else None
 
@@ -110,6 +122,8 @@ def games_from_feed(schedule: list[dict], cutoff: str, overrides: dict | None = 
             forfeits.append({"id": gid, "date": g["date_played"], "home": h, "away": a, "forfeiter": forfeiter})
             continue
         if st not in FINAL_STATUSES and gid not in fixes:
+            continue
+        if gid not in fixes and not plausible_final(g):
             continue
         hg, ag = int(g["home_goal_count"]), int(g["visiting_goal_count"])
         if gid in fixes:

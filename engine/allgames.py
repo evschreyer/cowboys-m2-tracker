@@ -12,6 +12,8 @@ import re
 import urllib.request
 from dataclasses import dataclass
 
+from engine.engine import plausible_final
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # HockeyTech season ids for the men's regular season ("Men's Divisions")
@@ -81,7 +83,7 @@ def games(season: str, through: str = "9999-12-31", divisions: set[int] | None =
     are in the set; None = every game between two ACHA men's teams."""
     out = []
     for g in load_feed(season, refresh):
-        if g["game_status"] not in FINAL or g["date_played"] > through:
+        if g["game_status"] not in FINAL or g["date_played"] > through or not plausible_final(g):
             continue
         hd, h = parse_team(g["home_team_name"])
         ad, a = parse_team(g["visiting_team_name"])

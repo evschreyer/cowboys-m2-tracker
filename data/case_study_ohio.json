@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07T19:00",
+ "generated_at": "2026-11-07T20:14",
  "model": {
   "params": {
    "k": 2,
@@ -119,7 +119,7 @@
      0.0,
      0.125
     ],
-    "mean_model_p": 0.1411
+    "mean_model_p": 0.14109999999999995
    },
    {
     "tier": "6-10",
@@ -145,7 +145,7 @@
      0.175,
      0.45
     ],
-    "mean_model_p": 0.32826
+    "mean_model_p": 0.3282599999999999
    },
    {
     "tier": "26+",
@@ -158,7 +158,7 @@
      0.3279569892473118,
      0.44086021505376344
     ],
-    "mean_model_p": 0.4333297491039427
+    "mean_model_p": 0.43332974910394223
    }
   ],
   "overall_m2_win_rate": 0.34236453201970446,
@@ -697,7 +697,7 @@
   }
  },
  "standing": {
-  "osu_strength": 7.114875249576333,
+  "osu_strength": 7.117200610305129,
   "m1_scale_rank": 7,
   "m1_teams": 81,
   "m1_top": [
@@ -711,7 +711,7 @@
    },
    {
     "team": "Minot State",
-    "strength": 7.73
+    "strength": 7.74
    },
    {
     "team": "Nevada-Las Vegas",

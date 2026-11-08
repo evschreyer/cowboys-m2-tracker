@@ -76,7 +76,7 @@ def bootstrap_ci(ys: list[float], n: int = 4000, seed: int = 7) -> tuple[float, 
 
 def team_season_profile(team: str, season_games: list, stats: dict, exclude: set[str]) -> dict:
     """Per-game averages from box scores (shots only where tracked)."""
-    gf = ga = sf = sa = ppg = ppo = ppga = ppoa = n = ns = 0
+    gf = ga = ga_t = sf = sa = ppg = ppo = ppga = ppoa = n = ns = 0
     for g in season_games:
         if team not in (g.home, g.away) or g.id in exclude or g.id not in stats:
             continue
@@ -86,9 +86,9 @@ def team_season_profile(team: str, season_games: list, stats: dict, exclude: set
         gf += me["goals"] or 0; ga += opp["goals"] or 0
         ppg += me["ppg"] or 0; ppo += me["ppo"] or 0; ppga += opp["ppg"] or 0; ppoa += opp["ppo"] or 0
         if st["shots_ok"]:
-            ns += 1; sf += me["shots"]; sa += opp["shots"]
+            ns += 1; sf += me["shots"]; sa += opp["shots"]; ga_t += opp["goals"] or 0
     return dict(games=n, gf=gf / n, ga=ga / n, shots_for=sf / ns if ns else None, shots_against=sa / ns if ns else None,
-                shot_share=sf / (sf + sa) if ns else None, save_pct=1 - (ga / sa) if sa else None,
+                shot_share=sf / (sf + sa) if ns else None, save_pct=1 - ga_t / sa if sa else None,
                 pp_pct=ppg / ppo if ppo else None, pk_pct=1 - ppga / ppoa if ppoa else None, shot_games=ns)
 
 

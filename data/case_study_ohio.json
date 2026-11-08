@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07T19:56",
+ "generated_at": "2026-11-07T21:36",
  "model": {
   "params": {
    "k": 2,
@@ -245,7 +245,7 @@
    "margin_m2": -1.859,
    "strength_gap": -0.881,
    "rank_source": "current",
-   "p_m2": 0.2705,
+   "p_m2": 0.2706,
    "surprise_bits": 1.886,
    "osu": true,
    "ohio_series": true,
@@ -517,14 +517,14 @@
    "margin_m2": -1.859,
    "strength_gap": -0.881,
    "rank_source": "current",
-   "p_m2": 0.2705,
+   "p_m2": 0.2706,
    "surprise_bits": 1.886,
    "osu": true,
    "ohio_series": true,
    "upset_rank": 4
   }
  ],
- "p_osu_perfect_vs_m1": 0.005359255746416061,
+ "p_osu_perfect_vs_m1": 0.0053612369869877495,
  "series": [
   {
    "id": "31985",
@@ -663,7 +663,7 @@
    "osu_home": false,
    "venue": "Bird Arena (OH)",
    "attendance": 1250,
-   "p_osu": 0.2705,
+   "p_osu": 0.2706,
    "result": "W",
    "m1_rank": 3,
    "expected_ga_at_season_sv": 2.91,
@@ -697,49 +697,49 @@
   }
  },
  "standing": {
-  "osu_strength": 7.118727712352009,
+  "osu_strength": 7.130187182669006,
   "m1_scale_rank": 7,
   "m1_teams": 81,
   "m1_top": [
    {
     "team": "Drury",
-    "strength": 8.48
+    "strength": 8.51
    },
    {
     "team": "Ohio",
-    "strength": 8.25
+    "strength": 8.23
    },
    {
     "team": "Minot State",
-    "strength": 7.8
+    "strength": 7.81
    },
    {
     "team": "Nevada-Las Vegas",
-    "strength": 7.37
+    "strength": 7.38
+   },
+   {
+    "team": "Liberty",
+    "strength": 7.35
    },
    {
     "team": "Niagara",
     "strength": 7.35
    },
    {
-    "team": "Liberty",
-    "strength": 7.23
-   },
-   {
     "team": "Adrian",
-    "strength": 6.87
+    "strength": 6.9
    },
    {
     "team": "Maryville",
     "strength": 6.77
    },
    {
-    "team": "Jamestown",
-    "strength": 6.74
+    "team": "Calvin",
+    "strength": 6.72
    },
    {
-    "team": "Calvin",
-    "strength": 6.7
+    "team": "Jamestown",
+    "strength": 6.66
    }
   ],
   "guest_rank": 1,

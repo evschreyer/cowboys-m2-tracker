@@ -1,0 +1,32 @@
+{
+  "_help": "Case Studies portfolio. Newest first. type: 'living' (updates with every refresh) or 'snapshot' (fixed analysis of an event). Pages live in dashboard/ and are copied by scripts/build_site.py.",
+  "reports": [
+    {
+      "id": "significance",
+      "title": "How significant is Oklahoma State's season?",
+      "type": "living",
+      "date": "2026-11-07",
+      "url": "significance.html",
+      "summary": "The evidence ladder: which claims about OSU are proven, likely or not yet (better than an average M1 team, M1's top 25, the best M2 teams ever), tracked week by week, with M2 history, dominance measures and the title rivals.",
+      "data": "significance.json"
+    },
+    {
+      "id": "ohio-analysis",
+      "title": "The Ohio sweep, by the numbers",
+      "type": "snapshot",
+      "date": "2026-11-07",
+      "url": "ohio-analysis.html",
+      "summary": "Full analytical case study of OSU's 3-2 and 3-1 wins at No. 3 M1 Ohio: rarity, odds, how it was won, players, head-to-head vs M1's top 10, title odds and robustness checks.",
+      "stat": "Only M2 sweep of a top-5 M1 team since 2021-22"
+    },
+    {
+      "id": "ohio-summary",
+      "title": "OSU at Ohio: case study summary",
+      "type": "snapshot",
+      "date": "2026-11-07",
+      "url": "case-study-ohio.html",
+      "summary": "The short version: historical base rate vs OSU's pre-game odds, the biggest M2 upsets of M1 top-10 teams, the box score against each team's norms.",
+      "stat": "24% pre-game, vs a 4% historical rate"
+    }
+  ]
+}

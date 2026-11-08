@@ -61,3 +61,13 @@ Probability that OSU is the strongest M2 team-season of the anchored era: **48%*
 - Consistency: the distribution of OSU's game-level performance.
 - Head-to-head with Lindenwood (OSU 2-0 this season) and Penn State or other national contenders.
 - Opponent-adjusted special teams.
+
+## Round 2 (2026-11-07): consistency, rivals, tracker. Built as the living report `significance.html`
+- **Per-game performance** = capped margin + opponent strength, adjusted for home and division. OSU played at M1 #25 level or better in 14 of 15 games (93%) and at M1 #10 level in 67%. 93% is the highest share among the top 8 M2 teams of every anchored season (40 team-seasons). Game-to-game variance is high (blowouts and the Jamestown loss), so "consistency" in the low-variance sense is not OSU's story.
+- **Time leading (regulation, from goal events):** OSU led 76% of minutes this season, more than every M1 team (UNLV 74%). It trailed 11% and never trailed in 12 of 15 games. Against M1 opponents only: led 84%, trailed 3%, never trailed in 6 of 7.
+- **Tracker** (ladder recomputed weekly):
+  - "Better than an average M1 team" was strong by Oct 4 and proven by Oct 18.
+  - "Better than M1 #25" was strong by Oct 25 and is at z = 2.98 on Nov 8, just short of proven (3.0).
+- **Rivals:** OSU is favored on neutral ice against every title contender. The closest is Lindenwood, at 70% for OSU. OSU beat Lindenwood 9-4 and 7-6 (OT); the rematch is at Lindenwood Jan 23-24 (67% each). Tampa is Feb 5-6 (81%).
+- **Likely Nationals opponents (simulation):** FGCU 35% and Liberty 32% in OSU's pool. In the final, Lindenwood 16%.
+- **Portfolio:** the dashboard's Case Studies tab lists reports from `data/reports.json`. The Significance Report is the first living report; the two Ohio pages are snapshots.

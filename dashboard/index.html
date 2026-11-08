@@ -185,6 +185,14 @@ input[type="number"] { width: 3.4em; font-family: var(--font-data); text-align: 
 .pool ol { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 2px; font-size: .86rem; }
 .pool li { display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 6px; padding: 3px 4px; border-radius: 3px; }
 .pool li .rg { font: .75rem var(--font-data); color: var(--muted); }
+.report { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 18px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--line); border-radius: var(--radius); padding: 16px; text-decoration: none; color: var(--fg); }
+.report.living { border-left-color: var(--accent); }
+.report:hover { border-color: var(--accent); }
+.report h3 { font-size: 1.3rem; text-transform: none; letter-spacing: 0; }
+.report .meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: .82rem; color: var(--muted); }
+.report .stat { font: 600 .9rem var(--font-body); color: var(--accent-ink); }
+.report .go { font: 600 .85rem var(--font-display); text-transform: uppercase; letter-spacing: .06em; color: var(--accent-ink); white-space: nowrap; }
+@media (max-width: 560px) { .report { grid-template-columns: 1fr; } }
 .timeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 700px) { .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .prose ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
@@ -197,7 +205,7 @@ pre.formula { background: var(--surface-2); border: 1px solid var(--line); borde
   <div class="wrap">
     <div class="board-top">
       <div class="brand"><h1>Cowboys <span>M2</span> Tracker</h1><span class="label" style="color:#b9bbb7">Oklahoma State · ACHA Men's D2 · West</span></div>
-      <div style="display:flex;gap:16px;align-items:baseline;flex-wrap:wrap"><a href="case-study-ohio.html" style="color:var(--accent);font:600 .85rem var(--font-display);text-transform:uppercase;letter-spacing:.06em;text-decoration:none">Case study: OSU at Ohio →</a><div class="stamp" id="stamp">Loading data…</div></div>
+      <div style="display:flex;gap:16px;align-items:baseline;flex-wrap:wrap"><a href="#cases" onclick="showTab('cases');return false;" style="color:var(--accent);font:600 .85rem var(--font-display);text-transform:uppercase;letter-spacing:.06em;text-decoration:none">Case studies →</a><div class="stamp" id="stamp">Loading data…</div></div>
     </div>
     <nav class="tabs" role="tablist" aria-label="Dashboard sections">
       <button role="tab" id="t-osu" aria-controls="osu" aria-selected="true">OSU Breakdown</button>
@@ -207,6 +215,7 @@ pre.formula { background: var(--surface-2); border: 1px solid var(--line); borde
       <button role="tab" id="t-whatif" aria-controls="whatif" aria-selected="false">What-If</button>
       <button role="tab" id="t-proj" aria-controls="proj" aria-selected="false">Projections</button>
       <button role="tab" id="t-post" aria-controls="post" aria-selected="false">Postseason</button>
+      <button role="tab" id="t-cases" aria-controls="cases" aria-selected="false">Case Studies</button>
       <button role="tab" id="t-method" aria-controls="method" aria-selected="false">Method</button>
     </nav>
   </div>
@@ -436,6 +445,15 @@ pre.formula { background: var(--surface-2); border: 1px solid var(--line); borde
     </div>
   </section>
 
+  <!-- Case studies portfolio -->
+  <section class="tab" id="cases" role="tabpanel" aria-labelledby="t-cases" hidden>
+    <div class="panel">
+      <div class="panel-head"><h2>Case studies</h2><span class="muted" style="font-size:.85rem">Research reports on the 2026-27 season</span></div>
+      <p class="muted" style="font-size:.88rem">Living reports update with every refresh; snapshot reports analyze a specific event and keep their original findings, with data that updates where noted.</p>
+    </div>
+    <div id="cases-list" style="display:grid;gap:14px"><div class="loading">Loading reports…</div></div>
+  </section>
+
   <!-- Method -->
   <section class="tab" id="method" role="tabpanel" aria-labelledby="t-method" hidden>
     <div class="grid-2">
@@ -532,7 +550,7 @@ function init(snap) {
   renderOSU(); renderRankings(); setupNational(); setupWhatIf(); setupProj(); renderMethod();
   document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => showTab(b.getAttribute("aria-controls"))));
   const h = location.hash.replace("#", "");
-  showTab(["osu", "rank", "nat", "m1", "whatif", "proj", "post", "method"].includes(h) ? h : "osu");
+  showTab(["osu", "rank", "nat", "m1", "whatif", "proj", "post", "cases", "method"].includes(h) ? h : "osu");
 }
 
 function compute(games, opts) {
@@ -549,6 +567,7 @@ function showTab(id) {
   if (id === "proj" && !state.proj) runProjection();
   if (id === "m1") loadM1();
   if (id === "post") loadPost();
+  if (id === "cases") loadCases();
 }
 
 function buildSeg(sel, key, onChange) {
@@ -826,6 +845,32 @@ function gapChart(gaps) {
     const hit = mk("rect", { x: cx - bw / 2, y: m.t, width: bw, height: ih, fill: "transparent" }); const t = document.createElementNS(NS, "title"); t.textContent = `${g.season}: top-25 M1 ${g.top25_gap.toFixed(2)} goals better than top-25 M2; M2 ${g.m2_w}-${g.m2_l}${g.m2_t ? "-" + g.m2_t : ""} vs M1`; hit.appendChild(t);
   });
   mk("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: col("--muted"), "stroke-width": 1 });
+}
+
+// ---------- Case studies tab ----------
+let CASES = null;
+function loadCases() {
+  if (CASES) return;
+  CASES = "loading";
+  fetch("reports.json").then((r) => { if (!r.ok) throw 0; return r.json(); }).then(async (d) => {
+    CASES = d;
+    const live = {};
+    await Promise.all(d.reports.filter((r) => r.data).map((r) => fetch(r.data).then((x) => x.ok ? x.json() : null).then((j) => { live[r.id] = j; }).catch(() => {})));
+    $("#cases-list").innerHTML = d.reports.map((r) => {
+      let stat = r.stat ? esc(r.stat) : "", updated = "";
+      const j = live[r.id];
+      if (r.id === "significance" && j) {
+        const proven = j.ladder.rows.filter((x) => x.verdict === "Proven").map((x) => x.label.replace(/^An? /, "").replace(/ \(.*\)$/, ""));
+        const nxt = j.ladder.rows.find((x) => x.verdict !== "Proven");
+        stat = `Proven: better than ${proven.join(" and ") || "–"}${nxt ? ` · next: ${esc(nxt.label.replace(/ \(.*\)$/, ""))} (z ${nxt.z.toFixed(2)})` : ""}`;
+        updated = `Updated ${new Date(j.generated_at).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`;
+      }
+      return `<a class="report ${r.type}" href="${esc(r.url)}"><div style="display:grid;gap:6px;min-width:0">
+          <div class="meta"><span class="pill ${r.type === "living" ? "accent" : "neutral"}">${r.type === "living" ? "Living report" : "Snapshot"}</span><span>${dstr(r.date)}, ${r.date.slice(0, 4)}</span>${updated ? `<span>· ${updated}</span>` : ""}</div>
+          <h3>${esc(r.title)}</h3><p class="muted" style="font-size:.92rem">${esc(r.summary)}</p>${stat ? `<span class="stat">${stat}</span>` : ""}</div>
+        <span class="go">Open report →</span></a>`;
+    }).join("");
+  }).catch(() => { CASES = null; $("#cases-list").innerHTML = `<p class="muted">Couldn't load the reports list. Reload the page to try again.</p>`; });
 }
 
 // ---------- Postseason tab ----------

@@ -147,6 +147,7 @@ def main():
     s_sd = {t: FITTED.sigma / math.sqrt(gp.get(key(t), 0) + FITTED.k) for t in teams}
 
     stats = defaultdict(Counter)
+    osu_opp = dict(pool=Counter(), semi=Counter(), final=Counter())
     region_rank = defaultdict(Counter)
     for _ in range(args.sims):
         true = {t: s_hat[t] + s_sd[t] * rng.gauss(0, 1) for t in teams}
@@ -194,6 +195,10 @@ def main():
         pool_winners = []
         for _, members in POOLS.items():
             ts = [nats[k] for k in members]
+            if OSU in ts:
+                for t in ts:
+                    if t != OSU:
+                        osu_opp["pool"][t] += 1
             pts = Counter(); wins = Counter(); gd = Counter(); h2h = {}
             for i in range(4):
                 for j in range(i + 1, 4):
@@ -219,8 +224,12 @@ def main():
         sf = sorted(pool_winners, key=lambda t: -rating[t])
         finalists = []
         for a, b in ((sf[0], sf[3]), (sf[1], sf[2])):
+            if OSU in (a, b):
+                osu_opp["semi"][b if a == OSU else a] += 1
             hg, ag, _ = play(rng, true[a], true[b], 0.0, FITTED.sigma)
             finalists.append(a if hg > ag else b)
+        if OSU in finalists:
+            osu_opp["final"][finalists[1] if finalists[0] == OSU else finalists[0]] += 1
         for t in finalists:
             stats[t]["final"] += 1
         hg, ag, _ = play(rng, true[finalists[0]], true[finalists[1]], 0.0, FITTED.sigma)
@@ -261,6 +270,7 @@ def main():
                               p_top16=round(sum(v for k, v in region_rank[t].items() if k <= 16) / N, 4),
                               eligible=t in eligible, sched=sched[t])
                       for t in teams if regions.get(t)},
+               osu_opponents={k: [dict(team=short("M2 " + t), region=regions.get(t), p=round(c / N, 4)) for t, c in v.most_common(8)] for k, v in osu_opp.items()},
                final_ranking_date=FINAL_DAY, min_m2_games=MIN_M2, pools={k: [f"{r} {n}" for r, n in v] for k, v in POOLS.items()}, contenders=[row(t) for t in contenders], west=[row(t) for t in west],
                champions=champs, osu_vs_champions=osu_now,
                solver_check=round(float(max(abs(fr[fast.ix[t]] - (eng[t].total + eng[t].otadj + eng[t].awp)) for t in eng)), 4),

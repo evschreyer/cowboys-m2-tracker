@@ -74,18 +74,19 @@ jobs:
           python3 scripts/build_deep_dive.py
           python3 scripts/build_deep_dive_extra.py
           python3 scripts/simulate_title.py --sims 3000
+          python3 scripts/build_significance.py
       - name: Detect change
         id: check
         run: |
           NEW=$(python3 -c "import json;print(json.load(open('data/snapshots/latest.json'))['data_hash'])")
-          EXTRA=$(git status --porcelain data/game_stats data/case_study_ohio.json data/m1_compare.json data/ohio_deep_dive.json data/ohio_extra.json data/title_odds.json)
+          EXTRA=$(git status --porcelain data/game_stats data/case_study_ohio.json data/m1_compare.json data/ohio_deep_dive.json data/ohio_extra.json data/title_odds.json data/significance.json)
           if [ "$NEW" != "${{ steps.before.outputs.hash }}" ] || [ -n "$EXTRA" ] || [ "${{ github.event_name }}" != "schedule" ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; else echo "changed=false" >> "$GITHUB_OUTPUT"; fi
       - name: Commit snapshot
         if: steps.check.outputs.changed == 'true'
         run: |
           git config user.name "m2-tracker-bot"
           git config user.email "m2-tracker-bot@users.noreply.github.com"
-          git add data/snapshots data/game_stats data/case_study_ohio.json data/m1_compare.json data/ohio_deep_dive.json data/ohio_extra.json data/title_odds.json
+          git add data/snapshots data/game_stats data/case_study_ohio.json data/m1_compare.json data/ohio_deep_dive.json data/ohio_extra.json data/title_odds.json data/significance.json
           git diff --cached --quiet || git commit -m "Refresh rankings snapshot $(date +'%Y-%m-%d %H:%M %Z')"
           git push
       - name: Build site

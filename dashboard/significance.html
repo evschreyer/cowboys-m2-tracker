@@ -1,0 +1,364 @@
+<title>OSU Significance Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: living research report. Scoreboard strip, the evidence ladder first (the thesis), then the tracker and the supporting evidence sections. */
+:root {
+  --bg: #f1f2f1; --surface: #ffffff; --surface-2: #f6f6f4; --line: #dcdedb; --grid: #e6e7e4;
+  --fg: #17181a; --muted: #5f6460; --ref: #8a8f8a;
+  --accent: #ff6b00; --accent-ink: #b84a00; --accent-soft: #ffe7d6;
+  --ink-strong: #0d0d0e; --on-ink: #f4f4f2;
+  --good: #1f7a4d; --bad: #b3261e;
+  --font-display: "Saira Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --radius: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111213; --surface: #1a1b1d; --surface-2: #212225; --line: #2f3135; --grid: #2a2c30;
+  --fg: #ececea; --muted: #a2a6a2; --ref: #7d827d; --accent: #ff7a1a; --accent-ink: #ff9a4d; --accent-soft: #3a2414;
+  --ink-strong: #000000; --on-ink: #f4f4f2; --good: #5cc98f; --bad: #ff8a80; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #111213; --surface: #1a1b1d; --surface-2: #212225; --line: #2f3135; --grid: #2a2c30;
+  --fg: #ececea; --muted: #a2a6a2; --ref: #7d827d; --accent: #ff7a1a; --accent-ink: #ff9a4d; --accent-soft: #3a2414;
+  --ink-strong: #000000; --on-ink: #f4f4f2; --good: #5cc98f; --bad: #ff8a80; color-scheme: dark; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font: 400 16px/1.55 var(--font-body); margin: 0; }
+.wrap { max-width: 960px; margin: 0 auto; padding-inline: 16px; padding-block: 0 64px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; margin: 0; line-height: 1.1; text-wrap: balance; }
+h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); text-transform: uppercase; }
+h2 { font-size: 1.5rem; text-transform: uppercase; }
+h3 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .04em; }
+p { margin: 0; max-width: 70ch; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.muted { color: var(--muted); }
+.label { font: 600 .76rem var(--font-display); text-transform: uppercase; letter-spacing: .09em; color: var(--muted); }
+.num { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+.board { background: var(--ink-strong); color: var(--on-ink); }
+.board .wrap { padding-block: 16px 26px; display: grid; gap: 10px; }
+.crumbs { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: .88rem; }
+.crumbs a { color: #c9cbc7; text-decoration: none; }
+.crumbs a:hover { color: #fff; }
+.board h1 span { color: var(--accent); }
+.board p { color: #c9cbc7; }
+.strip { display: flex; flex-wrap: wrap; gap: 8px 22px; font: 500 .9rem var(--font-data); color: #e3e4e1; }
+.strip b { color: var(--accent); }
+main .wrap { display: grid; gap: 40px; padding-top: 28px; }
+section { display: grid; gap: 14px; }
+.eyebrow { font: 600 .8rem var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink); }
+.findings { counter-reset: f; list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.findings li { counter-increment: f; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 10px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+.findings li::before { content: counter(f, decimal-leading-zero); font: 700 1.25rem/1.2 var(--font-display); color: var(--accent-ink); }
+.findings b.h { display: block; font: 700 1.08rem/1.25 var(--font-display); text-transform: uppercase; letter-spacing: .02em; margin-bottom: 2px; }
+.findings a { font-size: .85rem; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; min-width: 0; display: grid; gap: 10px; }
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+@media (max-width: 720px) { .pair { grid-template-columns: 1fr; } }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th { font: 600 .72rem var(--font-display); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td.w { white-space: normal; }
+th.n, td.n { text-align: right; font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+tr.hl td { background: var(--accent-soft); font-weight: 600; }
+.note { font-size: .85rem; color: var(--muted); max-width: 72ch; }
+.claim { font-size: 1.05rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: .82rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.k { display: inline-block; width: 18px; height: 0; border-top: 2px solid var(--ref); }
+.k.a { border-top: 3px solid var(--accent); }
+.k.d { border-top-style: dashed; }
+.k.o { border-top-style: dotted; }
+svg { width: 100%; height: auto; display: block; }
+svg text { font-family: var(--font-data); fill: var(--muted); font-size: 11px; }
+svg text.l { fill: var(--fg); }
+.tip { position: fixed; pointer-events: none; background: var(--ink-strong); color: var(--on-ink); font: 500 .8rem/1.4 var(--font-body); padding: 6px 9px; border-radius: 4px; z-index: 10; max-width: 280px; }
+ol.method { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; max-width: 74ch; }
+.loading { padding: 60px 0; text-align: center; color: var(--muted); }
+
+.ladder { display: grid; gap: 8px; }
+.rung { display: grid; grid-template-columns: minmax(0, 1.4fr) 6.5em minmax(120px, 1fr) 5.5em; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; }
+@media (max-width: 640px) { .rung { grid-template-columns: 1fr auto; } .rung .gauge { grid-column: 1 / -1; } }
+.rung .claim-t { font-weight: 600; }
+.rung .claim-t small { display: block; font-weight: 400; color: var(--muted); font-size: .82rem; }
+.verdict { font: 700 .78rem var(--font-display); text-transform: uppercase; letter-spacing: .08em; padding: 3px 8px; border-radius: 999px; text-align: center; }
+.verdict.Proven { background: var(--accent); color: #1a0d00; }
+.verdict.Strong { background: var(--accent-soft); color: var(--accent-ink); }
+.verdict.Likely { background: var(--surface-2); color: var(--fg); border: 1px solid var(--line); }
+.verdict.Not { background: transparent; color: var(--muted); border: 1px dashed var(--line); }
+.gauge { position: relative; height: 12px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 3px; }
+.gauge i { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 2px; }
+.gauge b { position: absolute; top: -3px; bottom: -3px; width: 1px; background: var(--muted); }
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 760px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; display: grid; gap: 2px; }
+.tile .v { font: 700 1.9rem/1.1 var(--font-display); }
+.tile .v small { font-size: 1rem; color: var(--muted); }
+</style>
+
+<header class="board">
+  <div class="wrap">
+    <div class="crumbs"><a href="./#cases">← Case studies</a><a href="./">Cowboys M2 Tracker →</a></div>
+    <span class="label" style="color:#b9bbb7">Living report · updates with every refresh</span>
+    <h1>How <span>significant</span> is Oklahoma State's season?</h1>
+    <p>Testing OSU's 2026-27 results against M1 benchmarks, M2 history and its title rivals: what's proven, what's likely, and what isn't yet.</p>
+    <div class="strip" id="strip"></div>
+  </div>
+</header>
+
+<main><div class="wrap">
+  <div id="boot" class="loading">Loading the report…</div>
+  <div id="content" hidden style="display:grid;gap:40px">
+
+  <section id="s-ladder">
+    <span class="eyebrow">The evidence ladder</span>
+    <h2>Is OSU better than…</h2>
+    <p class="claim" id="ladder-claim"></p>
+    <div class="ladder" id="ladder"></div>
+    <p class="note">Each rung compares OSU's current strength estimate with a benchmark team, allowing for uncertainty in OSU's rating (z = how many standard errors OSU sits above the benchmark; p = chance OSU isn't actually better). Verdicts: <b>Proven</b> z ≥ 3 (p &lt; 0.0015), <b>Strong</b> z ≥ 2 (p &lt; 0.023), <b>Likely</b> z ≥ 1.28 (p &lt; 0.10). Benchmarks move as M1 teams play.</p>
+  </section>
+
+  <section id="s-tracker">
+    <span class="eyebrow">Tracker</span>
+    <h2>Watching the claims firm up</h2>
+    <p class="claim" id="tracker-claim"></p>
+    <div class="panel">
+      <div class="legend" id="tracker-legend"></div>
+      <svg id="c-tracker" role="img" aria-label="Evidence (z) for each claim, week by week"></svg>
+      <p class="note">Each point recomputes the ladder using only games played before that date. Shaded bands mark the Likely, Strong and Proven thresholds.</p>
+    </div>
+  </section>
+
+  <section id="s-history">
+    <span class="eyebrow">Against M2 history</span>
+    <h2>Where this season ranks since 2022-23</h2>
+    <div class="tiles" id="hist-tiles"></div>
+    <div class="pair">
+      <div class="panel"><h3>OSU relative to the average M2 team</h3><svg id="c-traj" role="img" aria-label="OSU's strength relative to the M2 average by season"></svg><p class="note">Goals per game better (or worse) than the average M2 team on neutral ice, end of regular season (2026-27 to date).</p></div>
+      <div class="panel"><h3>Biggest two-year rises in M2</h3><div class="tablewrap"><table id="rise-table"></table></div></div>
+    </div>
+    <div class="pair">
+      <div class="panel"><h3>Chance OSU is stronger than each past champion</h3><svg id="c-champs" role="img" aria-label="Probability OSU is stronger than each of the last five M2 champions"></svg><p class="note" id="champs-note"></p></div>
+      <div class="panel"><h3>Record vs the combined M1+M2 top 25</h3><div class="tablewrap"><table id="t25-table"></table></div><p class="note" id="t25-note"></p></div>
+    </div>
+  </section>
+
+  <section id="s-dom">
+    <span class="eyebrow">Dominance</span>
+    <h2>Playing at M1 level, game after game</h2>
+    <p class="claim" id="dom-claim"></p>
+    <div class="panel">
+      <div class="legend"><span><i class="k a"></i>OSU game performance</span><span><i class="k d"></i>M1 No. 10 level</span><span><i class="k o"></i>M1 No. 25 level</span></div>
+      <svg id="c-games" role="img" aria-label="OSU's performance in each game compared with M1 No. 10 and No. 25 levels"></svg>
+      <p class="note">Game performance = capped goal margin + opponent's strength, adjusted for home ice and division, in goals. The two lines are the strengths of M1's No. 10 and No. 25 teams today.</p>
+    </div>
+    <div class="pair">
+      <div class="panel"><h3>Share of games at M1 top-25 level: elite M2 seasons</h3><svg id="c-share" role="img" aria-label="Share of games played at M1 top-25 level by elite M2 team-seasons"></svg></div>
+      <div class="panel"><h3>Share of regulation time leading, 2026-27</h3><svg id="c-lead" role="img" aria-label="Share of regulation minutes leading: OSU and the top M1 teams"></svg><p class="note" id="lead-note"></p></div>
+    </div>
+  </section>
+
+  <section id="s-rivals">
+    <span class="eyebrow">Rivals and contenders</span>
+    <h2>Who can stop them?</h2>
+    <p class="claim" id="rivals-claim"></p>
+    <div class="panel"><div class="tablewrap"><table id="rivals-table"></table></div>
+      <p class="note">Strength ± one standard deviation in goals. "OSU stronger" allows for uncertainty in both ratings; "OSU on neutral ice" is the chance to win one game. Title odds from the season simulation on the Postseason tab.</p></div>
+    <div class="pair">
+      <div class="panel"><h3>OSU's likely Nationals pool opponents</h3><svg id="c-pool" role="img" aria-label="Most likely Nationals pool opponents for OSU"></svg></div>
+      <div class="panel"><h3>OSU's likely opponent in the final</h3><svg id="c-final" role="img" aria-label="Most likely opponents for OSU in the national final"></svg></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Method and cautions</span>
+    <h2>Read this before quoting a number</h2>
+    <ol class="method">
+      <li><b>Strength:</b> every ACHA men's team rated in goals on one scale from all games (including cross-division), anchored to last season and calibrated on 825 cross-division games (log loss 0.534 vs 0.656 baseline). M1 teams get +0.65 against M2 teams, matching how M1 has outperformed the shared scale.</li>
+      <li><b>Uncertainty:</b> a team's rating has a standard deviation of 3.0 ÷ √(games + 2). With 15 games OSU's is about ±0.73 goals, so claims against teams within about a goal can't be settled yet.</li>
+      <li><b>Multiple comparisons:</b> history ranks compare OSU with 890 M2 team-seasons; a few would look exceptional by chance alone. Repeated patterns (two straight seasons at the top of "beating expectations") carry more weight than any single rank.</li>
+      <li><b>Partial season:</b> OSU's numbers are to date. At the same 15-game point, Lindenwood 2025-26 rated slightly higher than OSU does now.</li>
+      <li><b>2021-22</b> has no prior season to anchor ratings and is left out of cross-season comparisons.</li>
+    </ol>
+    <p class="note" id="gen"></p>
+  </section>
+  </div>
+</div></main>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+"use strict";
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pct = (x, d = 0) => x == null ? "–" : (100 * x).toFixed(d) + "%";
+const one = (p) => `1 in ${Math.round(1 / p).toLocaleString()}`;
+const dstr = (iso, y) => new Date(iso + "T12:00:00").toLocaleDateString("en-US", y ? { month: "short", day: "numeric", year: "numeric" } : { month: "short", day: "numeric" });
+const sgn = (x, d = 1) => (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(d);
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const tip = $("#tip");
+function hover(el, html) {
+  el.addEventListener("mousemove", (e) => { tip.innerHTML = html; tip.hidden = false; tip.style.left = Math.min(e.clientX + 12, innerWidth - 290) + "px"; tip.style.top = (e.clientY + 12) + "px"; });
+  el.addEventListener("mouseleave", () => (tip.hidden = true));
+}
+function S(svg, W, H) { svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.innerHTML = ""; return (tag, a, txt) => { const n = document.createElementNS("http://www.w3.org/2000/svg", tag); for (const k in a) if (a[k] != null) n.setAttribute(k, a[k]); if (txt != null) n.textContent = txt; svg.appendChild(n); return n; }; }
+function bar(mk, x, y, w, h, fill, horizontal) { // 4px rounded data end, square at baseline
+  const r = Math.min(4, horizontal ? w : h);
+  const d = horizontal ? `M${x},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h - r} Q${x + w},${y + h} ${x + w - r},${y + h} H${x} Z`
+                       : `M${x},${y + h} V${y + r} Q${x},${y} ${x + r},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h} Z`;
+  return mk("path", { d, fill });
+}
+// horizontal bar chart: items [{label, value, hl, text, tip}]
+function hbars(svg, items, { max, fmt, labelW = 170 } = {}) {
+  const rowH = 30, W = 470, H = items.length * rowH + 8, mk = S(svg, W, H), x0 = labelW, iw = W - x0 - 78;
+  max = max || Math.max(...items.map((d) => d.value));
+  items.forEach((d, i) => {
+    const y = 4 + i * rowH, w = Math.max(1, iw * d.value / max);
+    mk("text", { x: x0 - 8, y: y + 17, "text-anchor": "end", class: d.hl ? "l" : null, "font-weight": d.hl ? 600 : null }, d.label);
+    bar(mk, x0, y + 5, w, rowH - 12, d.hl ? css("--accent") : css("--ref"), true);
+    mk("text", { x: x0 + w + 6, y: y + 17, class: "l" }, d.text ?? fmt(d.value));
+    const hit = mk("rect", { x: 0, y, width: W, height: rowH, fill: "transparent" }); if (d.tip) hover(hit, d.tip);
+  });
+}
+// vertical bars with x labels
+function vbars(svg, items, { max, fmt, W = 480, H = 220, yfmt }) {
+  const m = { l: 40, r: 8, t: 18, b: 34 }, mk = S(svg, W, H), iw = W - m.l - m.r, ih = H - m.t - m.b;
+  max = max || Math.max(...items.map((d) => d.value)) * 1.15;
+  const y = (v) => m.t + ih - v / max * ih;
+  [0, .25, .5, .75, 1].forEach((f) => { const v = max * f; mk("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: css("--grid") }); mk("text", { x: m.l - 6, y: y(v) + 4, "text-anchor": "end" }, yfmt(v)); });
+  const bw = iw / items.length;
+  items.forEach((d, i) => {
+    const cx = m.l + bw * i + bw / 2, w = Math.min(40, bw * .6), top = y(d.value);
+    bar(mk, cx - w / 2, top, w, Math.max(1, y(0) - top), d.hl ? css("--accent") : css("--ref"), false);
+    if (d.show !== false) mk("text", { x: cx, y: top - 5, "text-anchor": "middle", class: "l" }, fmt(d.value));
+    mk("text", { x: cx, y: H - 18, "text-anchor": "middle", class: d.hl ? "l" : null }, d.label);
+    if (d.sub) mk("text", { x: cx, y: H - 5, "text-anchor": "middle" }, d.sub);
+    const hit = mk("rect", { x: cx - bw / 2, y: m.t, width: bw, height: ih, fill: "transparent" }); if (d.tip) hover(hit, d.tip);
+  });
+  mk("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: css("--muted") });
+}
+
+
+fetch("significance.json").then((r) => { if (!r.ok) throw 0; return r.json(); }).then(render).catch(() => {
+  $("#boot").textContent = "Couldn't load the report data (significance.json). Reload the page; if it keeps failing, the site needs a rebuild.";
+});
+const CLAIMS = { avg_m1: "Average M1 team", m1_25: "M1 No. 25", typical_best_m2: "Typical best M2", m1_10: "M1 No. 10", best_prev_m2: "Best previous M2" };
+const PHRASE = { avg_m1: "an average M1 team", m1_25: "M1's No. 25 team", typical_best_m2: "a typical season-best M2 team", m1_10: "M1's No. 10 team", best_prev_m2: "the best previous M2 team-season" };
+const DASH = { avg_m1: null, m1_25: null, typical_best_m2: "6 4", m1_10: "2 3", best_prev_m2: "8 3 2 3" };
+
+function render(D) {
+  $("#boot").hidden = true; $("#content").hidden = false;
+  const L = D.ladder, H = D.history, Dm = D.dominance;
+  const proven = L.rows.filter((r) => r.verdict === "Proven"), next = L.rows.find((r) => r.verdict !== "Proven");
+  $("#strip").innerHTML = `<span>Strength <b>${D.osu.strength.toFixed(2)} ± ${D.osu.sd.toFixed(2)}</b></span><span>Games <b>${D.osu.gp}</b></span><span>Proven <b>${proven.length}</b> · Strong <b>${L.rows.filter((r) => r.verdict === "Strong").length}</b> · Likely <b>${L.rows.filter((r) => r.verdict === "Likely").length}</b></span><span>Title odds <b>${pct(D.osu_title.champion)}</b></span>`;
+
+  // ladder
+  $("#ladder-claim").innerHTML = `${proven.length ? `It is <b>proven</b> that OSU is better than ${proven.map((r) => PHRASE[r.key]).join(" and ")}. ` : ""}${next ? `Next to settle: <b>${esc(next.label)}</b> (z = ${next.z.toFixed(2)}, ${next.verdict.toLowerCase()}).` : ""}`;
+  const zmax = Math.max(5, ...L.rows.map((r) => r.z));
+  $("#ladder").innerHTML = L.rows.map((r) => `<div class="rung"><div class="claim-t">${esc(r.label)}<small>benchmark strength ${r.benchmark.toFixed(2)} goals</small></div>
+    <span class="verdict ${r.verdict.split(" ")[0]}">${r.verdict}</span>
+    <div class="gauge" title="z = ${r.z.toFixed(2)}"><i style="width:${Math.max(0, Math.min(100, 100 * r.z / zmax))}%"></i>${[1.2816, 2, 3].map((t) => `<b style="left:${100 * t / zmax}%"></b>`).join("")}</div>
+    <span class="num" style="text-align:right">z ${r.z.toFixed(2)}<br><span class="muted" style="font-size:.78rem">p ${r.p < 0.0001 ? "<0.0001" : r.p.toFixed(r.p < 0.01 ? 4 : 2)}</span></span></div>`).join("");
+
+  // tracker
+  const hs = D.ladder_history, first = (k, t) => (hs.find((h) => h.z[k] >= t) || {}).date;
+  const crossed = [["avg_m1", 3], ["m1_25", 2]].map(([k, t]) => first(k, t)).filter(Boolean);
+  $("#tracker-claim").innerHTML = `"Better than an average M1 team" turned strong by ${first("avg_m1", 2) ? dstr(first("avg_m1", 2)) : "–"} and proven by ${first("avg_m1", 3) ? dstr(first("avg_m1", 3)) : "–"}. "Better than M1's No. 25" turned strong by ${first("m1_25", 2) ? dstr(first("m1_25", 2)) : "–"}${first("m1_25", 3) ? ` and proven by ${dstr(first("m1_25", 3))}` : ` and now sits at z = ${L.rows.find((r) => r.key === "m1_25").z.toFixed(2)}, just short of proven`}.`;
+  trackerChart(hs);
+
+  // history
+  const t25 = H.top25, rec = (r) => `${r[0]}-${r[1]}${r[2] ? "-" + r[2] : ""}`;
+  $("#hist-tiles").innerHTML = [
+    ["Schedule-adjusted strength", `#${H.strength.rank} <small>of ${H.strength.of}</small>`, "M2 team-seasons since 2022-23"],
+    ["Beating expectations", `#${H.beat_expectations.rank} <small>of ${H.beat_expectations.of}</small>`, `#1: ${esc(H.beat_expectations.top[0].team)} ${H.beat_expectations.top[0].season}`],
+    ["Two-year rise", `#${H.rise.rank} <small>of ${H.rise.of}</small>`, `+${H.rise.value} goals vs the M2 average`],
+    ["Vs combined top 25", rec(t25.record), `best win % of ${t25.of} M2 seasons with 5+ such games`]
+  ].map(([l, v, s]) => `<div class="tile"><span class="label">${l}</span><span class="v">${v}</span><span class="muted" style="font-size:.82rem">${s}</span></div>`).join("");
+  vbarsSigned($("#c-traj"), H.osu_by_season.map((x) => ({ label: x.season.slice(2), value: x.rel, hl: x.season === H.osu_by_season[H.osu_by_season.length - 1].season })));
+  $("#rise-table").innerHTML = `<thead><tr><th class="n">#</th><th>Program</th><th>Seasons</th><th class="n">Rise</th></tr></thead><tbody>` + H.rise.top.map((r, i) => `<tr class="${r.team === "Oklahoma State" ? "hl" : ""}"><td class="n">${i + 1}</td><td>${esc(r.team)}</td><td class="num">${r.seasons}</td><td class="n">+${r.value.toFixed(2)}</td></tr>`).join("") + `</tbody>`;
+  hbars($("#c-champs"), D.champions.map((c) => ({ label: `${c.team.replace("Massachusetts-Amherst", "UMass").replace("Florida Gulf Coast", "FGCU")} ${c.season.slice(2)}`, value: c.p_osu_stronger, hl: c.p_osu_stronger >= .9, text: pct(c.p_osu_stronger), tip: `<b>${esc(c.team)} (${c.season} champion)</b><br>End-of-season strength ${c.strength.toFixed(2)}<br>Chance OSU is stronger: ${pct(c.p_osu_stronger, 1)}` })), { max: 1, labelW: 150 });
+  $("#champs-note").innerHTML = `Chance OSU is the strongest M2 team-season of the anchored era (2022-23 on): <b>${pct(D.p_best_m2_season)}</b>, essentially a coin flip with Lindenwood 2025-26.`;
+  $("#t25-table").innerHTML = `<thead><tr><th>Date</th><th>Opponent</th><th class="n">Rank then</th><th class="n">Score</th></tr></thead><tbody>` + t25.games.map((g) => `<tr><td class="num">${dstr(g.date)}</td><td>${esc(g.opp)} <span class="muted">M${g.div}</span></td><td class="n">#${g.rank}</td><td class="n">${g.gf}-${g.ga}</td></tr>`).join("") + `</tbody>`;
+  $("#t25-note").innerHTML = `Rank = position in the combined M1+M2 strength ranking on game day. Best records by M2 teams (5+ games): ${t25.best.slice(0, 4).map((b) => `${esc(b.team)} ${b.season.slice(2)} ${rec(b.record)}`).join(" · ")}.`;
+
+  // dominance
+  $("#dom-claim").innerHTML = `OSU has played at M1 top-25 level in <b>${Math.round(Dm.share25 * D.osu.gp)} of ${D.osu.gp}</b> games (${pct(Dm.share25)}), the highest share of any elite M2 season since 2022-23, and at M1 top-10 level in ${pct(Dm.share10)}. It has led for <b>${pct(Dm.lead.find((x) => x.osu).lead)}</b> of regulation minutes, No. ${Dm.osu_lead_rank} among OSU and all ${Dm.lead_n - 1} M1 teams with enough box scores.`;
+  gamesChart(Dm);
+  hbars($("#c-share"), Dm.elite.slice(0, 8).map((e) => ({ label: `${e.team} ${e.season.slice(2)}`, value: e.share25, hl: e.osu, text: pct(e.share25), tip: `<b>${esc(e.team)} ${e.season}</b><br>${pct(e.share25)} of ${e.games} games at M1 No. 25 level · ${pct(e.share10)} at No. 10 level` })), { max: 1, labelW: 170 });
+  hbars($("#c-lead"), Dm.lead.slice(0, 8).map((e) => ({ label: e.team.replace("Nevada-Las Vegas", "UNLV"), value: e.lead, hl: e.osu, text: pct(e.lead), tip: `<b>${esc(e.team)}</b><br>Leading ${pct(e.lead)} · trailing ${pct(e.trail)} of regulation<br>Never trailed in ${e.never_trailed} of ${e.games}` })), { max: 1, labelW: 140 });
+  const ml = Dm.osu_m1_lead;
+  $("#lead-note").innerHTML = `Against M1 opponents only, OSU has led ${pct(ml.lead)} and trailed ${pct(ml.trail)} of regulation, never trailing in ${ml.never_trailed} of ${ml.games}. OSU's full-season figure includes M2 opponents; M1 teams' figures are against their own schedules.`;
+
+  // rivals
+  const R = D.rivals, closest = R.slice().sort((a, b) => a.p_osu_neutral - b.p_osu_neutral)[0];
+  $("#rivals-claim").innerHTML = `On neutral ice OSU would be favored against every title contender. The closest is <b>${esc(closest.team)}</b> (${pct(closest.p_osu_neutral)} OSU), and the regular season still has ${R.reduce((a, r) => a + r.upcoming.length, 0)} meetings with these teams: ${R.filter((r) => r.upcoming.length).map((r) => `${esc(r.team)} ${r.upcoming.map((u) => dstr(u.date)).join(", ")}`).join("; ")}.`;
+  $("#rivals-table").innerHTML = `<thead><tr><th>Team</th><th>Region</th><th class="n">Record</th><th class="n">Strength</th><th class="n">OSU stronger</th><th class="n">OSU on neutral ice</th><th class="n">Title odds</th><th>Vs OSU this season</th></tr></thead><tbody>` +
+    R.map((r) => `<tr><td>${esc(r.team)} <span class="muted" style="font-size:.78rem">${r.kind === "West chaser" ? "West chaser" : ""}</span></td><td>${r.region}</td><td class="n">${rec(r.record)}</td><td class="n">${r.strength.toFixed(2)} ± ${r.sd.toFixed(2)}</td><td class="n">${pct(r.p_osu_stronger)}</td><td class="n">${pct(r.p_osu_neutral)}</td><td class="n">${pct(r.title, r.title < .1 ? 1 : 0)}</td>
+      <td class="w">${r.h2h.map((h) => `${h.osu > h.them ? "W" : h.osu < h.them ? "L" : "T"} ${h.osu}-${h.them}${h.ot ? " OT" : ""}`).join(", ")}${r.h2h.length && r.upcoming.length ? " · " : ""}${r.upcoming.map((u) => `${dstr(u.date)} ${u.osu_home ? "home" : "away"} (${pct(u.p_osu)})`).join(", ")}${!r.h2h.length && !r.upcoming.length ? '<span class="muted">no meetings</span>' : ""}</td></tr>`).join("") + `</tbody>`;
+  const O = D.osu_opponents || {};
+  hbars($("#c-pool"), (O.pool || []).slice(0, 6).map((x) => ({ label: `${x.team.replace("Florida Gulf Coast", "FGCU")} (${(x.region || "")[0]})`, value: x.p, text: pct(x.p), tip: `<b>${esc(x.team)}</b> in OSU's Nationals pool: ${pct(x.p, 1)} of simulations` })), { max: 1, labelW: 150 });
+  hbars($("#c-final"), (O.final || []).slice(0, 6).map((x) => ({ label: `${x.team.replace("Florida Gulf Coast", "FGCU")} (${(x.region || "")[0]})`, value: x.p, text: pct(x.p, 1), tip: `<b>${esc(x.team)}</b> vs OSU in the final: ${pct(x.p, 1)} of simulations` })), { max: Math.max(0.2, ...(O.final || []).map((x) => x.p)), labelW: 150 });
+
+  $("#gen").textContent = `Data built ${new Date(D.generated_at).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })}. Updates with every dashboard refresh.`;
+}
+
+function trackerChart(hs) {
+  const W = 680, H = 280, m = { l: 36, r: 140, t: 12, b: 28 }, mk = S($("#c-tracker"), W, H), iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const keys = Object.keys(CLAIMS), vals = hs.flatMap((h) => keys.map((k) => h.z[k]));
+  const lo = Math.min(-1, Math.floor(Math.min(...vals))), hi = Math.max(5, Math.ceil(Math.max(...vals)));
+  const x = (i) => m.l + (hs.length === 1 ? iw / 2 : i / (hs.length - 1) * iw), y = (v) => m.t + ih - (v - lo) / (hi - lo) * ih;
+  [[1.2816, 2, "Likely"], [2, 3, "Strong"], [3, hi, "Proven"]].forEach(([a, b, lab], i) => {
+    mk("rect", { x: m.l, y: y(b), width: iw, height: y(a) - y(b), fill: css("--accent-soft"), opacity: [.35, .6, .9][i] });
+    mk("text", { x: m.l + 4, y: y(b) + 12, class: "l" }, lab);
+  });
+  for (let v = lo; v <= hi; v++) { mk("line", { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v), stroke: css("--grid") }); mk("text", { x: m.l - 6, y: y(v) + 4, "text-anchor": "end" }, v); }
+  mk("line", { x1: m.l, x2: m.l + iw, y1: y(0), y2: y(0), stroke: css("--muted") });
+  hs.forEach((h, i) => { if (i % 2 === 0 || i === hs.length - 1) mk("text", { x: x(i), y: H - 8, "text-anchor": "middle" }, dstr(h.date)); });
+  const focusKey = keys.find((k) => hs[hs.length - 1].z[k] < 3) || "m1_25";
+  const ends = [];
+  keys.forEach((k) => {
+    const isF = k === focusKey;
+    mk("path", { d: hs.map((h, i) => `${i ? "L" : "M"}${x(i)},${y(h.z[k])}`).join(" "), fill: "none", stroke: isF ? css("--accent") : css("--ref"), "stroke-width": isF ? 3 : 2, "stroke-dasharray": isF ? null : DASH[k] });
+    ends.push([y(hs[hs.length - 1].z[k]), k, isF]);
+  });
+  ends.sort((a, b) => a[0] - b[0]);
+  let lastY = -99; ends.forEach(([yy, k, isF]) => { const yy2 = Math.max(yy, lastY + 13); lastY = yy2; mk("text", { x: x(hs.length - 1) + 8, y: yy2 + 4, class: isF ? "l" : null, "font-weight": isF ? 600 : null }, CLAIMS[k]); });
+  hs.forEach((h, i) => { const hit = mk("rect", { x: x(i) - iw / (2 * Math.max(1, hs.length - 1)), y: m.t, width: iw / Math.max(1, hs.length - 1), height: ih, fill: "transparent" });
+    hover(hit, `<b>${dstr(h.date)}</b> · ${h.gp} games · strength ${h.strength.toFixed(2)} ± ${h.sd.toFixed(2)}<br>` + keys.map((k) => `${CLAIMS[k]}: z ${h.z[k].toFixed(2)}`).join("<br>")); });
+  $("#tracker-legend").innerHTML = keys.map((k) => `<span><i class="k ${k === focusKey ? "a" : ""}" style="${k === focusKey ? "" : `border-top-style:${DASH[k] ? "dashed" : "solid"}`}"></i>Better than ${PHRASE[k]}</span>`).join("");
+}
+
+function vbarsSigned(svg, items) {
+  const W = 470, H = 210, m = { l: 34, r: 8, t: 16, b: 26 }, mk = S(svg, W, H), iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const lo = Math.floor(Math.min(0, ...items.map((d) => d.value))), hi = Math.ceil(Math.max(0, ...items.map((d) => d.value)));
+  const y = (v) => m.t + ih - (v - lo) / (hi - lo) * ih;
+  for (let v = lo; v <= hi; v += 2) { mk("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: css("--grid") }); mk("text", { x: m.l - 6, y: y(v) + 4, "text-anchor": "end" }, (v > 0 ? "+" : "") + v); }
+  const bw = iw / items.length;
+  items.forEach((d, i) => {
+    const cx = m.l + bw * i + bw / 2, w = Math.min(40, bw * .55), top = y(Math.max(0, d.value)), bot = y(Math.min(0, d.value));
+    mk("rect", { x: cx - w / 2, y: top, width: w, height: Math.max(1, bot - top), rx: 3, fill: d.hl ? css("--accent") : css("--ref") });
+    mk("text", { x: cx, y: d.value >= 0 ? top - 5 : bot + 13, "text-anchor": "middle", class: "l" }, (d.value > 0 ? "+" : "") + d.value.toFixed(1));
+    mk("text", { x: cx, y: H - 8, "text-anchor": "middle" }, d.label);
+  });
+  mk("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: css("--muted") });
+}
+
+function gamesChart(Dm) {
+  const g = Dm.games, W = 680, H = 250, m = { l: 36, r: 110, t: 12, b: 30 }, mk = S($("#c-games"), W, H), iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const vals = g.map((x) => x.rating).concat([Dm.level_m1_10, Dm.level_m1_25]);
+  const lo = Math.floor(Math.min(...vals)) - 1, hi = Math.ceil(Math.max(...vals)) + 1;
+  const x = (i) => m.l + (i + .5) / g.length * iw, y = (v) => m.t + ih - (v - lo) / (hi - lo) * ih;
+  for (let v = lo; v <= hi; v += 2) { mk("line", { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v), stroke: css("--grid") }); mk("text", { x: m.l - 6, y: y(v) + 4, "text-anchor": "end" }, v); }
+  [[Dm.level_m1_10, "6 4", "M1 No. 10"], [Dm.level_m1_25, "2 3", "M1 No. 25"]].forEach(([v, dash, lab]) => { mk("line", { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v), stroke: css("--ref"), "stroke-width": 2, "stroke-dasharray": dash }); mk("text", { x: m.l + iw + 6, y: y(v) + 4 }, lab); });
+  g.forEach((d, i) => {
+    const above = d.rating >= Dm.level_m1_25;
+    mk("circle", { cx: x(i), cy: y(d.rating), r: d.div === 1 ? 7 : 5.5, fill: above ? css("--accent") : css("--surface"), stroke: css("--accent"), "stroke-width": 2 });
+    if (i % 2 === 0 || i === g.length - 1) mk("text", { x: x(i), y: H - 10, "text-anchor": "middle" }, dstr(d.date));
+    const hit = mk("rect", { x: x(i) - iw / g.length / 2, y: m.t, width: iw / g.length, height: ih, fill: "transparent" });
+    hover(hit, `<b>${dstr(d.date)} ${d.home ? "vs" : "at"} ${esc(d.opp)}</b> (M${d.div})<br>${d.gf}-${d.ga} · performance ${d.rating.toFixed(2)}${above ? " (M1 top-25 level)" : ""}`);
+  });
+  mk("text", { x: m.l + iw + 6, y: m.t + 12, class: "l" }, "● M1 opponent");
+}
+</script>

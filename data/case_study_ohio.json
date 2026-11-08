@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-08T08:30",
+ "generated_at": "2026-11-08T09:26",
  "model": {
   "params": {
    "k": 2,
@@ -242,11 +242,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 3,
-   "margin_m2": -1.858,
-   "strength_gap": -0.88,
+   "margin_m2": -1.859,
+   "strength_gap": -0.881,
    "rank_source": "current",
-   "p_m2": 0.2707,
-   "surprise_bits": 1.885,
+   "p_m2": 0.2706,
+   "surprise_bits": 1.886,
    "osu": true,
    "ohio_series": true,
    "upset_rank": 4
@@ -514,17 +514,17 @@
    "ot": false,
    "result": "W",
    "m1_rank": 3,
-   "margin_m2": -1.858,
-   "strength_gap": -0.88,
+   "margin_m2": -1.859,
+   "strength_gap": -0.881,
    "rank_source": "current",
-   "p_m2": 0.2707,
-   "surprise_bits": 1.885,
+   "p_m2": 0.2706,
+   "surprise_bits": 1.886,
    "osu": true,
    "ohio_series": true,
    "upset_rank": 4
   }
  ],
- "p_osu_perfect_vs_m1": 0.005368808201834276,
+ "p_osu_perfect_vs_m1": 0.0053668248962554675,
  "series": [
   {
    "id": "31985",
@@ -663,7 +663,7 @@
    "osu_home": false,
    "venue": "Bird Arena (OH)",
    "attendance": 1250,
-   "p_osu": 0.2707,
+   "p_osu": 0.2706,
    "result": "W",
    "m1_rank": 3,
    "expected_ga_at_season_sv": 2.91,
@@ -697,7 +697,7 @@
   }
  },
  "standing": {
-  "osu_strength": 7.114540834835882,
+  "osu_strength": 7.112715613543296,
   "m1_scale_rank": 7,
   "m1_teams": 81,
   "m1_top": [

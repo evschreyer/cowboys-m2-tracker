@@ -62,6 +62,23 @@ def compact(d: dict) -> dict:
                     vs=int(p["stats"].get("visitingShots") or 0)) for p in d.get("periods", [])]
     shots_ok = all((x["shots"] or 0) >= max(MIN_SHOTS, (x["goals"] or 0) + 1) for x in (h, v))
     det = d.get("details", {})
+    home_id = (d["homeTeam"].get("info") or {}).get("id")
+    name = lambda pl: f"{pl.get('firstName', '')} {pl.get('lastName', '')}".strip() if pl else None
+    goals = []
+    for p in d.get("periods", []):
+        for g in p.get("goals", []) or []:
+            pr = g.get("properties", {})
+            goals.append(dict(period=(g.get("period") or {}).get("longName"), time=g.get("time"),
+                              side="home" if (g.get("team") or {}).get("id") == home_id else "away",
+                              scorer=name(g.get("scoredBy")), assists=[name(a) for a in g.get("assists") or []],
+                              pp=pr.get("isPowerPlay") == "1", sh=pr.get("isShortHanded") == "1",
+                              en=pr.get("isEmptyNet") == "1", ps=pr.get("isPenaltyShot") == "1",
+                              gwg=pr.get("isGameWinningGoal") == "1"))
+    pshots = []
+    for side, key in (("home", "homeTeam"), ("away", "visitingTeam")):
+        for ps in (d.get("penaltyShots") or {}).get(key, []) or []:
+            pshots.append(dict(side=side, shooter=name(ps.get("shooter")), goalie=name(ps.get("goalie")),
+                               period=(ps.get("period") or {}).get("longName"), time=ps.get("time"), goal=bool(ps.get("isGoal"))))
     return dict(id=str(det.get("id")), date=det.get("date"), venue=det.get("venue"),
                 attendance=det.get("attendance"), home=h, away=v, periods=periods,
-                shootout=bool(d.get("hasShootout")), shots_ok=shots_ok)
+                shootout=bool(d.get("hasShootout")), shots_ok=shots_ok, goals=goals, penalty_shots=pshots)

@@ -173,3 +173,33 @@ Context: OSU were the 2026 M2 national runner-up (lost 3-2 in OT to FGCU) and fi
 - **Ohio:** first M2 opponent in the data (now 0-2). It went 28-3 at home from the start of 2025-26 until this weekend. OSU is the 3rd team to sweep a weekend at Ohio since 2022-23, after Liberty (Feb 2024) and Minot State (Feb 2025).
 - **Counterfactual:** with OSU's games counted, ACHA's M1 formula puts OSU #1, Ohio #3→#4, Drury #1→#2 and Midland #10→#12.
 - **Record chase:** the M2 record for wins over M1 in a season is 9 (Mary 2022-23). OSU has 7 with 9 M1 games left and an expected 5.67 more wins. P(new record) is 99.3%; P(16-0) is 0.9%.
+
+## 11. Deep-dive extensions (2026-11-07)
+`scripts/build_deep_dive_extra.py` writes `data/ohio_extra.json`. `scripts/simulate_title.py` writes `data/title_odds.json`. Box scores now include goal events and penalty shots (`engine/gamestats.compact`).
+- **Game flow vs M1:** 46-10 over 7 games. By period 18-5, 16-4, **12-1 in thirds**. OSU scored first in 6 of 7 and led after two periods in all 7. Across all games OSU is 13-0 when scoring first. PP 6/21 and PK 24/30 vs M1, with 2 shorthanded goals for and 0 against. In game 2 Kubrytskyi stopped a penalty shot (Laker Aldridge, 3rd period 11:27).
+- **Scoring vs M1:** Budd 6-5-11 (2 GWG), Roach 5-6-11, Milburn 3-7-10, Z. Green 1-8-9, Ziliotto 3-6-9 (2 GWG).
+- **Neutral-ice odds vs M1 top 10:**
+
+  | Range | Teams |
+  |---|---|
+  | Underdog | Drury 35%, Minot State 42%, Ohio 36% |
+  | 47-55% | UNLV, Niagara, Jamestown, Liberty, Adrian, Maryville |
+  | Favored | Midland 74% |
+
+  OSU's rating is 7.12 ± 0.73. P(OSU truly stronger than Ohio) is 14%.
+- **Title simulation** (3,000 runs; full remaining M2 schedule, official formula, 2026-27 Regionals bracket, Nationals pools from the manual; no auto-bids or host bye):
+
+  | Stage | OSU probability |
+  |---|---|
+  | No. 1 in the West | 99.3% |
+  | Reach the national semifinals | 71% |
+  | Reach the final | 58% |
+  | **Win the title** | **42.6%** |
+
+  Next teams: Lindenwood 14.6%, Liberty 6.8%, Wisconsin 6.5%, FGCU 5.0%. History tempers this: only 2 of the last 5 champions were the top-rated M2 team at season's end. UMass 2023 was #11 and Indiana 2024 was #6.
+- **Past champions' end-of-season strength:** Mary 5.58 (2021-22), UMass 3.57, Indiana 4.35, Lindenwood 6.53, FGCU 6.38. OSU is at 7.12 to date, above all of them.
+- **Robustness**, 10 settings (M1 adjustment 0/0.65/1.0, k 1/2/5, b 0.4/0.6/0.8, spread 2.6/3.0/3.4, no home edge):
+  - Holds in every setting: OSU is #1 in wins above expectation (+2.89 to +3.71), and it has the widest lead at the top of M2.
+  - Holds in 9 of 10: OSU is the strongest M2 team on the M1 scale (fails at k=5).
+  - Ranges: Friday 21-31%, sweep 1 in 9 to 1 in 21, M1-equivalent #3-#9, P(7-0) 0.27-1.63%.
+- **Significance:** expected M2 sweeps across the 7 top-5 M1 series is 0.27. P(at least one) is 24%, and OSU's series alone makes up 25% of that expectation.

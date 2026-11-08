@@ -30,7 +30,8 @@ def main():
     shutil.copy(os.path.join(ROOT, "data/snapshots/latest.json"), OUT)
     shutil.copy(os.path.join(ROOT, "data/case_study_ohio.json"), OUT)
     shutil.copy(os.path.join(ROOT, "data/m1_compare.json"), OUT)
-    shutil.copy(os.path.join(ROOT, "data/ohio_deep_dive.json"), OUT)
+    for f in ("ohio_deep_dive.json", "ohio_extra.json", "title_odds.json"):
+        shutil.copy(os.path.join(ROOT, "data", f), OUT)
     with open(os.path.join(OUT, "robots.txt"), "w") as f:
         f.write("User-agent: *\nDisallow: /\n")
     open(os.path.join(OUT, ".nojekyll"), "w").close()

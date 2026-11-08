@@ -207,6 +207,76 @@ ol.method { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; max-width: 
     </div>
   </section>
 
+  <section id="s-players">
+    <span class="eyebrow">9 · Players and game flow</span>
+    <h2>Three periods, one direction</h2>
+    <p class="claim" id="flow-claim"></p>
+    <div class="pair">
+      <div class="panel">
+        <h3>Goals by period vs M1 this season</h3>
+        <div class="legend"><span><i class="k a"></i>OSU goals</span><span><i class="k"></i>Opponent goals</span></div>
+        <svg id="c-periods" role="img" aria-label="Goals for and against by period in OSU's games against M1 teams"></svg>
+        <div class="tablewrap"><table id="flow-table"></table></div>
+      </div>
+      <div class="panel">
+        <h3>OSU scoring vs M1</h3>
+        <div class="tablewrap"><table id="players-table"></table></div>
+        <p class="note">From ACHA box-score goal events. Points against M1 teams this season; season totals include all ACHA games. Friday's three OSU goals are listed without assists in the official box score.</p>
+      </div>
+    </div>
+    <div class="panel"><h3>Game by game vs M1</h3><div class="tablewrap"><table id="m1log-table"></table></div></div>
+  </section>
+
+  <section id="s-h2h">
+    <span class="eyebrow">10 · Head to head</span>
+    <h2>How OSU would fare against M1's top 10</h2>
+    <p class="claim" id="h2h-claim"></p>
+    <div class="panel">
+      <h3>OSU's chance to win one game on neutral ice</h3>
+      <svg id="c-h2h" role="img" aria-label="OSU's neutral-ice win probability against each M1 top-10 team"></svg>
+      <div class="tablewrap"><table id="h2h-table"></table></div>
+      <p class="note">Ranks are our rebuild of ACHA's current M1 computer ranking. Win chances include uncertainty in both teams' ratings. "Common opponents" compares average capped, home-adjusted margins against teams both have played; with only one shared opponent for most teams it is a sanity check, not evidence.</p>
+    </div>
+  </section>
+
+  <section id="s-title">
+    <span class="eyebrow">11 · Title odds</span>
+    <h2>Favorite, with a caveat history insists on</h2>
+    <p class="claim" id="title-claim"></p>
+    <div class="pair">
+      <div class="panel">
+        <h3>OSU's path, simulated</h3>
+        <svg id="c-path" role="img" aria-label="Probability OSU reaches each stage of the M2 postseason"></svg>
+        <p class="note" id="path-note"></p>
+      </div>
+      <div class="panel">
+        <h3>M2 national title odds</h3>
+        <svg id="c-title" role="img" aria-label="Simulated M2 national championship odds by team"></svg>
+      </div>
+    </div>
+    <div class="pair">
+      <div class="panel">
+        <h3>OSU vs the last five M2 champions</h3>
+        <svg id="c-champs" role="img" aria-label="End-of-regular-season strength of past M2 champions compared with OSU now"></svg>
+        <div class="tablewrap"><table id="champs-table"></table></div>
+      </div>
+      <div class="panel">
+        <h3>Did the top-rated M2 team win?</h3>
+        <div class="tablewrap"><table id="fav-table"></table></div>
+        <p class="note" id="fav-note"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="s-robust">
+    <span class="eyebrow">12 · Robustness</span>
+    <h2>Which findings depend on the model</h2>
+    <p class="claim" id="robust-claim"></p>
+    <div class="panel"><div class="tablewrap"><table id="robust-table"></table></div>
+      <p class="note">Each row rebuilds every rating and probability from scratch with one setting changed. "As fitted" is the calibrated model used everywhere else on this page.</p></div>
+    <div class="panel"><h3>Significance checks</h3><div class="tablewrap"><table id="sig-table"></table></div></div>
+  </section>
+
   <section>
     <span class="eyebrow">Method</span>
     <h2>Models and data</h2>
@@ -275,8 +345,9 @@ function vbars(svg, items, { max, fmt, W = 480, H = 220, yfmt }) {
   mk("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: css("--muted") });
 }
 
-fetch("ohio_deep_dive.json").then((r) => { if (!r.ok) throw 0; return r.json(); }).then(render).catch(() => {
-  $("#boot").textContent = "Couldn't load the analysis data (ohio_deep_dive.json). Reload the page; if it keeps failing, the site needs a rebuild.";
+Promise.all(["ohio_deep_dive.json", "ohio_extra.json", "title_odds.json"].map((f) => fetch(f).then((r) => { if (!r.ok) throw 0; return r.json(); })))
+  .then(([D, E, T]) => { D.extra = E; D.title = T; render(D); }).catch(() => {
+  $("#boot").textContent = "Couldn't load the analysis data. Reload the page; if it keeps failing, the site needs a rebuild.";
 });
 
 function render(D) {
@@ -308,6 +379,18 @@ function render(D) {
     [`Had it counted, OSU would be No. 1 in ACHA's M1 formula and Ohio No. ${cf.with_osu}`, `Cross-division games are excluded from both official rankings. Adding OSU's M1 games moves Ohio from No. ${cf.actual} to No. ${cf.with_osu}.`, "s-cf"],
     [`${pct(RM.p_break)} to break Mary's M2 record of ${RM.record} wins over M1 teams`, `${RM.games.length} M1 games remain; the model expects about ${RM.expected_more.toFixed(1)} more wins. A perfect ${RM.have + RM.games.length}-0 run: ${pct(RM.p_perfect, 1)}.`, "s-next"],
   ];
+  const E = D.extra, TT = D.title, fm = E.flow.m1, sig = E.significance;
+  const under = E.h2h.filter((r) => r.p_neutral < 0.45), fav = E.h2h.filter((r) => r.p_neutral > 0.55);
+  const robustRows = E.robustness || [];
+  const allAbove1 = robustRows.length && robustRows.every((r) => r.above_rank === 1), allWide = robustRows.length && robustRows.every((r) => r.osu_widest_lead);
+  const champsBelow = TT.champions.filter((c) => c.strength < TT.osu_vs_champions.strength).length, champsN = TT.champions.length;
+  F.push(
+    [`Outscored M1 opponents ${fm.p3_gf}-${fm.p3_ga} in third periods`, `${fm.gf}-${fm.ga} overall in ${fm.games} games against M1 (${fm.p1_gf}-${fm.p1_ga}, ${fm.p2_gf}-${fm.p2_ga}, ${fm.p3_gf}-${fm.p3_ga} by period). OSU led after two periods in all ${fm.led_after_2} and scored first in ${fm.scored_first} of ${fm.games}.`, "s-players"],
+    [`An underdog to only ${under.length} of M1's top 10 on neutral ice`, `${under.map((r) => `${r.team} (${pct(r.p_neutral)})`).join(", ")}. Favored against ${fav.map((r) => r.team).join(", ")}; roughly even with the rest.`, "s-h2h"],
+    [champsBelow === champsN ? `Rated higher than every one of the last ${champsN} M2 champions` : `Rated higher than ${champsBelow} of the last ${champsN} M2 champions`, `OSU's ${TT.osu_vs_champions.strength.toFixed(2)} tops every recent champion's end-of-season rating. Simulated national title odds: ${pct(TT.osu.champion)}, ${(TT.osu.champion / (TT.contenders[1] || { champion: 1 }).champion).toFixed(1)}× the next team.`, "s-title"],
+    [`The core findings hold under every model setting tested`, `Across ${robustRows.length} settings OSU's season stays #1 in wins above expectation${allAbove1 ? "" : " in most"} and its lead at the top of M2 stays the widest${allWide ? "" : " in most"}. What moves: Friday's odds (${pct(Math.min(...robustRows.map((r) => r.p_31985)))}–${pct(Math.max(...robustRows.map((r) => r.p_31985)))}) and the M1-equivalent rank (No. ${Math.min(...robustRows.map((r) => r.m1_equiv))}–${Math.max(...robustRows.map((r) => r.m1_equiv))}).`, "s-robust"],
+    [`Still the underdog to Ohio`, `Two wins don't outweigh a season of evidence: the model gives OSU a ${pct(sig.p_osu_stronger_than_ohio)} chance of truly being the stronger team, and ${pct(E.h2h.find((r) => r.team === "Ohio").p_neutral)} to win a neutral-ice rematch.`, "s-robust"]
+  );
   $("#findings").innerHTML = F.map(([h, b, id]) => `<li><div><b class="h">${h}</b>${b} <a href="#${id}">Evidence ↓</a></div></li>`).join("");
 
   // 1 rarity
@@ -368,7 +451,87 @@ function render(D) {
   vbars($("#c-final"), fd.map((d) => ({ label: String(d.k), value: d.p, hl: d.k > RM.record, show: d.p > .01, tip: `<b>${d.k} wins vs M1</b>: ${pct(d.p, 1)}${d.k > RM.record ? " (new record)" : d.k === RM.record ? " (ties record)" : ""}` })), { fmt: (v) => pct(v), yfmt: (v) => pct(v) });
   $("#final-note").innerHTML = `Orange = beats Mary's ${RM.record}. Chance of a new record: <b>${pct(RM.p_break, 1)}</b>; of finishing ${RM.have + RM.games.length}-0: ${pct(RM.p_perfect, 1)}.`;
 
+  renderExtra(D);
   $("#gen").textContent = `Data built ${new Date(D.generated_at).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })}. Numbers update with each dashboard refresh.`;
+}
+
+function renderExtra(D) {
+  const E = D.extra, TT = D.title, fm = E.flow.m1, fa = E.flow.all;
+  // players & flow
+  $("#flow-claim").innerHTML = `Against M1 teams OSU has outscored opponents in every period and grown stronger as games go on: ${fm.p1_gf}-${fm.p1_ga} in first periods, ${fm.p2_gf}-${fm.p2_ga} in seconds, ${fm.p3_gf}-${fm.p3_ga} in thirds. Across all games OSU is ${fa.scored_first_won}-${fa.scored_first - fa.scored_first_won} when scoring first.`;
+  periodChart(fm);
+  const r = (a, b) => `${a}/${b} · ${b ? pct(a / b) : "–"}`;
+  $("#flow-table").innerHTML = `<thead><tr><th></th><th class="n">vs M1</th><th class="n">All games</th></tr></thead><tbody>
+    <tr><td>Record</td><td class="n">${fm.wins}-${fm.games - fm.wins}</td><td class="n">${fa.wins}-${fa.games - fa.wins}</td></tr>
+    <tr><td>Goals for–against</td><td class="n">${fm.gf}-${fm.ga}</td><td class="n">${fa.gf}-${fa.ga}</td></tr>
+    <tr><td>Record when scoring first</td><td class="n">${fm.scored_first_won}-${fm.scored_first - fm.scored_first_won}</td><td class="n">${fa.scored_first_won}-${fa.scored_first - fa.scored_first_won}</td></tr>
+    <tr><td>Record when allowing first</td><td class="n">${fm.allowed_first_won}-${fm.allowed_first - fm.allowed_first_won}</td><td class="n">${fa.allowed_first_won}-${fa.allowed_first - fa.allowed_first_won}</td></tr>
+    <tr><td>Led after 2 periods</td><td class="n">${fm.led_after_2_won}-${fm.led_after_2 - fm.led_after_2_won}</td><td class="n">${fa.led_after_2_won}-${fa.led_after_2 - fa.led_after_2_won}</td></tr>
+    <tr><td>Power play</td><td class="n">${r(fm.ppg, fm.ppo)}</td><td class="n">${r(fa.ppg, fa.ppo)}</td></tr>
+    <tr><td>Penalty kill</td><td class="n">${r(fm.ppoa - fm.ppga, fm.ppoa)}</td><td class="n">${r(fa.ppoa - fa.ppga, fa.ppoa)}</td></tr>
+    <tr><td>Shorthanded goals for–against</td><td class="n">${fm.shg}-${fm.shga}</td><td class="n">${fa.shg}-${fa.shga}</td></tr></tbody>`;
+  $("#players-table").innerHTML = `<thead><tr><th>Player</th><th class="n">vs M1 G-A-P</th><th class="n">GWG vs M1</th><th class="n">Season G-A-P</th></tr></thead><tbody>` +
+    E.players.slice(0, 12).map((p) => `<tr><td>${esc(p.name)}</td><td class="n">${p.g_m1}-${p.a_m1}-<b>${p.p_m1}</b></td><td class="n">${p.gwg_m1 || "–"}</td><td class="n">${p.g}-${p.a}-${p.p}</td></tr>`).join("") + `</tbody>`;
+  $("#m1log-table").innerHTML = `<thead><tr><th>Date</th><th>Opponent</th><th class="n">Final</th><th class="n">By period</th><th>First goal</th><th>Penalty shots</th></tr></thead><tbody>` +
+    E.m1_games.map((g) => `<tr><td class="num">${dstr(g.date)}</td><td>${esc(g.opp)}</td><td class="n">${g.gf}-${g.ga}</td><td class="n">${g.periods.join(", ")}</td><td>${g.first ? "OSU" : g.first === false ? "Opponent" : "–"}</td><td class="w">${g.penalty_shots.map((p) => `${esc(p.shooter)} vs ${esc(p.goalie)} (${p.period} ${p.time}) ${p.goal ? "scored" : "stopped"}`).join("<br>") || "–"}</td></tr>`).join("") + `</tbody>`;
+
+  // head to head
+  const under = E.h2h.filter((x) => x.p_neutral < 0.45), even = E.h2h.filter((x) => x.p_neutral >= 0.45 && x.p_neutral <= 0.55), fav = E.h2h.filter((x) => x.p_neutral > 0.55);
+  $("#h2h-claim").innerHTML = `On neutral ice the model makes OSU an underdog to ${under.map((x) => x.team).join(", ")}, roughly even with ${even.map((x) => x.team).join(", ")}, and a favorite over ${fav.map((x) => x.team).join(", ")}. OSU's rating is ${E.osu_strength.osu.toFixed(2)} ± ${E.osu_strength.osu_sd.toFixed(2)} goals (one standard deviation).`;
+  hbars($("#c-h2h"), E.h2h.map((x) => ({ label: `${x.m1_rank}. ${x.team.replace("Nevada-Las Vegas", "UNLV")}`, value: x.p_neutral, hl: x.p_neutral >= 0.5, text: pct(x.p_neutral), tip: `<b>vs ${esc(x.team)} (M1 No. ${x.m1_rank})</b><br>Neutral ${pct(x.p_neutral)} · OSU home ${pct(x.p_home)} · away ${pct(x.p_away)}<br>Chance OSU is truly stronger: ${pct(x.p_osu_stronger)}` })), { max: 1, labelW: 150 });
+  $("#h2h-table").innerHTML = `<thead><tr><th>M1 team</th><th class="n">Neutral</th><th class="n">OSU home</th><th class="n">OSU away</th><th class="n">P(OSU stronger)</th><th class="n">Common opponents</th></tr></thead><tbody>` +
+    E.h2h.map((x) => `<tr><td>${x.m1_rank}. ${esc(x.team)}${x.played ? ` <span class="muted">(played ${x.played})</span>` : ""}</td><td class="n">${pct(x.p_neutral)}</td><td class="n">${pct(x.p_home)}</td><td class="n">${pct(x.p_away)}</td><td class="n">${pct(x.p_osu_stronger)}</td><td class="n">${x.common.length ? `${x.common.map((c) => esc(c.opp)).join(", ")}: OSU ${sgn(x.common_margin, 2)}/game better` : "none"}</td></tr>`).join("") + `</tbody>`;
+
+  // title
+  const o = TT.osu, next = TT.contenders.find((c) => c.team !== "Oklahoma State");
+  $("#title-claim").innerHTML = `Simulating the rest of the season ${TT.sims.toLocaleString()} times (${TT.remaining_m2_games} remaining M2 games, the official ranking formula, the 2026-27 Regionals bracket and the Nationals pools from the ACHA manual), OSU wins the national title in <b>${pct(o.champion)}</b>, ${(o.champion / next.champion).toFixed(1)}× the next team (${esc(next.team)}, ${pct(next.champion)}). History is the caveat: only ${TT.champions.filter((c) => c.m2_rank === 1).length} of the last ${TT.champions.length} champions were the top-rated M2 team.`;
+  const steps = [["Top 2 in West (Nationals bid)", o.auto_bid], ["Reach Nationals", o.nationals], ["Win pool (semifinal)", o.semis], ["Reach final", o.final], ["National champion", o.champion]];
+  hbars($("#c-path"), steps.map(([l, v], i) => ({ label: l, value: v, hl: i === steps.length - 1, text: pct(v, v < .995 && v > .005 ? 0 : 1), tip: `<b>${l}</b>: ${pct(v, 1)}` })), { max: 1, labelW: 200 });
+  $("#path-note").innerHTML = `OSU finishes No. 1 in the West in ${pct(TT.osu_west_rank["1"] || 0, 1)} of simulations. ${TT.notes.join(" ")}`;
+  hbars($("#c-title"), TT.contenders.slice(0, 8).map((c) => ({ label: `${c.team.replace("Florida Gulf Coast", "FGCU")} (${c.region[0]})`, value: c.champion, hl: c.team === "Oklahoma State", text: pct(c.champion, c.champion < .1 ? 1 : 0), tip: `<b>${esc(c.team)}</b> (${c.region})<br>Nationals ${pct(c.nationals)} · semis ${pct(c.semis)} · final ${pct(c.final)}<br>Title ${pct(c.champion, 1)}` })), { labelW: 160 });
+  const ch = TT.champions.concat([TT.osu_vs_champions]);
+  hbars($("#c-champs"), ch.map((c) => ({ label: `${c.team.replace("Massachusetts-Amherst", "UMass").replace("Florida Gulf Coast", "FGCU")} ${c.season.slice(2)}${c.to_date ? "*" : ""}`, value: Math.max(0, c.strength), hl: !!c.to_date, text: c.strength.toFixed(2), tip: `<b>${esc(c.team)} ${c.season}</b>${c.to_date ? " (to date)" : " (champion)"}<br>Strength ${c.strength.toFixed(2)} · No. ${c.m2_rank} in M2${c.anchored ? ` · M1-equivalent No. ${c.m1_equiv}` : ""}` })), { labelW: 140 });
+  $("#champs-table").innerHTML = `<thead><tr><th>Season</th><th>Team</th><th class="n">M2 rank</th><th class="n">M1-equiv.</th></tr></thead><tbody>` + ch.map((c) => `<tr class="${c.to_date ? "hl" : ""}"><td class="num">${c.season}${c.to_date ? "*" : ""}</td><td>${esc(c.team)}</td><td class="n">No. ${c.m2_rank}</td><td class="n">${c.anchored ? "No. " + c.m1_equiv : "–"}</td></tr>`).join("") + `</tbody>`;
+  const favs = (D.best_m2 || []).map((b) => { const c = TT.champions.find((x) => x.season === b.season); return { ...b, champ: c ? c.team : "–", won: c && c.team === b.team }; });
+  $("#fav-table").innerHTML = `<thead><tr><th>Season</th><th>Top-rated M2 team</th><th class="n">Lead over #2</th><th>Champion</th></tr></thead><tbody>` +
+    favs.map((f) => `<tr class="${f.to_date ? "hl" : ""}"><td class="num">${f.season}${f.to_date ? "*" : ""}</td><td>${esc(f.team)}</td><td class="n">${f.lead_over_2nd.toFixed(2)}</td><td>${f.to_date ? "?" : (f.won ? "<b>Won</b>" : esc(f.champ))}</td></tr>`).join("") + `</tbody>`;
+  $("#fav-note").innerHTML = `The one favorite here that won, Lindenwood in 2025, led by 1.01 goals; the three that lost led by 0.67 or less. Mary also won in 2022 as the top-rated team with a 0.86 lead (2021-22 ratings are less reliable, so it isn't in the table). OSU leads by ${favs.length ? favs[favs.length - 1].lead_over_2nd.toFixed(2) : "–"}. A handful of seasons is a tiny sample.`;
+
+  // robustness
+  const R = E.robustness || [];
+  if (R.length) {
+    $("#robust-claim").innerHTML = `Two findings never move: OSU's season is first in wins above expectation and its lead at the top of M2 is the widest on record, under all ${R.length} settings. The odds-based numbers shift with the M1 adjustment most of all: without it OSU looks even better (Friday ${pct(R.find((x) => x.setting === "No M1 adjustment").p_31985)}, M1-equivalent No. ${R.find((x) => x.setting === "No M1 adjustment").m1_equiv}).`;
+    const ck = (b) => b ? "✓" : "–";
+    $("#robust-table").innerHTML = `<thead><tr><th>Setting</th><th class="n">Fri odds</th><th class="n">Sat odds</th><th class="n">Sweep</th><th class="n">P(7-0)</th><th class="n">M1-equiv.</th><th class="n">Above exp. (rank)</th><th class="n">Best M2 on M1 scale</th><th class="n">Widest lead</th></tr></thead><tbody>` +
+      R.map((x, i) => `<tr class="${i === 0 ? "hl" : ""}"><td>${esc(x.setting)}</td><td class="n">${pct(x.p_31985)}</td><td class="n">${pct(x.p_31986)}</td><td class="n">${one(x.sweep)}</td><td class="n">${pct(x.p_perfect, 2)}</td><td class="n">No. ${x.m1_equiv}</td><td class="n">${sgn(x.above, 2)} (#${x.above_rank})</td><td class="n">${ck(x.osu_is_best_m1_equiv)}</td><td class="n">${ck(x.osu_widest_lead)}</td></tr>`).join("") + `</tbody>`;
+  }
+  const sg = E.significance;
+  $("#sig-table").innerHTML = `<tbody>
+    <tr><td class="w">Chance of OSU going ${sg.n_m1_games}-0 vs M1 if the pre-game odds were exactly right</td><td class="n">${pct(sg.p_perfect, 2)} (${one(sg.p_perfect)})</td></tr>
+    <tr><td class="w">Expected number of M2 sweeps in the ${sg.top5_series} series against top-5 M1 teams since 2021-22</td><td class="n">${sg.expected_sweeps.toFixed(2)} (observed 1)</td></tr>
+    <tr><td class="w">Chance of at least one such sweep in six seasons</td><td class="n">${pct(sg.p_any_sweep)}</td></tr>
+    <tr><td class="w">Share of that expectation belonging to OSU's Ohio series alone</td><td class="n">${pct(sg.osu_sweep_share)}</td></tr>
+    <tr><td class="w">Chance OSU is truly stronger than Ohio (rating uncertainty)</td><td class="n">${pct(sg.p_osu_stronger_than_ohio)}</td></tr>
+    <tr><td class="w">OSU rating, 80% range (goals)</td><td class="n">${sg.osu_rating_80[0].toFixed(2)} – ${sg.osu_rating_80[1].toFixed(2)}</td></tr></tbody>`;
+}
+
+function periodChart(fm) {
+  const W = 470, H = 200, m = { l: 34, r: 8, t: 18, b: 26 }, mk = S($("#c-periods"), W, H), iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const data = [["1st", fm.p1_gf, fm.p1_ga], ["2nd", fm.p2_gf, fm.p2_ga], ["3rd", fm.p3_gf, fm.p3_ga]];
+  const max = Math.ceil(Math.max(...data.flatMap((d) => [d[1], d[2]])) / 5) * 5, y = (v) => m.t + ih - v / max * ih;
+  for (let v = 0; v <= max; v += 5) { mk("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: css("--grid") }); mk("text", { x: m.l - 6, y: y(v) + 4, "text-anchor": "end" }, v); }
+  const gw = iw / 3, bw = Math.min(34, gw * .3);
+  data.forEach(([lab, f, a], i) => {
+    const cx = m.l + gw * i + gw / 2;
+    bar(mk, cx - bw - 1, y(f), bw, Math.max(1, y(0) - y(f)), css("--accent"), false);
+    bar(mk, cx + 1, y(a), bw, Math.max(1, y(0) - y(a)), css("--ref"), false);
+    mk("text", { x: cx - bw / 2 - 1, y: y(f) - 5, "text-anchor": "middle", class: "l" }, f);
+    mk("text", { x: cx + bw / 2 + 1, y: y(a) - 5, "text-anchor": "middle" }, a);
+    mk("text", { x: cx, y: H - 8, "text-anchor": "middle", class: "l" }, lab + " period");
+    const hit = mk("rect", { x: cx - gw / 2, y: m.t, width: gw, height: ih, fill: "transparent" });
+    hover(hit, `<b>${lab} period vs M1</b><br>OSU ${f} · opponents ${a}`);
+  });
+  mk("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: css("--muted") });
 }
 
 function ordinal(n) { const s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }

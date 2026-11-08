@@ -21,7 +21,7 @@ body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display
 def main():
     shutil.rmtree(OUT, ignore_errors=True)
     os.makedirs(OUT)
-    for name in ("index.html", "case-study-ohio.html"):
+    for name in ("index.html", "case-study-ohio.html", "ohio-analysis.html"):
         with open(os.path.join(ROOT, "dashboard", name)) as f:
             page = f.read()
         with open(os.path.join(OUT, name), "w") as f:
@@ -30,6 +30,7 @@ def main():
     shutil.copy(os.path.join(ROOT, "data/snapshots/latest.json"), OUT)
     shutil.copy(os.path.join(ROOT, "data/case_study_ohio.json"), OUT)
     shutil.copy(os.path.join(ROOT, "data/m1_compare.json"), OUT)
+    shutil.copy(os.path.join(ROOT, "data/ohio_deep_dive.json"), OUT)
     with open(os.path.join(OUT, "robots.txt"), "w") as f:
         f.write("User-agent: *\nDisallow: /\n")
     open(os.path.join(OUT, ".nojekyll"), "w").close()

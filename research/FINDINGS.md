@@ -140,3 +140,36 @@ Context: OSU were the 2026 M2 national runner-up (lost 3-2 in OT to FGCU) and fi
 - Gap between the average top-25 M1 and top-25 M2 team, including the +0.65 adjustment: 2022-23 1.27, 2023-24 1.26, 2024-25 1.89, 2025-26 2.39, 2026-27 2.22 goals. The all-teams gap is larger (2.4-3.5) partly because M2 keeps adding new, weaker teams. 2021-22 is excluded: it has no prior season, so every division started level and its gap reads too small (0.6 top-25).
 - **Data guard added** (`engine.engine.plausible_final`): skip games dated after today and 0-0 "Unofficial Final" placeholders. Two JMU M2 games (Nov 14 and Jan 23) had been counted as 0-0 ties. Backtests are unchanged.
 - **Save % fix:** team save % now uses goals against only from games where shots were tracked.
+
+## 10. Ohio sweep deep dive (2026-11-07)
+`scripts/build_deep_dive.py` writes `data/ohio_deep_dive.json`, shown on the page `ohio-analysis.html`. It is rebuilt by CI. All findings cover 2021-22 onward, with M1 rank at the time from our rebuild.
+- **Series:** there were 118 multi-game M2-M1 series. Against a top-5 M1 team, 7 series, in which M2 teams won a game in 2 and swept 1 (OSU at Ohio).
+  - All 4 M2 sweeps of a top-25 M1 team are OSU's: Oklahoma 2025, Oregon 2026, Midland 2026, Ohio 2026.
+  - OSU's two Ohio wins are the only M2 road wins over a top-5 M1 team.
+- **Odds at Ohio on Nov 6 (pre-weekend ratings):**
+
+  | Team | One game | Sweep |
+  |---|---|---|
+  | OSU | 24.1% | 1 in 17 (1 in 15 when Saturday's odds reflect Friday's win) |
+  | #2 M2 (Lindenwood) | 13.7% | 1 in 54 |
+  | #10 M2 | 5.0% | 1 in 403 |
+  | Average M2 | 0.3% | about 1 in 100,000 |
+
+- **Wins above expectation vs M1:** OSU 2026-27 has +3.42 (7-0), first of 171 M2 team-seasons. OSU 2025-26 is second at +1.62 (3-0). Only OSU has gone unbeaten vs M1 with 3 or more wins, and it is 10-0 vs M1 across the two seasons.
+- **Best M2 team each season, as an M1-equivalent rank** (anchored seasons):
+
+  | Season | Best M2 team | M1-equivalent rank |
+  |---|---|---|
+  | 2022-23 | Mary | 8 |
+  | 2023-24 | Lindenwood | 10 |
+  | 2024-25 | Lindenwood | 8 |
+  | 2025-26 | Lindenwood | 9 |
+  | 2026-27 | OSU | **7** |
+
+  OSU's 1.67-goal lead over M2's #2 is the widest in the data (previous high 1.01).
+- **Trajectory:** OSU's M1-equivalent rank went #16 (Sep 13), #27 (Sep 27, after the loss at Jamestown), #8 (Nov 1), #9 (Nov 6), #7 (Nov 8).
+- **Weekend decomposition, in goals:** model expected -4.0; shot volume +1.54; goaltending vs OSU's season save % +3.00; finishing vs Ohio's season save % +2.46; actual +3. Ohio's power play went 2/8 against 3.4 expected at its 43% rate. Kubrytskyi stopped 66/69 on the weekend and 129/136 (.949) in 5 starts vs M1. That is about 4.0 goals better than the average M1 save rate (.899) on Ohio's 70 shots.
+- **Comebacks:** road teams down 1 after the first period won 56 of 225 box-scored games (24.9%).
+- **Ohio:** first M2 opponent in the data (now 0-2). It went 28-3 at home from the start of 2025-26 until this weekend. OSU is the 3rd team to sweep a weekend at Ohio since 2022-23, after Liberty (Feb 2024) and Minot State (Feb 2025).
+- **Counterfactual:** with OSU's games counted, ACHA's M1 formula puts OSU #1, Ohio #3→#4, Drury #1→#2 and Midland #10→#12.
+- **Record chase:** the M2 record for wins over M1 in a season is 9 (Mary 2022-23). OSU has 7 with 9 M1 games left and an expected 5.67 more wins. P(new record) is 99.3%; P(16-0) is 0.9%.

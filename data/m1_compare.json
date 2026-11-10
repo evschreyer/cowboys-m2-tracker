@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-10T07:48",
+ "generated_at": "2026-11-10T10:30",
  "model": {
   "gap_12": 0.65,
   "home_edge": 0.328,
   "sigma": 3.0
  },
  "osu": {
-  "strength": 7.169423841836847,
+  "strength": 7.170636604963307,
   "gp": 15
  },
  "m1_scale": {
@@ -16,7 +16,7 @@
   "p90": 13,
   "p025": 2,
   "p975": 18,
-  "p_top10": 0.778,
+  "p_top10": 0.77875,
   "top": [
    {
     "team": "Drury",
@@ -141,7 +141,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 14,
-   "p_osu": 0.5937,
+   "p_osu": 0.5939,
    "surprise_bits": 0.75,
    "shots_for": 35,
    "shots_against": 27,
@@ -158,7 +158,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 14,
-   "p_osu": 0.6372,
+   "p_osu": 0.6373,
    "surprise_bits": 0.65,
    "shots_for": 47,
    "shots_against": 28,
@@ -175,7 +175,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 2,
-   "p_osu": 0.24,
+   "p_osu": 0.2401,
    "surprise_bits": 2.06,
    "shots_for": 30,
    "shots_against": 36,
@@ -192,7 +192,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 2,
-   "p_osu": 0.2682,
+   "p_osu": 0.2683,
    "surprise_bits": 1.9,
    "shots_for": 27,
    "shots_against": 34,
@@ -200,7 +200,7 @@
    "save_pct": 0.971
   }
  ],
- "p_perfect": 0.005298291006950132,
+ "p_perfect": 0.005305093631282516,
  "stats": {
   "osu_all": {
    "games": 15,
@@ -343,10 +343,10 @@
   {
    "season": "2026-27",
    "anchored": true,
-   "m1_mean": 3.066253800761082,
-   "m2_mean": 0.48312698157112643,
-   "gap": 3.2331268191899554,
-   "top25_gap": 2.1970185196820204,
+   "m1_mean": 3.0657704954578504,
+   "m2_mean": 0.48294248218497116,
+   "gap": 3.2328280132728793,
+   "top25_gap": 2.1924114456869073,
    "m1_teams": 81,
    "m2_teams": 168,
    "games": 52,
@@ -354,7 +354,7 @@
    "m2_l": 32,
    "m2_t": 0,
    "m2_win_rate": 0.38461538461538464,
-   "m1_lean": -0.04830938666897487
+   "m1_lean": -0.04830112751062671
   }
  ],
  "combined": [

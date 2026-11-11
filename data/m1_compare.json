@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-10T10:30",
+ "generated_at": "2026-11-11T10:25",
  "model": {
   "gap_12": 0.65,
   "home_edge": 0.328,
   "sigma": 3.0
  },
  "osu": {
-  "strength": 7.170636604963307,
+  "strength": 7.184338623075196,
   "gp": 15
  },
  "m1_scale": {
@@ -16,11 +16,11 @@
   "p90": 13,
   "p025": 2,
   "p975": 18,
-  "p_top10": 0.77875,
+  "p_top10": 0.7825,
   "top": [
    {
     "team": "Drury",
-    "strength": 8.43,
+    "strength": 8.44,
     "m1_rank": 1
    },
    {
@@ -35,12 +35,12 @@
    },
    {
     "team": "Niagara",
-    "strength": 7.51,
+    "strength": 7.52,
     "m1_rank": 5
    },
    {
     "team": "Liberty",
-    "strength": 7.39,
+    "strength": 7.4,
     "m1_rank": 6
    },
    {
@@ -55,7 +55,7 @@
    },
    {
     "team": "Maryville",
-    "strength": 6.75,
+    "strength": 6.76,
     "m1_rank": 9
    },
    {
@@ -107,8 +107,8 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 27,
-   "p_osu": 0.5945,
-   "surprise_bits": 0.75,
+   "p_osu": 0.6008,
+   "surprise_bits": 0.74,
    "shots_for": 67,
    "shots_against": 25,
    "pp": "1/5",
@@ -124,8 +124,8 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 27,
-   "p_osu": 0.754,
-   "surprise_bits": 0.41,
+   "p_osu": 0.7572,
+   "surprise_bits": 0.4,
    "shots_for": 45,
    "shots_against": 23,
    "pp": "0/0",
@@ -141,7 +141,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 14,
-   "p_osu": 0.5939,
+   "p_osu": 0.5955,
    "surprise_bits": 0.75,
    "shots_for": 35,
    "shots_against": 27,
@@ -158,7 +158,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 14,
-   "p_osu": 0.6373,
+   "p_osu": 0.6388,
    "surprise_bits": 0.65,
    "shots_for": 47,
    "shots_against": 28,
@@ -175,8 +175,8 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 2,
-   "p_osu": 0.2401,
-   "surprise_bits": 2.06,
+   "p_osu": 0.2419,
+   "surprise_bits": 2.05,
    "shots_for": 30,
    "shots_against": 36,
    "pp": "0/2",
@@ -192,15 +192,15 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 2,
-   "p_osu": 0.2683,
-   "surprise_bits": 1.9,
+   "p_osu": 0.2699,
+   "surprise_bits": 1.89,
    "shots_for": 27,
    "shots_against": 34,
    "pp": "1/2",
    "save_pct": 0.971
   }
  ],
- "p_perfect": 0.005305093631282516,
+ "p_perfect": 0.005484357131138646,
  "stats": {
   "osu_all": {
    "games": 15,
@@ -343,18 +343,18 @@
   {
    "season": "2026-27",
    "anchored": true,
-   "m1_mean": 3.0657704954578504,
-   "m2_mean": 0.48294248218497116,
-   "gap": 3.2328280132728793,
-   "top25_gap": 2.1924114456869073,
+   "m1_mean": 3.066269662915369,
+   "m2_mean": 0.45954070182848844,
+   "gap": 3.2567289610868806,
+   "top25_gap": 2.179537746208521,
    "m1_teams": 81,
-   "m2_teams": 168,
+   "m2_teams": 171,
    "games": 52,
    "m2_w": 20,
    "m2_l": 32,
    "m2_t": 0,
    "m2_win_rate": 0.38461538461538464,
-   "m1_lean": -0.04830112751062671
+   "m1_lean": -0.04706570532264941
   }
  ],
  "combined": [
@@ -362,7 +362,7 @@
    "rank": 1,
    "team": "Drury",
    "div": 1,
-   "strength": 8.43,
+   "strength": 8.44,
    "gp": 13,
    "div_rank": 1
   },
@@ -386,7 +386,7 @@
    "rank": 4,
    "team": "Niagara",
    "div": 1,
-   "strength": 7.51,
+   "strength": 7.52,
    "gp": 13,
    "div_rank": 5
   },
@@ -394,7 +394,7 @@
    "rank": 5,
    "team": "Liberty",
    "div": 1,
-   "strength": 7.39,
+   "strength": 7.4,
    "gp": 14,
    "div_rank": 6
   },
@@ -410,7 +410,7 @@
    "rank": 7,
    "team": "Oklahoma State",
    "div": 2,
-   "strength": 7.17,
+   "strength": 7.18,
    "gp": 15,
    "region": "West",
    "div_rank": 1,
@@ -428,7 +428,7 @@
    "rank": 9,
    "team": "Maryville",
    "div": 1,
-   "strength": 6.75,
+   "strength": 6.76,
    "gp": 10,
    "div_rank": 9
   },
@@ -460,7 +460,7 @@
    "rank": 13,
    "team": "Mary",
    "div": 1,
-   "strength": 6.17,
+   "strength": 6.18,
    "gp": 12,
    "div_rank": 10
   },
@@ -484,7 +484,7 @@
    "rank": 16,
    "team": "Northwood",
    "div": 1,
-   "strength": 5.69,
+   "strength": 5.68,
    "gp": 16,
    "div_rank": 19
   },
@@ -508,7 +508,7 @@
    "rank": 19,
    "team": "Lindenwood",
    "div": 2,
-   "strength": 5.49,
+   "strength": 5.5,
    "gp": 15,
    "region": "Central",
    "div_rank": 1,

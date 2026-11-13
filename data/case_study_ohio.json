@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-12T10:56",
+ "generated_at": "2026-11-12T18:28",
  "model": {
   "params": {
    "k": 2,
@@ -132,7 +132,7 @@
      0.12,
      0.48
     ],
-    "mean_model_p": 0.237624
+    "mean_model_p": 0.23762799999999998
    },
    {
     "tier": "11-25",
@@ -145,7 +145,7 @@
      0.175,
      0.45
     ],
-    "mean_model_p": 0.3279525
+    "mean_model_p": 0.3279475
    },
    {
     "tier": "26+",
@@ -204,7 +204,7 @@
    "strength_gap": -1.16,
    "rank_source": "current",
    "p_m2": 0.2411,
-   "surprise_bits": 2.053,
+   "surprise_bits": 2.052,
    "osu": true,
    "ohio_series": true,
    "upset_rank": 2
@@ -242,11 +242,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 3,
-   "margin_m2": -1.871,
-   "strength_gap": -0.893,
+   "margin_m2": -1.875,
+   "strength_gap": -0.897,
    "rank_source": "current",
-   "p_m2": 0.2693,
-   "surprise_bits": 1.893,
+   "p_m2": 0.2689,
+   "surprise_bits": 1.895,
    "osu": true,
    "ohio_series": true,
    "upset_rank": 4
@@ -326,8 +326,8 @@
    "ot": false,
    "result": "W",
    "m1_rank": 8,
-   "margin_m2": 0.724,
-   "strength_gap": 1.702,
+   "margin_m2": 0.725,
+   "strength_gap": 1.703,
    "rank_source": "current",
    "p_m2": 0.5941,
    "surprise_bits": 0.751,
@@ -347,11 +347,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 8,
-   "margin_m2": 1.073,
-   "strength_gap": 2.051,
+   "margin_m2": 1.074,
+   "strength_gap": 2.052,
    "rank_source": "current",
-   "p_m2": 0.6379,
-   "surprise_bits": 0.649,
+   "p_m2": 0.638,
+   "surprise_bits": 0.648,
    "osu": true,
    "ohio_series": false,
    "upset_rank": 9
@@ -411,10 +411,10 @@
    "ot": false,
    "result": "W",
    "m1_rank": 11,
-   "margin_m2": 0.777,
-   "strength_gap": 1.755,
+   "margin_m2": 0.776,
+   "strength_gap": 1.754,
    "rank_source": "current",
-   "p_m2": 0.6008,
+   "p_m2": 0.6007,
    "surprise_bits": 0.735,
    "osu": true,
    "ohio_series": false
@@ -434,7 +434,7 @@
    "margin_m2": 2.121,
    "strength_gap": 3.099,
    "rank_source": "current",
-   "p_m2": 0.7572,
+   "p_m2": 0.7571,
    "surprise_bits": 0.401,
    "osu": true,
    "ohio_series": false
@@ -451,8 +451,8 @@
    "ot": false,
    "result": "W",
    "m1_rank": 8,
-   "margin_m2": 0.724,
-   "strength_gap": 1.702,
+   "margin_m2": 0.725,
+   "strength_gap": 1.703,
    "rank_source": "current",
    "p_m2": 0.5941,
    "surprise_bits": 0.751,
@@ -472,11 +472,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 8,
-   "margin_m2": 1.073,
-   "strength_gap": 2.051,
+   "margin_m2": 1.074,
+   "strength_gap": 2.052,
    "rank_source": "current",
-   "p_m2": 0.6379,
-   "surprise_bits": 0.649,
+   "p_m2": 0.638,
+   "surprise_bits": 0.648,
    "osu": true,
    "ohio_series": false,
    "upset_rank": 9
@@ -497,7 +497,7 @@
    "strength_gap": -1.16,
    "rank_source": "current",
    "p_m2": 0.2411,
-   "surprise_bits": 2.053,
+   "surprise_bits": 2.052,
    "osu": true,
    "ohio_series": true,
    "upset_rank": 2
@@ -514,17 +514,17 @@
    "ot": false,
    "result": "W",
    "m1_rank": 3,
-   "margin_m2": -1.871,
-   "strength_gap": -0.893,
+   "margin_m2": -1.875,
+   "strength_gap": -0.897,
    "rank_source": "current",
-   "p_m2": 0.2693,
-   "surprise_bits": 1.893,
+   "p_m2": 0.2689,
+   "surprise_bits": 1.895,
    "osu": true,
    "ohio_series": true,
    "upset_rank": 4
   }
  ],
- "p_osu_perfect_vs_m1": 0.005433579423562044,
+ "p_osu_perfect_vs_m1": 0.0054247395742813035,
  "series": [
   {
    "id": "31985",
@@ -663,7 +663,7 @@
    "osu_home": false,
    "venue": "Bird Arena (OH)",
    "attendance": 1250,
-   "p_osu": 0.2693,
+   "p_osu": 0.2689,
    "result": "W",
    "m1_rank": 3,
    "expected_ga_at_season_sv": 2.91,
@@ -697,7 +697,7 @@
   }
  },
  "standing": {
-  "osu_strength": 7.193172399161996,
+  "osu_strength": 7.197687299357773,
   "m1_scale_rank": 7,
   "m1_teams": 81,
   "m1_top": [
@@ -739,7 +739,7 @@
    },
    {
     "team": "Jamestown",
-    "strength": 6.61
+    "strength": 6.62
    }
   ],
   "guest_rank": 1,

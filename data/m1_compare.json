@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-12T10:56",
+ "generated_at": "2026-11-12T18:28",
  "model": {
   "gap_12": 0.65,
   "home_edge": 0.328,
   "sigma": 3.0
  },
  "osu": {
-  "strength": 7.193172399161996,
+  "strength": 7.197687299357773,
   "gp": 15
  },
  "m1_scale": {
@@ -16,7 +16,7 @@
   "p90": 13,
   "p025": 2,
   "p975": 18,
-  "p_top10": 0.782,
+  "p_top10": 0.78375,
   "top": [
    {
     "team": "Drury",
@@ -65,7 +65,7 @@
    },
    {
     "team": "Jamestown",
-    "strength": 6.61,
+    "strength": 6.62,
     "m1_rank": 8
    }
   ]
@@ -107,7 +107,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 28,
-   "p_osu": 0.6008,
+   "p_osu": 0.6007,
    "surprise_bits": 0.74,
    "shots_for": 67,
    "shots_against": 25,
@@ -124,7 +124,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 28,
-   "p_osu": 0.7572,
+   "p_osu": 0.7571,
    "surprise_bits": 0.4,
    "shots_for": 45,
    "shots_against": 23,
@@ -158,7 +158,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 14,
-   "p_osu": 0.6379,
+   "p_osu": 0.638,
    "surprise_bits": 0.65,
    "shots_for": 47,
    "shots_against": 28,
@@ -192,15 +192,15 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 2,
-   "p_osu": 0.2693,
-   "surprise_bits": 1.89,
+   "p_osu": 0.2689,
+   "surprise_bits": 1.9,
    "shots_for": 27,
    "shots_against": 34,
    "pp": "1/2",
    "save_pct": 0.971
   }
  ],
- "p_perfect": 0.005433579423562044,
+ "p_perfect": 0.0054247395742813035,
  "stats": {
   "osu_all": {
    "games": 15,
@@ -343,10 +343,10 @@
   {
    "season": "2026-27",
    "anchored": true,
-   "m1_mean": 3.069308668182622,
-   "m2_mean": 0.4592467587391859,
-   "gap": 3.260061909443436,
-   "top25_gap": 2.181214710228027,
+   "m1_mean": 3.0703837393052313,
+   "m2_mean": 0.4616062539661991,
+   "gap": 3.2587774853390323,
+   "top25_gap": 2.1805073690960666,
    "m1_teams": 81,
    "m2_teams": 171,
    "games": 52,
@@ -354,7 +354,7 @@
    "m2_l": 32,
    "m2_t": 0,
    "m2_win_rate": 0.38461538461538464,
-   "m1_lean": -0.047084905873288806
+   "m1_lean": -0.04708526093627379
   }
  ],
  "combined": [
@@ -410,7 +410,7 @@
    "rank": 7,
    "team": "Oklahoma State",
    "div": 2,
-   "strength": 7.19,
+   "strength": 7.2,
    "gp": 15,
    "region": "West",
    "div_rank": 1,
@@ -444,7 +444,7 @@
    "rank": 11,
    "team": "Jamestown",
    "div": 1,
-   "strength": 6.61,
+   "strength": 6.62,
    "gp": 10,
    "div_rank": 8
   },
@@ -508,7 +508,7 @@
    "rank": 19,
    "team": "Lindenwood",
    "div": 2,
-   "strength": 5.5,
+   "strength": 5.51,
    "gp": 15,
    "region": "Central",
    "div_rank": 1,

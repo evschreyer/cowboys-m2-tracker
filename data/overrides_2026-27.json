@@ -14,12 +14,18 @@
     "37833",
     "37834"
   ],
-  "score_fixes": {},
+  "score_fixes": {
+    "37617": {"hg": 2, "ag": 10},
+    "37998": {"hg": 6, "ag": 14},
+    "33192": {"hg": 2, "ag": 4},
+    "34208": {"hg": 5, "ag": 3}
+  },
   "tie_game_ids": [],
   "add_games": [],
   "penalties": {},
   "not_good_standing": [],
   "notes": [
-    "37833/37834 (OSU at Penn State, Dec 4-5, 2026): erroneous entries that conflict with the Minot State series on the same dates; confirmed a mistake by OSU staff on 2026-11-07, excluded."
+    "37833/37834 (OSU at Penn State, Dec 4-5, 2026): erroneous entries that conflict with the Minot State series on the same dates; confirmed a mistake by OSU staff on 2026-11-07, excluded.",
+    "37617/37998/33192/34208 (UCLA vs UC San Diego 10/17, LMU 10/23 and 10/24, CSUN 11/7): HockeyTech still lists them as unplayed 0-0. Scores taken from UCLA's club-sports opponent-history pages (uclaclubsports.com), checked 2026-11-12: W 10-2 at UCSD, L 6-14 vs LMU, W 4-2 at LMU, L 3-5 at CSUN."
   ]
 }

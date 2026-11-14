@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-13T10:36",
+ "generated_at": "2026-11-13T23:41",
  "model": {
   "params": {
    "k": 2,
@@ -149,20 +149,20 @@
    },
    {
     "tier": "26+",
-    "n": 280,
-    "w": 107,
-    "l": 171,
+    "n": 283,
+    "w": 109,
+    "l": 172,
     "t": 2,
-    "win_rate": 0.3821428571428571,
+    "win_rate": 0.38515901060070673,
     "ci": [
-     0.33035714285714285,
-     0.44285714285714284
+     0.3339222614840989,
+     0.4452296819787986
     ],
-    "mean_model_p": 0.43430892857142855
+    "mean_model_p": 0.43639116607773853
    }
   ],
-  "overall_m2_win_rate": 0.343980343980344,
-  "n": 407,
+  "overall_m2_win_rate": 0.3463414634146341,
+  "n": 410,
   "seasons": "2021-22 to 2026-27",
   "min_m1_gp": 5
  },
@@ -522,9 +522,49 @@
    "osu": true,
    "ohio_series": true,
    "upset_rank": 4
+  },
+  {
+   "id": "32178",
+   "season": "2026-27",
+   "date": "2026-11-12",
+   "m2": "Oklahoma State",
+   "m1": "Illinois",
+   "m2_home": false,
+   "m2_goals": 7,
+   "m1_goals": 0,
+   "ot": false,
+   "result": "W",
+   "m1_rank": 26,
+   "margin_m2": 2.412,
+   "strength_gap": 3.39,
+   "rank_source": "current",
+   "p_m2": 0.7861,
+   "surprise_bits": 0.347,
+   "osu": true,
+   "ohio_series": false
+  },
+  {
+   "id": "32179",
+   "season": "2026-27",
+   "date": "2026-11-13",
+   "m2": "Oklahoma State",
+   "m1": "Illinois",
+   "m2_home": false,
+   "m2_goals": 4,
+   "m1_goals": 1,
+   "ot": false,
+   "result": "W",
+   "m1_rank": 26,
+   "margin_m2": 2.925,
+   "strength_gap": 3.903,
+   "rank_source": "current",
+   "p_m2": 0.8319,
+   "surprise_bits": 0.266,
+   "osu": true,
+   "ohio_series": false
   }
  ],
- "p_osu_perfect_vs_m1": 0.005387670496310697,
+ "p_osu_perfect_vs_m1": 0.003523302625810951,
  "series": [
   {
    "id": "31985",
@@ -591,8 +631,8 @@
    "p_osu": 0.241,
    "result": "W",
    "m1_rank": 3,
-   "expected_ga_at_season_sv": 3.09,
-   "expected_gf_at_ohio_sv": 1.86
+   "expected_ga_at_season_sv": 2.7,
+   "expected_gf_at_ohio_sv": 1.78
   },
   {
    "id": "31986",
@@ -666,90 +706,90 @@
    "p_osu": 0.2687,
    "result": "W",
    "m1_rank": 3,
-   "expected_ga_at_season_sv": 2.91,
-   "expected_gf_at_ohio_sv": 1.68
+   "expected_ga_at_season_sv": 2.55,
+   "expected_gf_at_ohio_sv": 1.6
   }
  ],
  "profiles": {
   "osu": {
-   "games": 13,
-   "gf": 7.923076923076923,
-   "ga": 2.3076923076923075,
-   "shots_for": 48.583333333333336,
-   "shots_against": 29.166666666666668,
-   "shot_share": 0.62486602357985,
-   "save_pct": 0.9142857142857143,
-   "pp_pct": 0.29310344827586204,
-   "pk_pct": 0.8166666666666667,
-   "shot_games": 12
+   "games": 15,
+   "gf": 7.6,
+   "ga": 2.066666666666667,
+   "shots_for": 49.142857142857146,
+   "shots_against": 29.5,
+   "shot_share": 0.6248864668483197,
+   "save_pct": 0.9249394673123487,
+   "pp_pct": 0.3064516129032258,
+   "pk_pct": 0.8307692307692307,
+   "shot_games": 14
   },
   "ohio": {
-   "games": 12,
-   "gf": 5.583333333333333,
-   "ga": 1.5,
-   "shots_for": 45.416666666666664,
-   "shots_against": 24.166666666666668,
-   "shot_share": 0.6526946107784432,
-   "save_pct": 0.9379310344827586,
-   "pp_pct": 0.42857142857142855,
-   "pk_pct": 0.8275862068965517,
-   "shot_games": 12
+   "games": 13,
+   "gf": 5.769230769230769,
+   "ga": 1.3846153846153846,
+   "shots_for": 48.23076923076923,
+   "shots_against": 23.384615384615383,
+   "shot_share": 0.673469387755102,
+   "save_pct": 0.9407894736842105,
+   "pp_pct": 0.425,
+   "pk_pct": 0.8387096774193549,
+   "shot_games": 13
   }
  },
  "standing": {
-  "osu_strength": 7.195095019290947,
-  "m1_scale_rank": 7,
+  "osu_strength": 7.420650172141616,
+  "m1_scale_rank": 5,
   "m1_teams": 81,
   "m1_top": [
    {
     "team": "Drury",
-    "strength": 8.42
+    "strength": 8.46
    },
    {
     "team": "Ohio",
-    "strength": 8.27
+    "strength": 8.43
+   },
+   {
+    "team": "Minot State",
+    "strength": 7.65
    },
    {
     "team": "Niagara",
     "strength": 7.65
    },
    {
-    "team": "Minot State",
-    "strength": 7.64
-   },
-   {
     "team": "Liberty",
-    "strength": 7.4
+    "strength": 7.39
    },
    {
     "team": "Nevada-Las Vegas",
-    "strength": 7.26
-   },
-   {
-    "team": "Maryville",
-    "strength": 6.81
-   },
-   {
-    "team": "Adrian",
-    "strength": 6.8
+    "strength": 7.36
    },
    {
     "team": "Calvin",
-    "strength": 6.74
+    "strength": 6.96
+   },
+   {
+    "team": "Maryville",
+    "strength": 6.89
+   },
+   {
+    "team": "Adrian",
+    "strength": 6.83
    },
    {
     "team": "Jamestown",
-    "strength": 6.62
+    "strength": 6.56
    }
   ],
   "guest_rank": 1,
   "guest_teams": 82,
   "guest_record": [
-   7,
+   9,
    0,
    0
   ],
   "ohio_official_rank": 3
  },
- "all_m1_m2_games": 409
+ "all_m1_m2_games": 412
 }

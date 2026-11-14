@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-13T23:41",
+ "generated_at": "2026-11-14T07:14",
  "model": {
   "params": {
    "k": 2,
@@ -737,7 +737,7 @@
   }
  },
  "standing": {
-  "osu_strength": 7.420650172141616,
+  "osu_strength": 7.4556176756873915,
   "m1_scale_rank": 5,
   "m1_teams": 81,
   "m1_top": [
@@ -747,7 +747,7 @@
    },
    {
     "team": "Ohio",
-    "strength": 8.43
+    "strength": 8.44
    },
    {
     "team": "Minot State",
@@ -779,7 +779,7 @@
    },
    {
     "team": "Jamestown",
-    "strength": 6.56
+    "strength": 6.57
    }
   ],
   "guest_rank": 1,

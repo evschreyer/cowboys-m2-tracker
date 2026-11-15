@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T23:40",
+ "generated_at": "2026-11-15T07:42",
  "model": {
   "params": {
    "k": 2,
@@ -149,20 +149,20 @@
    },
    {
     "tier": "26+",
-    "n": 284,
+    "n": 285,
     "w": 110,
-    "l": 172,
+    "l": 173,
     "t": 2,
-    "win_rate": 0.3873239436619718,
+    "win_rate": 0.38596491228070173,
     "ci": [
-     0.3362676056338028,
-     0.448943661971831
+     0.3350877192982456,
+     0.4456140350877193
     ],
-    "mean_model_p": 0.43725915492957745
+    "mean_model_p": 0.4375442105263158
    }
   ],
-  "overall_m2_win_rate": 0.34793187347931875,
-  "n": 411,
+  "overall_m2_win_rate": 0.3470873786407767,
+  "n": 412,
   "seasons": "2021-22 to 2026-27",
   "min_m1_gp": 5
  },
@@ -737,13 +737,13 @@
   }
  },
  "standing": {
-  "osu_strength": 7.440876742872059,
-  "m1_scale_rank": 5,
+  "osu_strength": 7.453582578932143,
+  "m1_scale_rank": 6,
   "m1_teams": 81,
   "m1_top": [
    {
     "team": "Drury",
-    "strength": 8.48
+    "strength": 8.49
    },
    {
     "team": "Ohio",
@@ -751,27 +751,27 @@
    },
    {
     "team": "Minot State",
-    "strength": 7.64
+    "strength": 7.66
    },
    {
     "team": "Niagara",
     "strength": 7.63
    },
    {
-    "team": "Liberty",
-    "strength": 7.43
+    "team": "Nevada-Las Vegas",
+    "strength": 7.5
    },
    {
-    "team": "Nevada-Las Vegas",
-    "strength": 7.39
+    "team": "Liberty",
+    "strength": 7.44
    },
    {
     "team": "Calvin",
-    "strength": 7.11
+    "strength": 7.12
    },
    {
     "team": "Maryville",
-    "strength": 6.81
+    "strength": 6.83
    },
    {
     "team": "Adrian",
@@ -791,5 +791,5 @@
   ],
   "ohio_official_rank": 3
  },
- "all_m1_m2_games": 413
+ "all_m1_m2_games": 414
 }

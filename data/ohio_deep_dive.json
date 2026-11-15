@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T23:40",
+ "generated_at": "2026-11-15T07:43",
  "rarity": {
   "series": [
    {
@@ -572,7 +572,7 @@
     "osu": true
    }
   ],
-  "n": 172
+  "n": 173
  },
  "best_m2": [
   {
@@ -622,11 +622,11 @@
   {
    "season": "2026-27",
    "team": "Oklahoma State",
-   "strength": 7.44,
-   "m1_equiv": 5,
+   "strength": 7.45,
+   "m1_equiv": 6,
    "m1_teams": 81,
-   "above_m2_avg": 6.98,
-   "lead_over_2nd": 1.88,
+   "above_m2_avg": 7.0,
+   "lead_over_2nd": 1.89,
    "second": "Lindenwood",
    "to_date": true
   }
@@ -724,12 +724,21 @@
   },
   {
    "date": "2026-11-15",
-   "osu": 7.441,
+   "osu": 7.454,
    "gp": 17,
-   "m1_equiv": 5,
-   "m1_1": 8.475,
-   "m1_10": 6.5,
-   "m1_25": 4.959
+   "m1_equiv": 6,
+   "m1_1": 8.492,
+   "m1_10": 6.504,
+   "m1_25": 4.962
+  },
+  {
+   "date": "2026-11-16",
+   "osu": 7.454,
+   "gp": 17,
+   "m1_equiv": 6,
+   "m1_1": 8.492,
+   "m1_10": 6.504,
+   "m1_25": 4.962
   }
  ],
  "odds": {
@@ -878,7 +887,7 @@
   "ohio_season_sv": 0.9390243902439024,
   "ohio_pp_season": 0.4186046511627907,
   "ohio_pp_expected": 3.35,
-  "m1_avg_sv": 0.8992941131241655,
+  "m1_avg_sv": 0.8992710128667948,
   "gsaa_vs_m1_avg": 4.05
  },
  "goalies": [
@@ -991,35 +1000,35 @@
     "date": "2026-12-04",
     "opp": "Minot State",
     "home": false,
-    "p": 0.4316,
+    "p": 0.4298,
     "opp_m1_rank": 4
    },
    {
     "date": "2026-12-05",
     "opp": "Minot State",
     "home": false,
-    "p": 0.4316,
+    "p": 0.4298,
     "opp_m1_rank": 4
    },
    {
     "date": "2026-12-11",
     "opp": "Nevada-Las Vegas",
     "home": false,
-    "p": 0.4632,
+    "p": 0.451,
     "opp_m1_rank": 2
    },
    {
     "date": "2026-12-12",
     "opp": "Nevada-Las Vegas",
     "home": false,
-    "p": 0.4632,
+    "p": 0.451,
     "opp_m1_rank": 2
    },
    {
     "date": "2027-01-30",
     "opp": "Oklahoma",
     "home": true,
-    "p": 0.948,
+    "p": 0.9472,
     "opp_m1_rank": 53
    },
    {
@@ -1037,22 +1046,22 @@
     "opp_m1_rank": 15
    }
   ],
-  "expected_more": 4.32,
+  "expected_more": 4.29,
   "have": 9,
   "record": 9,
   "record_holder": "Mary (2022-23)",
   "p_break": 0.9998,
   "p_tie_or_break": 1.0,
-  "p_perfect": 0.02359,
+  "p_perfect": 0.02216,
   "dist": [
-   0.00022,
-   0.00624,
-   0.0512,
-   0.18232,
-   0.31784,
-   0.28786,
-   0.13073,
-   0.02359
+   0.00023,
+   0.00658,
+   0.0534,
+   0.18749,
+   0.3205,
+   0.2838,
+   0.12584,
+   0.02216
   ]
  }
 }

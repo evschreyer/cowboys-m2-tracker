@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-17T08:55",
+ "generated_at": "2026-11-17T11:43",
  "model": {
   "gap_12": 0.65,
   "home_edge": 0.328,
   "sigma": 3.0
  },
  "osu": {
-  "strength": 7.463933067376951,
+  "strength": 7.4651532094837005,
   "gp": 17
  },
  "m1_scale": {
@@ -16,7 +16,7 @@
   "p90": 11,
   "p025": 1,
   "p975": 15,
-  "p_top10": 0.86275,
+  "p_top10": 0.86375,
   "top": [
    {
     "team": "Drury",
@@ -30,7 +30,7 @@
    },
    {
     "team": "Minot State",
-    "strength": 7.68,
+    "strength": 7.67,
     "m1_rank": 4
    },
    {
@@ -192,7 +192,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 5,
-   "p_osu": 0.2685,
+   "p_osu": 0.2686,
    "surprise_bits": 1.9,
    "shots_for": 27,
    "shots_against": 34,
@@ -209,7 +209,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 30,
-   "p_osu": 0.7861,
+   "p_osu": 0.7862,
    "surprise_bits": 0.35,
    "shots_for": 51,
    "shots_against": 33,
@@ -226,7 +226,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 30,
-   "p_osu": 0.8318,
+   "p_osu": 0.8319,
    "surprise_bits": 0.27,
    "shots_for": 54,
    "shots_against": 30,
@@ -234,7 +234,7 @@
    "save_pct": 0.967
   }
  ],
- "p_perfect": 0.0035161431483696696,
+ "p_perfect": 0.0035183230812310486,
  "stats": {
   "osu_all": {
    "games": 17,
@@ -377,10 +377,10 @@
   {
    "season": "2026-27",
    "anchored": true,
-   "m1_mean": 3.110678021990938,
-   "m2_mean": 0.44031481237817094,
-   "gap": 3.320363209612767,
-   "top25_gap": 2.1853936004831884,
+   "m1_mean": 3.1107116066346485,
+   "m2_mean": 0.4423258178492129,
+   "gap": 3.3183857887854358,
+   "top25_gap": 2.1862565080589103,
    "m1_teams": 81,
    "m2_teams": 174,
    "games": 52,
@@ -388,7 +388,7 @@
    "m2_l": 32,
    "m2_t": 0,
    "m2_win_rate": 0.38461538461538464,
-   "m1_lean": -0.048243135497074256
+   "m1_lean": -0.04822860892988152
   }
  ],
  "combined": [
@@ -412,7 +412,7 @@
    "rank": 3,
    "team": "Minot State",
    "div": 1,
-   "strength": 7.68,
+   "strength": 7.67,
    "gp": 15,
    "div_rank": 4
   },
@@ -436,7 +436,7 @@
    "rank": 6,
    "team": "Oklahoma State",
    "div": 2,
-   "strength": 7.46,
+   "strength": 7.47,
    "gp": 17,
    "region": "West",
    "div_rank": 1,
@@ -494,7 +494,7 @@
    "rank": 13,
    "team": "Mary",
    "div": 1,
-   "strength": 6.4,
+   "strength": 6.39,
    "gp": 14,
    "div_rank": 11
   },
@@ -526,7 +526,7 @@
    "rank": 17,
    "team": "Lindenwood",
    "div": 2,
-   "strength": 5.54,
+   "strength": 5.55,
    "gp": 17,
    "region": "Central",
    "div_rank": 1,

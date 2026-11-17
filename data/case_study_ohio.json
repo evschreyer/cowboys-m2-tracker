@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T12:43",
+ "generated_at": "2026-11-17T08:55",
  "model": {
   "params": {
    "k": 2,
@@ -149,20 +149,20 @@
    },
    {
     "tier": "26+",
-    "n": 286,
+    "n": 287,
     "w": 110,
-    "l": 174,
+    "l": 175,
     "t": 2,
-    "win_rate": 0.38461538461538464,
+    "win_rate": 0.3832752613240418,
     "ci": [
-     0.3321678321678322,
-     0.44405594405594406
+     0.3310104529616725,
+     0.4425087108013937
     ],
-    "mean_model_p": 0.43642062937062936
+    "mean_model_p": 0.43605435540069687
    }
   ],
-  "overall_m2_win_rate": 0.34624697336561744,
-  "n": 413,
+  "overall_m2_win_rate": 0.34541062801932365,
+  "n": 414,
   "seasons": "2021-22 to 2026-27",
   "min_m1_gp": 5
  },
@@ -555,16 +555,16 @@
    "ot": false,
    "result": "W",
    "m1_rank": 26,
-   "margin_m2": 2.925,
-   "strength_gap": 3.903,
+   "margin_m2": 2.924,
+   "strength_gap": 3.902,
    "rank_source": "current",
-   "p_m2": 0.8319,
+   "p_m2": 0.8318,
    "surprise_bits": 0.266,
    "osu": true,
    "ohio_series": false
   }
  ],
- "p_osu_perfect_vs_m1": 0.003516565863343025,
+ "p_osu_perfect_vs_m1": 0.0035161431483696696,
  "series": [
   {
    "id": "31985",
@@ -737,7 +737,7 @@
   }
  },
  "standing": {
-  "osu_strength": 7.460948621263528,
+  "osu_strength": 7.463933067376951,
   "m1_scale_rank": 6,
   "m1_teams": 81,
   "m1_top": [
@@ -751,7 +751,7 @@
    },
    {
     "team": "Minot State",
-    "strength": 7.67
+    "strength": 7.68
    },
    {
     "team": "Niagara",
@@ -759,7 +759,7 @@
    },
    {
     "team": "Nevada-Las Vegas",
-    "strength": 7.5
+    "strength": 7.51
    },
    {
     "team": "Liberty",
@@ -791,5 +791,5 @@
   ],
   "ohio_official_rank": 3
  },
- "all_m1_m2_games": 415
+ "all_m1_m2_games": 416
 }

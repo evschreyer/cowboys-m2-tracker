@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T11:43",
+ "generated_at": "2026-11-18T11:24",
  "model": {
   "params": {
    "k": 2,
@@ -132,7 +132,7 @@
      0.12,
      0.48
     ],
-    "mean_model_p": 0.23768
+    "mean_model_p": 0.238576
    },
    {
     "tier": "11-25",
@@ -145,24 +145,24 @@
      0.175,
      0.45
     ],
-    "mean_model_p": 0.3265325
+    "mean_model_p": 0.32665500000000003
    },
    {
     "tier": "26+",
-    "n": 287,
+    "n": 288,
     "w": 110,
-    "l": 175,
+    "l": 176,
     "t": 2,
-    "win_rate": 0.3832752613240418,
+    "win_rate": 0.3819444444444444,
     "ci": [
-     0.3310104529616725,
-     0.4425087108013937
+     0.3298611111111111,
+     0.4409722222222222
     ],
-    "mean_model_p": 0.4360595818815331
+    "mean_model_p": 0.43752847222222224
    }
   ],
-  "overall_m2_win_rate": 0.34541062801932365,
-  "n": 414,
+  "overall_m2_win_rate": 0.344578313253012,
+  "n": 415,
   "seasons": "2021-22 to 2026-27",
   "min_m1_gp": 5
  },
@@ -200,11 +200,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 3,
-   "margin_m2": -2.141,
-   "strength_gap": -1.163,
+   "margin_m2": -2.056,
+   "strength_gap": -1.078,
    "rank_source": "current",
-   "p_m2": 0.2408,
-   "surprise_bits": 2.054,
+   "p_m2": 0.2496,
+   "surprise_bits": 2.002,
    "osu": true,
    "ohio_series": true,
    "upset_rank": 2
@@ -242,11 +242,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 3,
-   "margin_m2": -1.877,
-   "strength_gap": -0.899,
+   "margin_m2": -1.812,
+   "strength_gap": -0.834,
    "rank_source": "current",
-   "p_m2": 0.2686,
-   "surprise_bits": 1.897,
+   "p_m2": 0.2756,
+   "surprise_bits": 1.859,
    "osu": true,
    "ohio_series": true,
    "upset_rank": 4
@@ -326,11 +326,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 8,
-   "margin_m2": 0.732,
-   "strength_gap": 1.71,
+   "margin_m2": 0.814,
+   "strength_gap": 1.792,
    "rank_source": "current",
-   "p_m2": 0.5951,
-   "surprise_bits": 0.749,
+   "p_m2": 0.6055,
+   "surprise_bits": 0.724,
    "osu": true,
    "ohio_series": false,
    "upset_rank": 8
@@ -347,11 +347,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 8,
-   "margin_m2": 1.077,
-   "strength_gap": 2.055,
+   "margin_m2": 1.161,
+   "strength_gap": 2.139,
    "rank_source": "current",
-   "p_m2": 0.6383,
-   "surprise_bits": 0.648,
+   "p_m2": 0.6487,
+   "surprise_bits": 0.624,
    "osu": true,
    "ohio_series": false,
    "upset_rank": 9
@@ -431,11 +431,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 20,
-   "margin_m2": 2.101,
-   "strength_gap": 3.079,
+   "margin_m2": 2.174,
+   "strength_gap": 3.152,
    "rank_source": "current",
-   "p_m2": 0.7552,
-   "surprise_bits": 0.405,
+   "p_m2": 0.7627,
+   "surprise_bits": 0.391,
    "osu": true,
    "ohio_series": false
   },
@@ -451,11 +451,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 8,
-   "margin_m2": 0.732,
-   "strength_gap": 1.71,
+   "margin_m2": 0.814,
+   "strength_gap": 1.792,
    "rank_source": "current",
-   "p_m2": 0.5951,
-   "surprise_bits": 0.749,
+   "p_m2": 0.6055,
+   "surprise_bits": 0.724,
    "osu": true,
    "ohio_series": false,
    "upset_rank": 8
@@ -472,11 +472,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 8,
-   "margin_m2": 1.077,
-   "strength_gap": 2.055,
+   "margin_m2": 1.161,
+   "strength_gap": 2.139,
    "rank_source": "current",
-   "p_m2": 0.6383,
-   "surprise_bits": 0.648,
+   "p_m2": 0.6487,
+   "surprise_bits": 0.624,
    "osu": true,
    "ohio_series": false,
    "upset_rank": 9
@@ -493,11 +493,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 3,
-   "margin_m2": -2.141,
-   "strength_gap": -1.163,
+   "margin_m2": -2.056,
+   "strength_gap": -1.078,
    "rank_source": "current",
-   "p_m2": 0.2408,
-   "surprise_bits": 2.054,
+   "p_m2": 0.2496,
+   "surprise_bits": 2.002,
    "osu": true,
    "ohio_series": true,
    "upset_rank": 2
@@ -514,11 +514,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 3,
-   "margin_m2": -1.877,
-   "strength_gap": -0.899,
+   "margin_m2": -1.812,
+   "strength_gap": -0.834,
    "rank_source": "current",
-   "p_m2": 0.2686,
-   "surprise_bits": 1.897,
+   "p_m2": 0.2756,
+   "surprise_bits": 1.859,
    "osu": true,
    "ohio_series": true,
    "upset_rank": 4
@@ -535,11 +535,11 @@
    "ot": false,
    "result": "W",
    "m1_rank": 26,
-   "margin_m2": 2.414,
-   "strength_gap": 3.392,
+   "margin_m2": 2.455,
+   "strength_gap": 3.433,
    "rank_source": "current",
-   "p_m2": 0.7862,
-   "surprise_bits": 0.347,
+   "p_m2": 0.7902,
+   "surprise_bits": 0.34,
    "osu": true,
    "ohio_series": false
   },
@@ -555,16 +555,16 @@
    "ot": false,
    "result": "W",
    "m1_rank": 26,
-   "margin_m2": 2.925,
-   "strength_gap": 3.903,
+   "margin_m2": 2.961,
+   "strength_gap": 3.939,
    "rank_source": "current",
-   "p_m2": 0.8319,
-   "surprise_bits": 0.266,
+   "p_m2": 0.8348,
+   "surprise_bits": 0.26,
    "osu": true,
    "ohio_series": false
   }
  ],
- "p_osu_perfect_vs_m1": 0.0035183230812310486,
+ "p_osu_perfect_vs_m1": 0.00394137119724788,
  "series": [
   {
    "id": "31985",
@@ -628,7 +628,7 @@
    "osu_home": false,
    "venue": "Bird Arena (OH)",
    "attendance": 1250,
-   "p_osu": 0.2408,
+   "p_osu": 0.2496,
    "result": "W",
    "m1_rank": 3,
    "expected_ga_at_season_sv": 2.7,
@@ -703,7 +703,7 @@
    "osu_home": false,
    "venue": "Bird Arena (OH)",
    "attendance": 1250,
-   "p_osu": 0.2686,
+   "p_osu": 0.2756,
    "result": "W",
    "m1_rank": 3,
    "expected_ga_at_season_sv": 2.55,
@@ -737,7 +737,7 @@
   }
  },
  "standing": {
-  "osu_strength": 7.4651532094837005,
+  "osu_strength": 7.498745174510712,
   "m1_scale_rank": 6,
   "m1_teams": 81,
   "m1_top": [
@@ -747,39 +747,39 @@
    },
    {
     "team": "Ohio",
-    "strength": 8.31
+    "strength": 8.33
    },
    {
     "team": "Minot State",
-    "strength": 7.67
+    "strength": 7.68
    },
    {
     "team": "Niagara",
-    "strength": 7.65
+    "strength": 7.67
    },
    {
     "team": "Nevada-Las Vegas",
-    "strength": 7.51
+    "strength": 7.52
    },
    {
     "team": "Liberty",
-    "strength": 7.42
+    "strength": 7.43
    },
    {
     "team": "Calvin",
-    "strength": 7.12
+    "strength": 7.14
    },
    {
     "team": "Maryville",
-    "strength": 6.83
+    "strength": 6.84
    },
    {
     "team": "Adrian",
-    "strength": 6.82
+    "strength": 6.83
    },
    {
     "team": "Purdue Northwest",
-    "strength": 6.51
+    "strength": 6.56
    }
   ],
   "guest_rank": 1,
@@ -791,5 +791,5 @@
   ],
   "ohio_official_rank": 3
  },
- "all_m1_m2_games": 416
+ "all_m1_m2_games": 417
 }

@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-20T11:06",
+ "generated_at": "2026-11-21T00:23",
  "rarity": {
   "series": [
    {
@@ -173,7 +173,7 @@
    {
     "season": "2026-27",
     "w": 9,
-    "l": 0,
+    "l": 1,
     "t": 0,
     "weekend_losses": 2
    }
@@ -340,6 +340,12 @@
     "opp": "Delaware",
     "gf": 5,
     "ga": 2
+   },
+   {
+    "date": "2026-11-20",
+    "opp": "Nevada-Las Vegas",
+    "gf": 3,
+    "ga": 6
    }
   ]
  },
@@ -583,7 +589,7 @@
     "osu": true
    }
   ],
-  "n": 174
+  "n": 175
  },
  "best_m2": [
   {
@@ -633,11 +639,11 @@
   {
    "season": "2026-27",
    "team": "Oklahoma State",
-   "strength": 7.51,
-   "m1_equiv": 6,
+   "strength": 7.39,
+   "m1_equiv": 7,
    "m1_teams": 81,
-   "above_m2_avg": 7.11,
-   "lead_over_2nd": 1.94,
+   "above_m2_avg": 7.01,
+   "lead_over_2nd": 1.84,
    "second": "Lindenwood",
    "to_date": true
   }
@@ -722,11 +728,11 @@
    "m1_equiv": 8,
    "m1_1": 8.58,
    "m1_10": 6.546,
-   "m1_25": 4.988
+   "m1_25": 4.987
   },
   {
    "date": "2026-11-08",
-   "osu": 7.202,
+   "osu": 7.201,
    "gp": 15,
    "m1_equiv": 7,
    "m1_1": 8.434,
@@ -743,13 +749,13 @@
    "m1_25": 4.978
   },
   {
-   "date": "2026-11-21",
-   "osu": 7.513,
-   "gp": 17,
-   "m1_equiv": 6,
-   "m1_1": 8.36,
-   "m1_10": 6.678,
-   "m1_25": 4.967
+   "date": "2026-11-22",
+   "osu": 7.388,
+   "gp": 18,
+   "m1_equiv": 7,
+   "m1_1": 8.371,
+   "m1_10": 6.64,
+   "m1_25": 5.002
   }
  ],
  "odds": {
@@ -763,7 +769,7 @@
    {
     "id": "31986",
     "date": "2026-11-07",
-    "p": 0.2759,
+    "p": 0.2758,
     "score": "3-1"
    }
   ],
@@ -771,12 +777,12 @@
    {
     "team": "Oklahoma State",
     "p_game": 0.25,
-    "p_sweep": 0.06251
+    "p_sweep": 0.0625
    },
    {
     "team": "#2 M2 team (Lindenwood)",
     "p_game": 0.1393,
-    "p_sweep": 0.01941
+    "p_sweep": 0.0194
    },
    {
     "team": "#10 M2 team",
@@ -785,7 +791,7 @@
    },
    {
     "team": "Average M2 team",
-    "p_game": 0.0029,
+    "p_game": 0.0028,
     "p_sweep": 1e-05
    }
   ],
@@ -842,7 +848,7 @@
     "date": "2026-11-07",
     "opp": "Ohio",
     "home": false,
-    "p": 0.2759,
+    "p": 0.2758,
     "res": "W",
     "score": "3-1"
    },
@@ -858,31 +864,31 @@
     "date": "2026-11-13",
     "opp": "Illinois",
     "home": false,
-    "p": 0.8351,
+    "p": 0.835,
     "res": "W",
     "score": "4-1"
    }
   ],
   "win_distribution": [
    0.00013,
-   0.00236,
+   0.00237,
    0.0182,
    0.07577,
-   0.187,
+   0.18701,
    0.28206,
-   0.25771,
-   0.13584,
-   0.03697,
+   0.2577,
+   0.13583,
+   0.03696,
    0.00397
   ],
   "expected_wins": 5.25
  },
  "decomposition": {
   "model_margin": -3.86,
-  "shot_expected": -1.78,
-  "shot_volume": 2.08,
-  "goaltending": 2.25,
-  "finishing": 2.52,
+  "shot_expected": -1.26,
+  "shot_volume": 2.6,
+  "goaltending": 2.3,
+  "finishing": 1.96,
   "actual": 3,
   "totals": {
    "osu_shots": 57,
@@ -894,12 +900,12 @@
    "osu_ppg": 1,
    "osu_ppo": 4
   },
-  "osu_season_sv": 0.9249394673123487,
-  "ohio_season_sv": 0.9390243902439024,
-  "ohio_pp_season": 0.4186046511627907,
-  "ohio_pp_expected": 3.35,
-  "m1_avg_sv": 0.8994986742698616,
-  "gsaa_vs_m1_avg": 4.04
+  "osu_season_sv": 0.9242761692650334,
+  "ohio_season_sv": 0.9291553133514986,
+  "ohio_pp_season": 0.37254901960784315,
+  "ohio_pp_expected": 2.98,
+  "m1_avg_sv": 0.8990839232002937,
+  "gsaa_vs_m1_avg": 4.06
  },
  "goalies": [
   {
@@ -912,8 +918,8 @@
   },
   {
    "name": "Ben West",
-   "sv": 200,
-   "sa": 214,
+   "sv": 233,
+   "sa": 250,
    "sv_m1": 111,
    "sa_m1": 115,
    "starts_m1": 4
@@ -935,9 +941,9 @@
   }
  ],
  "comeback": {
-  "games": 242,
-  "road_wins": 57,
-  "rate": 0.23553719008264462
+  "games": 251,
+  "road_wins": 59,
+  "rate": 0.2350597609561753
  },
  "counterfactual": [
   {
@@ -976,28 +982,28 @@
    "with_osu": 7
   },
   {
-   "team": "Utah",
-   "actual": 10,
+   "team": "Calvin",
+   "actual": 7,
    "with_osu": 8
   },
   {
-   "team": "Calvin",
+   "team": "Jamestown",
    "actual": 8,
    "with_osu": 9
   },
   {
-   "team": "Maryville",
-   "actual": 7,
+   "team": "Utah",
+   "actual": 10,
    "with_osu": 10
   },
   {
-   "team": "Adrian",
+   "team": "Maryville",
    "actual": 9,
    "with_osu": 11
   },
   {
-   "team": "Jamestown",
-   "actual": 11,
+   "team": "Mary",
+   "actual": 12,
    "with_osu": 12
   }
  ],
@@ -1011,68 +1017,68 @@
     "date": "2026-12-04",
     "opp": "Minot State",
     "home": false,
-    "p": 0.447,
+    "p": 0.4212,
     "opp_m1_rank": 3
    },
    {
     "date": "2026-12-05",
     "opp": "Minot State",
     "home": false,
-    "p": 0.447,
+    "p": 0.4212,
     "opp_m1_rank": 3
    },
    {
     "date": "2026-12-11",
     "opp": "Nevada-Las Vegas",
     "home": false,
-    "p": 0.41,
+    "p": 0.3652,
     "opp_m1_rank": 2
    },
    {
     "date": "2026-12-12",
     "opp": "Nevada-Las Vegas",
     "home": false,
-    "p": 0.41,
+    "p": 0.3652,
     "opp_m1_rank": 2
    },
    {
     "date": "2027-01-30",
     "opp": "Oklahoma",
     "home": true,
-    "p": 0.9452,
-    "opp_m1_rank": 52
+    "p": 0.9412,
+    "opp_m1_rank": 53
    },
    {
     "date": "2027-02-26",
     "opp": "Midland",
     "home": true,
-    "p": 0.7964,
-    "opp_m1_rank": 15
+    "p": 0.7823,
+    "opp_m1_rank": 14
    },
    {
     "date": "2027-02-27",
     "opp": "Midland",
     "home": true,
-    "p": 0.7964,
-    "opp_m1_rank": 15
+    "p": 0.7823,
+    "opp_m1_rank": 14
    }
   ],
-  "expected_more": 4.25,
+  "expected_more": 4.08,
   "have": 9,
   "record": 9,
   "record_holder": "Mary (2022-23)",
-  "p_break": 0.9998,
+  "p_break": 0.9996,
   "p_tie_or_break": 1.0,
-  "p_perfect": 0.02014,
+  "p_perfect": 0.01363,
   "dist": [
-   0.00024,
-   0.00679,
-   0.05538,
-   0.19396,
-   0.32509,
-   0.27917,
-   0.11924,
-   0.02014
+   0.00038,
+   0.00971,
+   0.07183,
+   0.22574,
+   0.33427,
+   0.25118,
+   0.09328,
+   0.01363
   ]
  }
 }

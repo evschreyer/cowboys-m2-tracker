@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T08:54",
+ "generated_at": "2026-11-21T10:18",
  "players": [
   {
    "name": "Jack Budd",
@@ -384,10 +384,10 @@
    "m1_rank": 1,
    "strength": 8.37,
    "margin": -0.98,
-   "p_neutral": 0.3789,
+   "p_neutral": 0.379,
    "p_home": 0.4186,
    "p_away": 0.3406,
-   "p_osu_stronger": 0.1562,
+   "p_osu_stronger": 0.1563,
    "common": [
     {
      "opp": "Midland",
@@ -410,7 +410,7 @@
    "p_neutral": 0.4107,
    "p_home": 0.451,
    "p_away": 0.3713,
-   "p_osu_stronger": 0.2296,
+   "p_osu_stronger": 0.2297,
    "common": [
     {
      "opp": "Ohio",
@@ -430,10 +430,10 @@
    "m1_rank": 3,
    "strength": 7.66,
    "margin": -0.28,
-   "p_neutral": 0.4653,
+   "p_neutral": 0.4654,
    "p_home": 0.5063,
    "p_away": 0.4248,
-   "p_osu_stronger": 0.3878,
+   "p_osu_stronger": 0.388,
    "common": [
     {
      "opp": "Midland",
@@ -456,7 +456,7 @@
    "p_neutral": 0.4083,
    "p_home": 0.4486,
    "p_away": 0.3689,
-   "p_osu_stronger": 0.2206,
+   "p_osu_stronger": 0.2207,
    "common": [],
    "common_margin": null,
    "played": 2
@@ -468,8 +468,8 @@
    "margin": -0.16,
    "p_neutral": 0.4796,
    "p_home": 0.5206,
-   "p_away": 0.4388,
-   "p_osu_stronger": 0.4326,
+   "p_away": 0.4389,
+   "p_osu_stronger": 0.4327,
    "common": [
     {
      "opp": "Ohio",
@@ -515,10 +515,10 @@
    "m1_rank": 8,
    "strength": 6.53,
    "margin": 0.86,
-   "p_neutral": 0.6056,
-   "p_home": 0.6443,
-   "p_away": 0.5658,
-   "p_osu_stronger": 0.7993,
+   "p_neutral": 0.6057,
+   "p_home": 0.6444,
+   "p_away": 0.5659,
+   "p_osu_stronger": 0.7995,
    "common": [
     {
      "opp": "Midland",
@@ -539,7 +539,7 @@
    "strength": 6.73,
    "margin": 0.65,
    "p_neutral": 0.5807,
-   "p_home": 0.6201,
+   "p_home": 0.6202,
    "p_away": 0.5404,
    "p_osu_stronger": 0.7383,
    "common": [
@@ -564,7 +564,7 @@
    "p_neutral": 0.5922,
    "p_home": 0.6315,
    "p_away": 0.552,
-   "p_osu_stronger": 0.7745,
+   "p_osu_stronger": 0.7746,
    "common": [
     {
      "opp": "Oklahoma",

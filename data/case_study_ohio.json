@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-22T08:20",
+ "generated_at": "2026-11-22T10:30",
  "model": {
   "params": {
    "k": 2,
@@ -158,7 +158,7 @@
      0.3304794520547945,
      0.4400684931506849
     ],
-    "mean_model_p": 0.4347106164383562
+    "mean_model_p": 0.43470993150684933
    }
   ],
   "overall_m2_win_rate": 0.3436754176610978,
@@ -737,7 +737,7 @@
   }
  },
  "standing": {
-  "osu_strength": 7.57998838504512,
+  "osu_strength": 7.581763222060739,
   "m1_scale_rank": 5,
   "m1_teams": 81,
   "m1_top": [
@@ -771,7 +771,7 @@
    },
    {
     "team": "Jamestown",
-    "strength": 6.87
+    "strength": 6.88
    },
    {
     "team": "Utah",

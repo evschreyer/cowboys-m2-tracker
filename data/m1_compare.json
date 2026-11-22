@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-22T08:21",
+ "generated_at": "2026-11-22T10:30",
  "model": {
   "gap_12": 0.65,
   "home_edge": 0.328,
   "sigma": 3.0
  },
  "osu": {
-  "strength": 7.57998838504512,
+  "strength": 7.581763222060739,
   "gp": 19
  },
  "m1_scale": {
@@ -16,7 +16,7 @@
   "p90": 11,
   "p025": 1,
   "p975": 14,
-  "p_top10": 0.89025,
+  "p_top10": 0.89,
   "top": [
    {
     "team": "Drury",
@@ -55,7 +55,7 @@
    },
    {
     "team": "Jamestown",
-    "strength": 6.87,
+    "strength": 6.88,
     "m1_rank": 7
    },
    {
@@ -377,12 +377,12 @@
   {
    "season": "2026-27",
    "anchored": true,
-   "m1_mean": 3.146554606143538,
-   "m2_mean": 0.38749323166194694,
-   "gap": 3.409061374481591,
-   "top25_gap": 2.1077880614485003,
+   "m1_mean": 3.1471441572326224,
+   "m2_mean": 0.357505580315965,
+   "gap": 3.4396385769166575,
+   "top25_gap": 2.107846671086843,
    "m1_teams": 81,
-   "m2_teams": 178,
+   "m2_teams": 179,
    "games": 52,
    "m2_w": 20,
    "m2_l": 32,
@@ -462,7 +462,7 @@
    "rank": 9,
    "team": "Jamestown",
    "div": 1,
-   "strength": 6.87,
+   "strength": 6.88,
    "gp": 14,
    "div_rank": 7
   },
@@ -502,7 +502,7 @@
    "rank": 14,
    "team": "Mary",
    "div": 1,
-   "strength": 6.23,
+   "strength": 6.24,
    "gp": 17,
    "div_rank": 11
   },
@@ -528,7 +528,7 @@
    "rank": 17,
    "team": "Kentucky",
    "div": 1,
-   "strength": 5.72,
+   "strength": 5.73,
    "gp": 19,
    "div_rank": 17
   },

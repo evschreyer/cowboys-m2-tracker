@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T23:54",
+ "generated_at": "2026-11-22T08:21",
  "rarity": {
   "series": [
    {
@@ -645,11 +645,11 @@
   {
    "season": "2026-27",
    "team": "Oklahoma State",
-   "strength": 7.57,
-   "m1_equiv": 6,
+   "strength": 7.58,
+   "m1_equiv": 5,
    "m1_teams": 81,
-   "above_m2_avg": 7.18,
-   "lead_over_2nd": 1.98,
+   "above_m2_avg": 7.19,
+   "lead_over_2nd": 1.85,
    "second": "Lindenwood",
    "to_date": true
   }
@@ -756,12 +756,21 @@
   },
   {
    "date": "2026-11-22",
-   "osu": 7.566,
+   "osu": 7.58,
    "gp": 19,
-   "m1_equiv": 6,
-   "m1_1": 8.519,
-   "m1_10": 6.655,
-   "m1_25": 4.956
+   "m1_equiv": 5,
+   "m1_1": 8.52,
+   "m1_10": 6.656,
+   "m1_25": 4.957
+  },
+  {
+   "date": "2026-11-23",
+   "osu": 7.58,
+   "gp": 19,
+   "m1_equiv": 5,
+   "m1_1": 8.52,
+   "m1_10": 6.656,
+   "m1_25": 4.957
   }
  ],
  "odds": {
@@ -1023,68 +1032,68 @@
     "date": "2026-12-04",
     "opp": "Minot State",
     "home": false,
-    "p": 0.4228,
+    "p": 0.4245,
     "opp_m1_rank": 3
    },
    {
     "date": "2026-12-05",
     "opp": "Minot State",
     "home": false,
-    "p": 0.4228,
+    "p": 0.4245,
     "opp_m1_rank": 3
    },
    {
     "date": "2026-12-11",
     "opp": "Nevada-Las Vegas",
     "home": false,
-    "p": 0.3939,
+    "p": 0.3956,
     "opp_m1_rank": 2
    },
    {
     "date": "2026-12-12",
     "opp": "Nevada-Las Vegas",
     "home": false,
-    "p": 0.3939,
+    "p": 0.3956,
     "opp_m1_rank": 2
    },
    {
     "date": "2027-01-30",
     "opp": "Oklahoma",
     "home": true,
-    "p": 0.9456,
+    "p": 0.9461,
     "opp_m1_rank": 54
    },
    {
     "date": "2027-02-26",
     "opp": "Midland",
     "home": true,
-    "p": 0.7866,
+    "p": 0.7877,
     "opp_m1_rank": 14
    },
    {
     "date": "2027-02-27",
     "opp": "Midland",
     "home": true,
-    "p": 0.7866,
+    "p": 0.7877,
     "opp_m1_rank": 14
    }
   ],
-  "expected_more": 4.15,
+  "expected_more": 4.16,
   "have": 9,
   "record": 9,
   "record_holder": "Mary (2022-23)",
   "p_break": 0.9997,
   "p_tie_or_break": 1.0,
-  "p_perfect": 0.01623,
+  "p_perfect": 0.01655,
   "dist": [
-   0.0003,
-   0.00834,
-   0.06459,
-   0.21231,
-   0.33096,
-   0.26328,
-   0.10399,
-   0.01623
+   0.00029,
+   0.00816,
+   0.06362,
+   0.21059,
+   0.3306,
+   0.26484,
+   0.10534,
+   0.01655
   ]
  }
 }

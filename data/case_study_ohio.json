@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T23:54",
+ "generated_at": "2026-11-22T08:20",
  "model": {
   "params": {
    "k": 2,
@@ -737,8 +737,8 @@
   }
  },
  "standing": {
-  "osu_strength": 7.566104767751712,
-  "m1_scale_rank": 6,
+  "osu_strength": 7.57998838504512,
+  "m1_scale_rank": 5,
   "m1_teams": 81,
   "m1_top": [
    {
@@ -775,7 +775,7 @@
    },
    {
     "team": "Utah",
-    "strength": 6.79
+    "strength": 6.8
    },
    {
     "team": "Adrian",

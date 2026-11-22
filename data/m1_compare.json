@@ -1,22 +1,22 @@
 {
- "generated_at": "2026-11-21T23:54",
+ "generated_at": "2026-11-22T08:21",
  "model": {
   "gap_12": 0.65,
   "home_edge": 0.328,
   "sigma": 3.0
  },
  "osu": {
-  "strength": 7.566104767751712,
+  "strength": 7.57998838504512,
   "gp": 19
  },
  "m1_scale": {
-  "rank": 6,
+  "rank": 5,
   "of": 81,
   "p10": 2,
   "p90": 11,
   "p025": 1,
   "p975": 14,
-  "p_top10": 0.88675,
+  "p_top10": 0.89025,
   "top": [
    {
     "team": "Drury",
@@ -60,7 +60,7 @@
    },
    {
     "team": "Utah",
-    "strength": 6.79,
+    "strength": 6.8,
     "m1_rank": 8
    },
    {
@@ -377,10 +377,10 @@
   {
    "season": "2026-27",
    "anchored": true,
-   "m1_mean": 3.145753166405139,
-   "m2_mean": 0.3877165035955731,
-   "gap": 3.408036662809566,
-   "top25_gap": 2.114640323596482,
+   "m1_mean": 3.146554606143538,
+   "m2_mean": 0.38749323166194694,
+   "gap": 3.409061374481591,
+   "top25_gap": 2.1077880614485003,
    "m1_teams": 81,
    "m2_teams": 178,
    "games": 52,
@@ -426,21 +426,21 @@
   },
   {
    "rank": 5,
+   "team": "Oklahoma State",
+   "div": 2,
+   "strength": 7.58,
+   "gp": 19,
+   "region": "West",
+   "div_rank": 1,
+   "m2_national": 1
+  },
+  {
+   "rank": 6,
    "team": "Liberty",
    "div": 1,
    "strength": 7.57,
    "gp": 16,
    "div_rank": 6
-  },
-  {
-   "rank": 6,
-   "team": "Oklahoma State",
-   "div": 2,
-   "strength": 7.57,
-   "gp": 19,
-   "region": "West",
-   "div_rank": 1,
-   "m2_national": 1
   },
   {
    "rank": 7,
@@ -470,7 +470,7 @@
    "rank": 10,
    "team": "Utah",
    "div": 1,
-   "strength": 6.79,
+   "strength": 6.8,
    "gp": 16,
    "div_rank": 8
   },
@@ -516,6 +516,16 @@
   },
   {
    "rank": 16,
+   "team": "Lindenwood",
+   "div": 2,
+   "strength": 5.73,
+   "gp": 18,
+   "region": "Central",
+   "div_rank": 1,
+   "m2_national": 2
+  },
+  {
+   "rank": 17,
    "team": "Kentucky",
    "div": 1,
    "strength": 5.72,
@@ -523,22 +533,12 @@
    "div_rank": 17
   },
   {
-   "rank": 17,
+   "rank": 18,
    "team": "Arizona",
    "div": 1,
    "strength": 5.62,
    "gp": 13,
    "div_rank": 16
-  },
-  {
-   "rank": 18,
-   "team": "Lindenwood",
-   "div": 2,
-   "strength": 5.59,
-   "gp": 17,
-   "region": "Central",
-   "div_rank": 1,
-   "m2_national": 2
   },
   {
    "rank": 19,
@@ -584,7 +584,7 @@
    "rank": 24,
    "team": "Syracuse",
    "div": 1,
-   "strength": 5.25,
+   "strength": 5.26,
    "gp": 17,
    "div_rank": 18
   },

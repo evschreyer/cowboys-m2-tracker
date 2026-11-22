@@ -1,49 +1,49 @@
 {
- "generated_at": "2026-11-21T10:19",
+ "generated_at": "2026-11-21T23:56",
  "ladder": {
   "date": "2026-11-22",
-  "strength": 7.387,
-  "sd": 0.671,
-  "gp": 18,
+  "strength": 7.566,
+  "sd": 0.655,
+  "gp": 19,
   "rows": [
    {
     "key": "avg_m1",
     "label": "An average M1 team",
-    "benchmark": 3.795,
-    "z": 5.355,
-    "p": 4.2850044401632204e-08,
+    "benchmark": 3.796,
+    "z": 5.759,
+    "p": 4.22299328839415e-09,
     "verdict": "Proven"
    },
    {
     "key": "m1_25",
     "label": "M1's No. 25 team",
-    "benchmark": 5.002,
-    "z": 3.555,
-    "p": 0.00018879616264833032,
+    "benchmark": 4.956,
+    "z": 3.986,
+    "p": 3.3542553718124424e-05,
     "verdict": "Proven"
    },
    {
     "key": "typical_best_m2",
     "label": "A typical season-best M2 team (2022-23 to 2025-26)",
     "benchmark": 6.088,
-    "z": 1.937,
-    "p": 0.026401983933834527,
-    "verdict": "Likely"
+    "z": 2.259,
+    "p": 0.011956724336303015,
+    "verdict": "Strong"
    },
    {
     "key": "m1_10",
     "label": "M1's No. 10 team",
-    "benchmark": 6.64,
-    "z": 1.113,
-    "p": 0.1329561933959793,
-    "verdict": "Not yet"
+    "benchmark": 6.655,
+    "z": 1.391,
+    "p": 0.0820504380292888,
+    "verdict": "Likely"
    },
    {
     "key": "best_prev_m2",
     "label": "The best previous M2 team-season (Lindenwood 2025-26)",
     "benchmark": 6.998,
-    "z": 0.579,
-    "p": 0.2813979215676401,
+    "z": 0.867,
+    "p": 0.1929276077915112,
     "verdict": "Not yet"
    }
   ]
@@ -103,12 +103,12 @@
   },
   {
    "date": "2026-10-11",
-   "strength": 5.803,
+   "strength": 5.802,
    "sd": 0.905,
    "gp": 9,
    "z": {
-    "avg_m1": 2.216,
-    "m1_25": 1.189,
+    "avg_m1": 2.215,
+    "m1_25": 1.188,
     "typical_best_m2": -0.315,
     "m1_10": -0.509,
     "best_prev_m2": -1.322
@@ -120,76 +120,76 @@
    "sd": 0.832,
    "gp": 11,
    "z": {
-    "avg_m1": 3.356,
-    "m1_25": 2.042,
+    "avg_m1": 3.355,
+    "m1_25": 2.076,
     "typical_best_m2": 0.504,
-    "m1_10": 0.122,
+    "m1_10": -0.038,
     "best_prev_m2": -0.591
    }
   },
   {
    "date": "2026-10-25",
-   "strength": 6.612,
+   "strength": 6.61,
    "sd": 0.832,
    "gp": 11,
    "z": {
-    "avg_m1": 3.471,
-    "m1_25": 2.228,
-    "typical_best_m2": 0.63,
-    "m1_10": -0.004,
-    "best_prev_m2": -0.465
+    "avg_m1": 3.47,
+    "m1_25": 2.041,
+    "typical_best_m2": 0.628,
+    "m1_10": 0.005,
+    "best_prev_m2": -0.467
    }
   },
   {
    "date": "2026-11-01",
-   "strength": 6.854,
+   "strength": 6.852,
    "sd": 0.775,
    "gp": 13,
    "z": {
-    "avg_m1": 4.052,
-    "m1_25": 2.511,
-    "typical_best_m2": 0.989,
-    "m1_10": 0.407,
-    "best_prev_m2": -0.187
+    "avg_m1": 4.051,
+    "m1_25": 2.39,
+    "typical_best_m2": 0.987,
+    "m1_10": 0.412,
+    "best_prev_m2": -0.189
    }
   },
   {
    "date": "2026-11-08",
-   "strength": 7.201,
+   "strength": 7.185,
    "sd": 0.728,
    "gp": 15,
    "z": {
-    "avg_m1": 4.803,
-    "m1_25": 2.943,
-    "typical_best_m2": 1.531,
-    "m1_10": 0.809,
-    "best_prev_m2": 0.279
+    "avg_m1": 4.772,
+    "m1_25": 3.003,
+    "typical_best_m2": 1.508,
+    "m1_10": 0.787,
+    "best_prev_m2": 0.256
    }
   },
   {
    "date": "2026-11-15",
-   "strength": 7.508,
+   "strength": 7.492,
    "sd": 0.688,
    "gp": 17,
    "z": {
-    "avg_m1": 5.421,
-    "m1_25": 3.676,
-    "typical_best_m2": 2.064,
-    "m1_10": 1.391,
-    "best_prev_m2": 0.741
+    "avg_m1": 5.387,
+    "m1_25": 3.637,
+    "typical_best_m2": 2.041,
+    "m1_10": 1.356,
+    "best_prev_m2": 0.717
    }
   },
   {
    "date": "2026-11-22",
-   "strength": 7.387,
-   "sd": 0.671,
-   "gp": 18,
+   "strength": 7.566,
+   "sd": 0.655,
+   "gp": 19,
    "z": {
-    "avg_m1": 5.355,
-    "m1_25": 3.555,
-    "typical_best_m2": 1.937,
-    "m1_10": 1.113,
-    "best_prev_m2": 0.579
+    "avg_m1": 5.759,
+    "m1_25": 3.986,
+    "typical_best_m2": 2.259,
+    "m1_10": 1.391,
+    "best_prev_m2": 0.867
    }
   }
  ],
@@ -197,12 +197,12 @@
   "strength": {
    "rank": 1,
    "of": 909,
-   "value": 7.387,
+   "value": 7.566,
    "top": [
     {
      "season": "2026-27",
      "team": "Oklahoma State",
-     "value": 7.387
+     "value": 7.566
     },
     {
      "season": "2025-26",
@@ -222,19 +222,19 @@
     {
      "season": "2026-27",
      "team": "Lindenwood",
-     "value": 5.551
+     "value": 5.588
     }
    ]
   },
   "above_m2_avg": {
    "rank": 1,
    "of": 909,
-   "value": 7.006,
+   "value": 7.178,
    "top": [
     {
      "season": "2026-27",
      "team": "Oklahoma State",
-     "value": 7.006
+     "value": 7.178
     },
     {
      "season": "2025-26",
@@ -261,7 +261,7 @@
   "beat_expectations": {
    "rank": 2,
    "of": 909,
-   "value": 2.661,
+   "value": 2.905,
    "top": [
     {
      "season": "2025-26",
@@ -271,7 +271,7 @@
     {
      "season": "2026-27",
      "team": "Oklahoma State",
-     "value": 2.661
+     "value": 2.905
     },
     {
      "season": "2025-26",
@@ -293,22 +293,22 @@
   "rise": {
    "rank": 1,
    "of": 448,
-   "value": 9.23,
+   "value": 9.4,
    "top": [
     {
      "team": "Oklahoma State",
      "seasons": "2024-25\u21922026-27",
-     "value": 9.23
+     "value": 9.4
     },
     {
      "team": "Nebraska",
      "seasons": "2024-25\u21922026-27",
-     "value": 5.6
+     "value": 5.66
     },
     {
      "team": "Texas-San Antonio",
      "seasons": "2024-25\u21922026-27",
-     "value": 5.59
+     "value": 5.61
     },
     {
      "team": "Texas State",
@@ -349,7 +349,7 @@
      "date": "2026-10-30",
      "opp": "Midland",
      "div": 1,
-     "rank": 23,
+     "rank": 22,
      "gf": 7,
      "ga": 3
     },
@@ -456,7 +456,7 @@
    },
    {
     "season": "2026-27",
-    "rel": 7.01
+    "rel": 7.18
    }
   ]
  },
@@ -465,7 +465,7 @@
    "season": "2021-22",
    "team": "Mary",
    "strength": 5.58,
-   "p_osu_stronger": 0.987
+   "p_osu_stronger": 0.993
   },
   {
    "season": "2022-23",
@@ -483,19 +483,19 @@
    "season": "2024-25",
    "team": "Lindenwood",
    "strength": 6.53,
-   "p_osu_stronger": 0.847
+   "p_osu_stronger": 0.896
   },
   {
    "season": "2025-26",
    "team": "Florida Gulf Coast",
    "strength": 6.38,
-   "p_osu_stronger": 0.877
+   "p_osu_stronger": 0.917
   }
  ],
- "p_best_m2_season": 0.61,
+ "p_best_m2_season": 0.693,
  "dominance": {
-  "level_m1_25": 5.0,
-  "level_m1_10": 6.64,
+  "level_m1_25": 4.96,
+  "level_m1_10": 6.66,
   "games": [
    {
     "date": "2026-09-03",
@@ -504,7 +504,7 @@
     "home": true,
     "gf": 11,
     "ga": 3,
-    "rating": 9.63
+    "rating": 9.69
    },
    {
     "date": "2026-09-10",
@@ -531,7 +531,7 @@
     "home": false,
     "gf": 3,
     "ga": 6,
-    "rating": 0.73
+    "rating": 0.62
    },
    {
     "date": "2026-09-27",
@@ -540,7 +540,7 @@
     "home": false,
     "gf": 8,
     "ga": 1,
-    "rating": 10.73
+    "rating": 10.62
    },
    {
     "date": "2026-10-02",
@@ -549,7 +549,7 @@
     "home": true,
     "gf": 9,
     "ga": 4,
-    "rating": 10.22
+    "rating": 10.26
    },
    {
     "date": "2026-10-03",
@@ -558,7 +558,7 @@
     "home": true,
     "gf": 7,
     "ga": 6,
-    "rating": 6.22
+    "rating": 6.26
    },
    {
     "date": "2026-10-09",
@@ -567,7 +567,7 @@
     "home": true,
     "gf": 12,
     "ga": 0,
-    "rating": 5.79
+    "rating": 5.67
    },
    {
     "date": "2026-10-10",
@@ -576,7 +576,7 @@
     "home": true,
     "gf": 13,
     "ga": 1,
-    "rating": 5.79
+    "rating": 5.67
    },
    {
     "date": "2026-10-16",
@@ -585,7 +585,7 @@
     "home": false,
     "gf": 13,
     "ga": 0,
-    "rating": 11.14
+    "rating": 11.44
    },
    {
     "date": "2026-10-17",
@@ -594,7 +594,7 @@
     "home": false,
     "gf": 4,
     "ga": 0,
-    "rating": 8.14
+    "rating": 8.44
    },
    {
     "date": "2026-10-30",
@@ -603,7 +603,7 @@
     "home": false,
     "gf": 7,
     "ga": 3,
-    "rating": 9.67
+    "rating": 9.8
    },
    {
     "date": "2026-10-31",
@@ -612,7 +612,7 @@
     "home": false,
     "gf": 5,
     "ga": 1,
-    "rating": 9.67
+    "rating": 9.8
    },
    {
     "date": "2026-11-06",
@@ -621,7 +621,7 @@
     "home": false,
     "gf": 3,
     "ga": 2,
-    "rating": 9.45
+    "rating": 9.3
    },
    {
     "date": "2026-11-07",
@@ -630,7 +630,7 @@
     "home": false,
     "gf": 3,
     "ga": 1,
-    "rating": 10.45
+    "rating": 10.3
    },
    {
     "date": "2026-11-12",
@@ -639,7 +639,7 @@
     "home": false,
     "gf": 7,
     "ga": 0,
-    "rating": 11.47
+    "rating": 11.39
    },
    {
     "date": "2026-11-13",
@@ -648,7 +648,7 @@
     "home": false,
     "gf": 4,
     "ga": 1,
-    "rating": 7.47
+    "rating": 7.39
    },
    {
     "date": "2026-11-20",
@@ -657,19 +657,28 @@
     "home": false,
     "gf": 5,
     "ga": 3,
-    "rating": 6.39
+    "rating": 6.24
+   },
+   {
+    "date": "2026-11-21",
+    "opp": "Sault",
+    "div": 2,
+    "home": false,
+    "gf": 9,
+    "ga": 1,
+    "rating": 11.24
    }
   ],
-  "share25": 0.9444444444444444,
-  "share10": 0.7222222222222222,
+  "share25": 0.9473684210526315,
+  "share10": 0.7368421052631579,
   "elite": [
    {
     "season": "2026-27",
     "team": "Oklahoma State",
     "osu": true,
-    "share25": 0.9444444444444444,
-    "share10": 0.7222222222222222,
-    "games": 18
+    "share25": 0.9473684210526315,
+    "share10": 0.7368421052631579,
+    "games": 19
    },
    {
     "season": "2022-23",
@@ -750,26 +759,26 @@
    {
     "team": "Oklahoma State",
     "osu": true,
-    "lead": 0.756,
-    "trail": 0.107,
+    "lead": 0.759,
+    "trail": 0.103,
     "never_trailed": 14,
-    "games": 18
+    "games": 19
    },
    {
     "team": "Nevada-Las Vegas",
     "osu": false,
-    "lead": 0.719,
-    "trail": 0.022,
+    "lead": 0.681,
+    "trail": 0.039,
     "never_trailed": 13,
-    "games": 16
+    "games": 17
    },
    {
     "team": "Drury",
     "osu": false,
-    "lead": 0.665,
-    "trail": 0.093,
-    "never_trailed": 12,
-    "games": 16
+    "lead": 0.668,
+    "trail": 0.087,
+    "never_trailed": 13,
+    "games": 17
    },
    {
     "team": "West Chester",
@@ -788,20 +797,12 @@
     "games": 14
    },
    {
-    "team": "Ohio",
-    "osu": false,
-    "lead": 0.608,
-    "trail": 0.219,
-    "never_trailed": 10,
-    "games": 17
-   },
-   {
     "team": "Northwood",
     "osu": false,
-    "lead": 0.59,
-    "trail": 0.148,
-    "never_trailed": 11,
-    "games": 19
+    "lead": 0.602,
+    "trail": 0.141,
+    "never_trailed": 12,
+    "games": 20
    },
    {
     "team": "Liberty",
@@ -818,6 +819,14 @@
     "trail": 0.174,
     "never_trailed": 7,
     "games": 16
+   },
+   {
+    "team": "Ohio",
+    "osu": false,
+    "lead": 0.574,
+    "trail": 0.238,
+    "never_trailed": 10,
+    "games": 18
    },
    {
     "team": "Lehigh",
@@ -841,17 +850,17 @@
   {
    "team": "Lindenwood",
    "region": "Central",
-   "strength": 5.55,
+   "strength": 5.59,
    "sd": 0.69,
-   "p_osu_stronger": 0.972,
-   "p_osu_neutral": 0.717,
+   "p_osu_stronger": 0.981,
+   "p_osu_neutral": 0.733,
    "record": [
     11,
     6,
     0
    ],
-   "title": 0.1243,
-   "nationals": 0.9713,
+   "title": 0.1267,
+   "nationals": 0.981,
    "h2h": [
     {
      "date": "2026-10-02",
@@ -872,12 +881,12 @@
     {
      "date": "2027-01-23",
      "osu_home": false,
-     "p_osu": 0.69
+     "p_osu": 0.706
     },
     {
      "date": "2027-01-24",
      "osu_home": false,
-     "p_osu": 0.69
+     "p_osu": 0.706
     }
    ],
    "common": 1,
@@ -887,17 +896,17 @@
   {
    "team": "Liberty",
    "region": "Southeast",
-   "strength": 5.01,
+   "strength": 5.02,
    "sd": 0.75,
-   "p_osu_stronger": 0.991,
-   "p_osu_neutral": 0.771,
+   "p_osu_stronger": 0.995,
+   "p_osu_neutral": 0.786,
    "record": [
     10,
     4,
     0
    ],
-   "title": 0.0693,
-   "nationals": 0.9503,
+   "title": 0.0647,
+   "nationals": 0.9357,
    "h2h": [],
    "upcoming": [],
    "common": 1,
@@ -907,37 +916,37 @@
   {
    "team": "Wisconsin",
    "region": "Central",
-   "strength": 4.97,
-   "sd": 0.69,
-   "p_osu_stronger": 0.994,
-   "p_osu_neutral": 0.775,
+   "strength": 4.9,
+   "sd": 0.67,
+   "p_osu_stronger": 0.998,
+   "p_osu_neutral": 0.799,
    "record": [
-    15,
+    16,
     2,
     0
    ],
-   "title": 0.063,
-   "nationals": 0.8973,
+   "title": 0.061,
+   "nationals": 0.905,
    "h2h": [],
    "upcoming": [],
    "common": 1,
-   "common_margin": 3.66,
+   "common_margin": 6.16,
    "kind": "Title contender"
   },
   {
    "team": "Florida Gulf Coast",
    "region": "Southeast",
-   "strength": 4.94,
-   "sd": 0.65,
-   "p_osu_stronger": 0.996,
-   "p_osu_neutral": 0.779,
+   "strength": 5.01,
+   "sd": 0.64,
+   "p_osu_stronger": 0.997,
+   "p_osu_neutral": 0.79,
    "record": [
-    12,
+    13,
     7,
     0
    ],
-   "title": 0.0547,
-   "nationals": 0.9323,
+   "title": 0.0513,
+   "nationals": 0.9267,
    "h2h": [],
    "upcoming": [],
    "common": 1,
@@ -945,19 +954,19 @@
    "kind": "Title contender"
   },
   {
-   "team": "Army (West Point)",
-   "region": "Northeast",
-   "strength": 4.0,
-   "sd": 0.71,
-   "p_osu_stronger": 1.0,
-   "p_osu_neutral": 0.855,
+   "team": "South Carolina",
+   "region": "Southeast",
+   "strength": 4.28,
+   "sd": 0.83,
+   "p_osu_stronger": 0.999,
+   "p_osu_neutral": 0.846,
    "record": [
-    12,
-    4,
+    9,
+    2,
     0
    ],
-   "title": 0.0217,
-   "nationals": 0.8773,
+   "title": 0.024,
+   "nationals": 0.5723,
    "h2h": [],
    "upcoming": [],
    "common": 0,
@@ -965,19 +974,19 @@
    "kind": "Title contender"
   },
   {
-   "team": "South Carolina",
-   "region": "Southeast",
-   "strength": 4.19,
-   "sd": 0.83,
-   "p_osu_stronger": 0.999,
-   "p_osu_neutral": 0.839,
+   "team": "Niagara",
+   "region": "Northeast",
+   "strength": 4.12,
+   "sd": 0.77,
+   "p_osu_stronger": 1.0,
+   "p_osu_neutral": 0.859,
    "record": [
-    9,
+    11,
     2,
     0
    ],
-   "title": 0.019,
-   "nationals": 0.581,
+   "title": 0.0193,
+   "nationals": 0.7253,
    "h2h": [],
    "upcoming": [],
    "common": 0,
@@ -987,17 +996,17 @@
   {
    "team": "Bentley",
    "region": "Northeast",
-   "strength": 3.92,
+   "strength": 3.89,
    "sd": 0.8,
    "p_osu_stronger": 1.0,
-   "p_osu_neutral": 0.859,
+   "p_osu_neutral": 0.874,
    "record": [
     10,
     2,
     0
    ],
-   "title": 0.018,
-   "nationals": 0.8177,
+   "title": 0.0163,
+   "nationals": 0.801,
    "h2h": [],
    "upcoming": [],
    "common": 0,
@@ -1007,17 +1016,17 @@
   {
    "team": "Montana State",
    "region": "West",
-   "strength": 3.93,
+   "strength": 3.97,
    "sd": 0.61,
    "p_osu_stronger": 1.0,
-   "p_osu_neutral": 0.862,
+   "p_osu_neutral": 0.871,
    "record": [
     16,
     6,
     0
    ],
-   "title": 0.0163,
-   "nationals": 0.598,
+   "title": 0.0123,
+   "nationals": 0.6383,
    "h2h": [],
    "upcoming": [],
    "common": 0,
@@ -1027,17 +1036,17 @@
   {
    "team": "Weber State",
    "region": "West",
-   "strength": 3.88,
+   "strength": 3.91,
    "sd": 0.61,
    "p_osu_stronger": 1.0,
-   "p_osu_neutral": 0.865,
+   "p_osu_neutral": 0.876,
    "record": [
     16,
     6,
     0
    ],
    "title": 0.0113,
-   "nationals": 0.5507,
+   "nationals": 0.5743,
    "h2h": [],
    "upcoming": [],
    "common": 1,
@@ -1047,17 +1056,17 @@
   {
    "team": "Colorado",
    "region": "West",
-   "strength": 3.59,
+   "strength": 3.61,
    "sd": 0.73,
    "p_osu_stronger": 1.0,
-   "p_osu_neutral": 0.882,
+   "p_osu_neutral": 0.892,
    "record": [
     14,
     1,
     0
    ],
-   "title": 0.008,
-   "nationals": 0.4407,
+   "title": 0.0073,
+   "nationals": 0.4577,
    "h2h": [],
    "upcoming": [],
    "common": 0,
@@ -1068,14 +1077,14 @@
  "osu_title": {
   "team": "Oklahoma State",
   "region": "West",
-  "strength": 7.39,
-  "auto_bid": 0.999,
-  "regionals": 0.001,
-  "regional_title": 0.0006666666666666666,
-  "nationals": 0.9996666666666667,
-  "semis": 0.7383333333333333,
-  "final": 0.6193333333333333,
-  "champion": 0.47733333333333333,
+  "strength": 7.57,
+  "auto_bid": 1.0,
+  "regionals": 0.0,
+  "regional_title": 0.0,
+  "nationals": 1.0,
+  "semis": 0.7513333333333333,
+  "final": 0.6483333333333333,
+  "champion": 0.502,
   "eligible": true,
   "scheduled_m2": 16
  },
@@ -1084,132 +1093,132 @@
    {
     "team": "Florida Gulf Coast",
     "region": "Southeast",
-    "p": 0.472
+    "p": 0.4557
    },
    {
     "team": "Liberty",
     "region": "Southeast",
-    "p": 0.3327
+    "p": 0.3257
    },
    {
     "team": "Arkansas",
     "region": "Central",
-    "p": 0.2067
-   },
-   {
-    "team": "Sault",
-    "region": "Central",
-    "p": 0.1727
+    "p": 0.226
    },
    {
     "team": "West Chester",
     "region": "Northeast",
-    "p": 0.157
+    "p": 0.1527
+   },
+   {
+    "team": "Sault",
+    "region": "Central",
+    "p": 0.144
    },
    {
     "team": "South Carolina",
     "region": "Southeast",
-    "p": 0.1237
+    "p": 0.1363
    },
    {
     "team": "Saint Thomas",
     "region": "Central",
-    "p": 0.115
+    "p": 0.1127
    },
    {
-    "team": "Northeastern",
-    "region": "Northeast",
-    "p": 0.102
+    "team": "Schoolcraft",
+    "region": "Central",
+    "p": 0.1103
    }
   ],
   "semi": [
    {
+    "team": "Niagara",
+    "region": "Northeast",
+    "p": 0.066
+   },
+   {
     "team": "Army (West Point)",
     "region": "Northeast",
-    "p": 0.0623
+    "p": 0.0637
    },
    {
     "team": "Bentley",
     "region": "Northeast",
-    "p": 0.0563
-   },
-   {
-    "team": "Niagara",
-    "region": "Northeast",
-    "p": 0.0507
+    "p": 0.0517
    },
    {
     "team": "Montana State",
     "region": "West",
-    "p": 0.0413
+    "p": 0.0467
    },
    {
     "team": "Wisconsin",
     "region": "Central",
-    "p": 0.0397
+    "p": 0.0443
    },
    {
     "team": "Weber State",
     "region": "West",
-    "p": 0.035
+    "p": 0.04
    },
    {
     "team": "Tampa",
     "region": "Southeast",
-    "p": 0.0343
+    "p": 0.0383
    },
    {
-    "team": "South Carolina",
-    "region": "Southeast",
-    "p": 0.0293
+    "team": "Colorado",
+    "region": "West",
+    "p": 0.0337
    }
   ],
   "final": [
    {
     "team": "Lindenwood",
     "region": "Central",
-    "p": 0.1787
-   },
-   {
-    "team": "Liberty",
-    "region": "Southeast",
-    "p": 0.0817
+    "p": 0.1847
    },
    {
     "team": "Wisconsin",
     "region": "Central",
-    "p": 0.081
+    "p": 0.0913
+   },
+   {
+    "team": "Liberty",
+    "region": "Southeast",
+    "p": 0.0857
    },
    {
     "team": "Florida Gulf Coast",
     "region": "Southeast",
-    "p": 0.059
-   },
-   {
-    "team": "Army (West Point)",
-    "region": "Northeast",
-    "p": 0.0273
-   },
-   {
-    "team": "Bentley",
-    "region": "Northeast",
-    "p": 0.0263
+    "p": 0.058
    },
    {
     "team": "South Carolina",
     "region": "Southeast",
-    "p": 0.0233
+    "p": 0.0253
    },
    {
-    "team": "Montana State",
-    "region": "West",
-    "p": 0.0217
+    "team": "Bentley",
+    "region": "Northeast",
+    "p": 0.0237
+   },
+   {
+    "team": "Army (West Point)",
+    "region": "Northeast",
+    "p": 0.0227
+   },
+   {
+    "team": "Tampa",
+    "region": "Southeast",
+    "p": 0.0223
    }
   ]
  },
  "osu": {
-  "strength": 7.39,
-  "sd": 0.67,
-  "gp": 18
+  "strength": 7.57,
+  "sd": 0.65,
+  "gp": 19
  }
 }

@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-24T10:29",
+ "generated_at": "2026-11-24T13:36",
  "model": {
   "gap_12": 0.65,
   "home_edge": 0.328,
   "sigma": 3.0
  },
  "osu": {
-  "strength": 7.631839750694868,
+  "strength": 7.632566899190041,
   "gp": 19
  },
  "m1_scale": {
@@ -16,16 +16,16 @@
   "p90": 11,
   "p025": 1,
   "p975": 14,
-  "p_top10": 0.89275,
+  "p_top10": 0.893,
   "top": [
    {
     "team": "Drury",
-    "strength": 8.55,
+    "strength": 8.54,
     "m1_rank": 1
    },
    {
     "team": "Nevada-Las Vegas",
-    "strength": 8.09,
+    "strength": 8.08,
     "m1_rank": 2
    },
    {
@@ -40,7 +40,7 @@
    },
    {
     "team": "Liberty",
-    "strength": 7.6,
+    "strength": 7.59,
     "m1_rank": 6
    },
    {
@@ -65,7 +65,7 @@
    },
    {
     "team": "Adrian",
-    "strength": 6.66,
+    "strength": 6.65,
     "m1_rank": 13
    }
   ]
@@ -107,7 +107,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 26,
-   "p_osu": 0.5977,
+   "p_osu": 0.5976,
    "surprise_bits": 0.74,
    "shots_for": 67,
    "shots_against": 25,
@@ -124,7 +124,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 26,
-   "p_osu": 0.7632,
+   "p_osu": 0.7631,
    "surprise_bits": 0.39,
    "shots_for": 45,
    "shots_against": 23,
@@ -175,7 +175,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 4,
-   "p_osu": 0.2497,
+   "p_osu": 0.2498,
    "surprise_bits": 2.0,
    "shots_for": 30,
    "shots_against": 36,
@@ -234,7 +234,7 @@
    "save_pct": 0.967
   }
  ],
- "p_perfect": 0.003918336105068327,
+ "p_perfect": 0.003918735962499311,
  "stats": {
   "osu_all": {
    "games": 19,
@@ -377,10 +377,10 @@
   {
    "season": "2026-27",
    "anchored": true,
-   "m1_mean": 3.1551704033222845,
-   "m2_mean": 0.3524927404296129,
-   "gap": 3.4526776628926714,
-   "top25_gap": 2.1186833830541816,
+   "m1_mean": 3.1537163534111787,
+   "m2_mean": 0.341100118124558,
+   "gap": 3.4626162352866205,
+   "top25_gap": 2.1257500294731124,
    "m1_teams": 81,
    "m2_teams": 181,
    "games": 52,
@@ -388,7 +388,7 @@
    "m2_l": 32,
    "m2_t": 0,
    "m2_win_rate": 0.38461538461538464,
-   "m1_lean": -0.044194162055754854
+   "m1_lean": -0.04375357709567125
   }
  ],
  "combined": [
@@ -396,7 +396,7 @@
    "rank": 1,
    "team": "Drury",
    "div": 1,
-   "strength": 8.55,
+   "strength": 8.54,
    "gp": 17,
    "div_rank": 1
   },
@@ -404,7 +404,7 @@
    "rank": 2,
    "team": "Nevada-Las Vegas",
    "div": 1,
-   "strength": 8.09,
+   "strength": 8.08,
    "gp": 17,
    "div_rank": 2
   },
@@ -438,7 +438,7 @@
    "rank": 6,
    "team": "Liberty",
    "div": 1,
-   "strength": 7.6,
+   "strength": 7.59,
    "gp": 16,
    "div_rank": 6
   },
@@ -478,7 +478,7 @@
    "rank": 11,
    "team": "Adrian",
    "div": 1,
-   "strength": 6.66,
+   "strength": 6.65,
    "gp": 18,
    "div_rank": 13
   },
@@ -542,7 +542,7 @@
    "rank": 19,
    "team": "Lindenwood",
    "div": 2,
-   "strength": 5.55,
+   "strength": 5.54,
    "gp": 19,
    "region": "Central",
    "div_rank": 1,
@@ -560,7 +560,7 @@
    "rank": 21,
    "team": "Northwood",
    "div": 1,
-   "strength": 5.48,
+   "strength": 5.47,
    "gp": 20,
    "div_rank": 21
   },
@@ -568,7 +568,7 @@
    "rank": 22,
    "team": "Drexel",
    "div": 1,
-   "strength": 5.47,
+   "strength": 5.46,
    "gp": 16,
    "div_rank": 22
   },

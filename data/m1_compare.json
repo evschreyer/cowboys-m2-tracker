@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-25T12:44",
+ "generated_at": "2026-11-26T12:31",
  "model": {
   "gap_12": 0.65,
   "home_edge": 0.328,
   "sigma": 3.0
  },
  "osu": {
-  "strength": 7.639603267561101,
+  "strength": 7.63672994932599,
   "gp": 19
  },
  "m1_scale": {
@@ -16,7 +16,7 @@
   "p90": 11,
   "p025": 1,
   "p975": 14,
-  "p_top10": 0.8945,
+  "p_top10": 0.89325,
   "top": [
    {
     "team": "Drury",
@@ -25,7 +25,7 @@
    },
    {
     "team": "Nevada-Las Vegas",
-    "strength": 8.09,
+    "strength": 8.08,
     "m1_rank": 2
    },
    {
@@ -141,7 +141,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 14,
-   "p_osu": 0.6065,
+   "p_osu": 0.6063,
    "surprise_bits": 0.72,
    "shots_for": 35,
    "shots_against": 27,
@@ -158,7 +158,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 14,
-   "p_osu": 0.6491,
+   "p_osu": 0.6489,
    "surprise_bits": 0.62,
    "shots_for": 47,
    "shots_against": 28,
@@ -175,7 +175,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 4,
-   "p_osu": 0.2494,
+   "p_osu": 0.2492,
    "surprise_bits": 2.0,
    "shots_for": 30,
    "shots_against": 36,
@@ -192,7 +192,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 4,
-   "p_osu": 0.2737,
+   "p_osu": 0.2736,
    "surprise_bits": 1.87,
    "shots_for": 27,
    "shots_against": 34,
@@ -209,7 +209,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 41,
-   "p_osu": 0.7886,
+   "p_osu": 0.7884,
    "surprise_bits": 0.34,
    "shots_for": 51,
    "shots_against": 33,
@@ -226,7 +226,7 @@
    "ot": false,
    "result": "W",
    "opp_m1_rank": 41,
-   "p_osu": 0.8335,
+   "p_osu": 0.8334,
    "surprise_bits": 0.26,
    "shots_for": 54,
    "shots_against": 30,
@@ -234,7 +234,7 @@
    "save_pct": 0.967
   }
  ],
- "p_perfect": 0.003913562339726662,
+ "p_perfect": 0.0039050428479734385,
  "stats": {
   "osu_all": {
    "games": 19,
@@ -377,10 +377,10 @@
   {
    "season": "2026-27",
    "anchored": true,
-   "m1_mean": 3.157178244101282,
-   "m2_mean": 0.3436906822143697,
-   "gap": 3.4634875618869123,
-   "top25_gap": 2.1292980276978093,
+   "m1_mean": 3.1594959535448592,
+   "m2_mean": 0.3402875696955014,
+   "gap": 3.4692083838493577,
+   "top25_gap": 2.146358050062067,
    "m1_teams": 81,
    "m2_teams": 181,
    "games": 52,
@@ -388,7 +388,7 @@
    "m2_l": 32,
    "m2_t": 0,
    "m2_win_rate": 0.38461538461538464,
-   "m1_lean": -0.04288693390527874
+   "m1_lean": -0.04288501388010188
   }
  ],
  "combined": [
@@ -404,7 +404,7 @@
    "rank": 2,
    "team": "Nevada-Las Vegas",
    "div": 1,
-   "strength": 8.09,
+   "strength": 8.08,
    "gp": 17,
    "div_rank": 2
   },
@@ -494,7 +494,7 @@
    "rank": 13,
    "team": "Purdue Northwest",
    "div": 1,
-   "strength": 6.48,
+   "strength": 6.49,
    "gp": 13,
    "div_rank": 15
   },
@@ -510,7 +510,7 @@
    "rank": 15,
    "team": "West Chester",
    "div": 1,
-   "strength": 6.07,
+   "strength": 6.08,
    "gp": 16,
    "div_rank": 11
   },
@@ -542,7 +542,7 @@
    "rank": 19,
    "team": "Lindenwood",
    "div": 2,
-   "strength": 5.55,
+   "strength": 5.53,
    "gp": 19,
    "region": "Central",
    "div_rank": 1,

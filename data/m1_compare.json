@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-27T12:19",
+ "generated_at": "2026-11-28T01:02",
  "model": {
   "gap_12": 0.65,
   "home_edge": 0.328,
   "sigma": 3.0
  },
  "osu": {
-  "strength": 7.638903773899883,
+  "strength": 7.638078070147162,
   "gp": 19
  },
  "m1_scale": {
@@ -16,11 +16,11 @@
   "p90": 11,
   "p025": 1,
   "p975": 14,
-  "p_top10": 0.894,
+  "p_top10": 0.8945,
   "top": [
    {
     "team": "Drury",
-    "strength": 8.55,
+    "strength": 8.54,
     "m1_rank": 1
    },
    {
@@ -377,10 +377,10 @@
   {
    "season": "2026-27",
    "anchored": true,
-   "m1_mean": 3.1588530524742784,
-   "m2_mean": 0.34069042857322496,
-   "gap": 3.4681626239010535,
-   "top25_gap": 2.1521929804200544,
+   "m1_mean": 3.1571502472069297,
+   "m2_mean": 0.3396395660863744,
+   "gap": 3.4675106811205554,
+   "top25_gap": 2.1520832518829374,
    "m1_teams": 81,
    "m2_teams": 181,
    "games": 52,
@@ -396,7 +396,7 @@
    "rank": 1,
    "team": "Drury",
    "div": 1,
-   "strength": 8.55,
+   "strength": 8.54,
    "gp": 17,
    "div_rank": 1
   },
@@ -494,7 +494,7 @@
    "rank": 13,
    "team": "Purdue Northwest",
    "div": 1,
-   "strength": 6.49,
+   "strength": 6.48,
    "gp": 13,
    "div_rank": 15
   },
@@ -510,7 +510,7 @@
    "rank": 15,
    "team": "West Chester",
    "div": 1,
-   "strength": 6.08,
+   "strength": 6.07,
    "gp": 16,
    "div_rank": 11
   },
@@ -518,7 +518,7 @@
    "rank": 16,
    "team": "Kentucky",
    "div": 1,
-   "strength": 5.84,
+   "strength": 5.83,
    "gp": 20,
    "div_rank": 18
   },

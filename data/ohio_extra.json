@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27T12:20",
+ "generated_at": "2026-11-28T01:03",
  "players": [
   {
    "name": "Jack Budd",
@@ -382,7 +382,7 @@
   {
    "team": "Drury",
    "m1_rank": 1,
-   "strength": 8.55,
+   "strength": 8.54,
    "margin": -0.91,
    "p_neutral": 0.388,
    "p_home": 0.4279,
@@ -430,10 +430,10 @@
    "m1_rank": 3,
    "strength": 7.86,
    "margin": -0.22,
-   "p_neutral": 0.4722,
-   "p_home": 0.5133,
+   "p_neutral": 0.4723,
+   "p_home": 0.5134,
    "p_away": 0.4315,
-   "p_osu_stronger": 0.4065,
+   "p_osu_stronger": 0.4066,
    "common": [
     {
      "opp": "Midland",
@@ -462,10 +462,10 @@
    "m1_rank": 4,
    "strength": 8.04,
    "margin": -0.4,
-   "p_neutral": 0.4496,
-   "p_home": 0.4907,
-   "p_away": 0.4092,
-   "p_osu_stronger": 0.3319,
+   "p_neutral": 0.4498,
+   "p_home": 0.4908,
+   "p_away": 0.4093,
+   "p_osu_stronger": 0.3325,
    "common": [],
    "common_margin": null,
    "played": 2
@@ -475,10 +475,10 @@
    "m1_rank": 5,
    "strength": 7.56,
    "margin": 0.08,
-   "p_neutral": 0.5098,
-   "p_home": 0.5508,
-   "p_away": 0.4688,
-   "p_osu_stronger": 0.5329,
+   "p_neutral": 0.51,
+   "p_home": 0.5509,
+   "p_away": 0.469,
+   "p_osu_stronger": 0.5336,
    "common": [
     {
      "opp": "Ohio",
@@ -498,10 +498,10 @@
    "m1_rank": 6,
    "strength": 7.6,
    "margin": 0.04,
-   "p_neutral": 0.5051,
-   "p_home": 0.546,
-   "p_away": 0.4642,
-   "p_osu_stronger": 0.517,
+   "p_neutral": 0.5053,
+   "p_home": 0.5462,
+   "p_away": 0.4643,
+   "p_osu_stronger": 0.5175,
    "common": [],
    "common_margin": null,
    "played": 0
@@ -568,8 +568,8 @@
    "margin": 0.63,
    "p_neutral": 0.5777,
    "p_home": 0.6174,
-   "p_away": 0.5371,
-   "p_osu_stronger": 0.7388,
+   "p_away": 0.5372,
+   "p_osu_stronger": 0.7389,
    "common": [],
    "common_margin": null,
    "played": 0
@@ -582,7 +582,7 @@
    "p_neutral": 0.6215,
    "p_home": 0.6598,
    "p_away": 0.582,
-   "p_osu_stronger": 0.84,
+   "p_osu_stronger": 0.8401,
    "common": [
     {
      "opp": "Ohio",

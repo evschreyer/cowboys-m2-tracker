@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27T12:19",
+ "generated_at": "2026-11-28T01:02",
  "model": {
   "params": {
    "k": 2,
@@ -737,13 +737,13 @@
   }
  },
  "standing": {
-  "osu_strength": 7.638903773899883,
+  "osu_strength": 7.638078070147162,
   "m1_scale_rank": 5,
   "m1_teams": 81,
   "m1_top": [
    {
     "team": "Drury",
-    "strength": 8.55
+    "strength": 8.54
    },
    {
     "team": "Nevada-Las Vegas",

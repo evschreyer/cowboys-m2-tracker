@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-28T01:03",
+ "generated_at": "2026-11-28T10:22",
  "players": [
   {
    "name": "Jack Budd",
@@ -382,7 +382,7 @@
   {
    "team": "Drury",
    "m1_rank": 1,
-   "strength": 8.54,
+   "strength": 8.55,
    "margin": -0.91,
    "p_neutral": 0.388,
    "p_home": 0.4279,
@@ -603,7 +603,7 @@
   "osu_sd": 0.65
  },
  "significance": {
-  "p_perfect": 0.00390517120039908,
+  "p_perfect": 0.003904895989019583,
   "n_m1_games": 9,
   "top5_series": 7,
   "expected_sweeps": 0.269,
@@ -658,7 +658,7 @@
   {
    "setting": "Prior weight k=1",
    "p_31985": 0.2341,
-   "p_31986": 0.2602,
+   "p_31986": 0.2601,
    "sweep": 0.0609,
    "m1_equiv": 6,
    "above_rank": 1,
@@ -671,7 +671,7 @@
   {
    "setting": "Prior weight k=5",
    "p_31985": 0.2927,
-   "p_31986": 0.3116,
+   "p_31986": 0.3115,
    "sweep": 0.0912,
    "m1_equiv": 4,
    "above_rank": 1,
@@ -714,7 +714,7 @@
    "sweep": 0.0534,
    "m1_equiv": 5,
    "above_rank": 1,
-   "above": 3.6672,
+   "above": 3.6673,
    "p_perfect": 0.0037,
    "osu_best_m1_equiv": 5,
    "osu_is_best_m1_equiv": true,
@@ -722,7 +722,7 @@
   },
   {
    "setting": "Spread 3.4 goals",
-   "p_31985": 0.2746,
+   "p_31985": 0.2745,
    "p_31986": 0.2971,
    "sweep": 0.0816,
    "m1_equiv": 5,
@@ -735,7 +735,7 @@
   },
   {
    "setting": "No home edge",
-   "p_31985": 0.2628,
+   "p_31985": 0.2627,
    "p_31986": 0.2869,
    "sweep": 0.0754,
    "m1_equiv": 7,

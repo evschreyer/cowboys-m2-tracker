@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-28T01:04",
+ "generated_at": "2026-11-28T10:23",
  "ladder": {
   "date": "2026-11-29",
   "strength": 7.638,
@@ -11,7 +11,7 @@
     "label": "An average M1 team",
     "benchmark": 3.807,
     "z": 5.852,
-    "p": 2.4308369761527615e-09,
+    "p": 2.430848855539125e-09,
     "verdict": "Proven"
    },
    {
@@ -19,7 +19,7 @@
     "label": "M1's No. 25 team",
     "benchmark": 4.93,
     "z": 4.137,
-    "p": 1.7623835249835906e-05,
+    "p": 1.762358081991433e-05,
     "verdict": "Proven"
    },
    {
@@ -27,7 +27,7 @@
     "label": "A typical season-best M2 team (2022-23 to 2025-26)",
     "benchmark": 6.088,
     "z": 2.368,
-    "p": 0.008931204383120672,
+    "p": 0.00893119307049628,
     "verdict": "Strong"
    },
    {
@@ -35,7 +35,7 @@
     "label": "M1's No. 10 team",
     "benchmark": 6.658,
     "z": 1.497,
-    "p": 0.06722771005939532,
+    "p": 0.06722738322904687,
     "verdict": "Likely"
    },
    {
@@ -43,7 +43,7 @@
     "label": "The best previous M2 team-season (Lindenwood 2025-26)",
     "benchmark": 6.998,
     "z": 0.977,
-    "p": 0.16425995892891732,
+    "p": 0.16425984295624374,
     "verdict": "Not yet"
    }
   ]
@@ -162,7 +162,7 @@
     "avg_m1": 4.773,
     "m1_25": 2.92,
     "typical_best_m2": 1.51,
-    "m1_10": 0.784,
+    "m1_10": 0.785,
     "best_prev_m2": 0.258
    }
   },
@@ -872,7 +872,7 @@
     7,
     0
    ],
-   "title": 0.1347,
+   "title": 0.135,
    "nationals": 0.9773,
    "h2h": [
     {
@@ -918,8 +918,8 @@
     4,
     0
    ],
-   "title": 0.0617,
-   "nationals": 0.9497,
+   "title": 0.0613,
+   "nationals": 0.95,
    "h2h": [],
    "upcoming": [],
    "common": 1,
@@ -958,8 +958,8 @@
     3,
     0
    ],
-   "title": 0.05,
-   "nationals": 0.8117,
+   "title": 0.0497,
+   "nationals": 0.811,
    "h2h": [],
    "upcoming": [],
    "common": 1,
@@ -979,7 +979,7 @@
     0
    ],
    "title": 0.024,
-   "nationals": 0.57,
+   "nationals": 0.5707,
    "h2h": [
     {
      "date": "2026-09-10",
@@ -1013,8 +1013,8 @@
     3,
     0
    ],
-   "title": 0.0177,
-   "nationals": 0.5637,
+   "title": 0.018,
+   "nationals": 0.564,
    "h2h": [],
    "upcoming": [],
    "common": 0,
@@ -1034,7 +1034,7 @@
     0
    ],
    "title": 0.0177,
-   "nationals": 0.417,
+   "nationals": 0.4167,
    "h2h": [],
    "upcoming": [
     {
@@ -1084,7 +1084,7 @@
     6,
     0
    ],
-   "title": 0.014,
+   "title": 0.0137,
    "nationals": 0.6603,
    "h2h": [],
    "upcoming": [],
@@ -1105,7 +1105,7 @@
     0
    ],
    "title": 0.0087,
-   "nationals": 0.4247,
+   "nationals": 0.424,
    "h2h": [],
    "upcoming": [],
    "common": 0,
@@ -1121,8 +1121,8 @@
   "regionals": 0.0,
   "regional_title": 0.0,
   "nationals": 1.0,
-  "semis": 0.772,
-  "final": 0.6683333333333333,
+  "semis": 0.7716666666666666,
+  "final": 0.668,
   "champion": 0.5016666666666667,
   "eligible": true,
   "scheduled_m2": 16
@@ -1137,17 +1137,17 @@
    {
     "team": "Liberty",
     "region": "Southeast",
-    "p": 0.323
+    "p": 0.3233
    },
    {
     "team": "Arkansas",
     "region": "Central",
-    "p": 0.2483
+    "p": 0.2487
    },
    {
     "team": "West Chester",
     "region": "Northeast",
-    "p": 0.145
+    "p": 0.1447
    },
    {
     "team": "Wisconsin",
@@ -1162,12 +1162,12 @@
    {
     "team": "Sault",
     "region": "Central",
-    "p": 0.1237
+    "p": 0.1233
    },
    {
     "team": "Boston",
     "region": "Northeast",
-    "p": 0.1177
+    "p": 0.118
    }
   ],
   "semi": [
@@ -1184,7 +1184,7 @@
    {
     "team": "Bentley",
     "region": "Northeast",
-    "p": 0.0527
+    "p": 0.053
    },
    {
     "team": "Weber State",
@@ -1204,7 +1204,7 @@
    {
     "team": "Montana State",
     "region": "West",
-    "p": 0.0343
+    "p": 0.034
    },
    {
     "team": "South Carolina",
@@ -1226,7 +1226,7 @@
    {
     "team": "Wisconsin",
     "region": "Central",
-    "p": 0.075
+    "p": 0.0747
    },
    {
     "team": "Florida Gulf Coast",
@@ -1246,7 +1246,7 @@
    {
     "team": "Montana State",
     "region": "West",
-    "p": 0.0233
+    "p": 0.023
    },
    {
     "team": "Army (West Point)",
